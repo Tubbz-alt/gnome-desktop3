@@ -1,6 +1,25 @@
+gnome-desktop (2.6.0-1) experimental; urgency=low
+
+  * New upstream release.
+
+ -- Ondřej Surý <ondrej@debian.org>  Wed, 24 Mar 2004 09:45:43 +0100
+
+gnome-desktop (2.4.1-9) unstable; urgency=low
+
+  * New maintainer (Closes: #238883)
+  * Switched to cdbs build system.
+
+ -- Ondřej Surý <ondrej@debian.org>  Tue, 23 Mar 2004 16:15:45 +0000
+
+gnome-desktop (2.4.1-8) unstable; urgency=low
+
+  * debian/control set Maintainer to Debian QA Group
+
+ -- Christian Marillat <marillat@debian.org>  Sat, 20 Mar 2004 09:49:26 +0100
+
 gnome-desktop (2.4.1-7) unstable; urgency=low
 
-  * Debian.changelog.gz in
+  * Orphaned package.
 
  -- Christian Marillat <marillat@debian.org>  Fri, 19 Mar 2004 15:36:08 +0100
 
