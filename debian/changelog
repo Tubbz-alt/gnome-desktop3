@@ -1,3 +1,10 @@
+gnome-desktop (2.8.1-2) unstable; urgency=low
+
+  * GNOME team upload.
+  * Upload to unstable.
+
+ -- Jordi Mallach <jordi@debian.org>  Fri, 19 Nov 2004 14:30:36 +0100
+
 gnome-desktop (2.8.1-1) experimental; urgency=low
 
   * GNOME team upload.
