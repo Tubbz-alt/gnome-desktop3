@@ -1,3 +1,10 @@
+gnome-desktop (2.6.0-3) experimental; urgency=low
+
+  * debian/control.in
+    + Add build dependency on scrollkeeper.
+
+ -- Ondřej Surý <ondrej@debian.org>  Fri, 26 Mar 2004 23:04:53 +0100
+
 gnome-desktop (2.6.0-2) experimental; urgency=low
 
   * Add dependency on docbook-xml and gtk-doc-tools.
