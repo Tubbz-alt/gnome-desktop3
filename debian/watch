@@ -1,0 +1,4 @@
+version=2
+ftp://ftp.gnome.org/pub/GNOME/sources/gnome-desktop/2.7/ \
+	gnome-desktop-(.*)\.tar\.gz \
+	debian uupdate
