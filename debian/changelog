@@ -1,3 +1,9 @@
+gnome-desktop (2.6.0-4) experimental; urgency=low
+
+  * Rebuild with correct libgnome-keyring-dev package.
+
+ -- Gustavo Noronha Silva <kov@debian.org>  Sat, 27 Mar 2004 08:32:24 -0300
+
 gnome-desktop (2.6.0-3) experimental; urgency=low
 
   * debian/control.in
