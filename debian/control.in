@@ -4,10 +4,7 @@ Priority: optional
 Maintainer: Ondřej Surý <ondrej@debian.org>
 Uploaders: @GNOME_TEAM@
 Standards-Version: 3.6.1
-Build-Depends: debhelper (>= 4.0.0), liborbit2-dev (>= 1:2.10.0), intltool,
- libgnomeui-dev (>= 2.6.0), libbonobo2-dev (>= 2.6.0), scrollkeeper,
- libstartup-notification0-dev (>= 0.5), cdbs, gnome-pkg-tools,
- gtk-doc-tools, docbook-xml
+Build-Depends: debhelper (>= 4.0.0), liborbit2-dev (>= 1:2.10.0), intltool, libgnomeui-dev (>= 2.6.0), libbonobo2-dev (>= 2.6.0), scrollkeeper, libstartup-notification0-dev (>= 0.5), cdbs, gnome-pkg-tools, gtk-doc-tools, docbook-xml
 
 Package: gnome-about
 Architecture: any
