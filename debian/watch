@@ -1,4 +1,4 @@
 version=2
-ftp://ftp.gnome.org/pub/GNOME/sources/gnome-desktop/2.6/ \
+ftp://ftp.gnome.org/pub/GNOME/sources/gnome-desktop/2.8/ \
 	gnome-desktop-(.*)\.tar\.gz \
 	debian uupdate
