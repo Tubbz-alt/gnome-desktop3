@@ -1,3 +1,10 @@
+gnome-desktop (2.6.1-2) unstable; urgency=low
+
+  * Ondřej Surý
+    - upload to unstable.
+
+ -- Ondřej Surý <ondrej@debian.org>  Wed, 26 May 2004 15:25:12 +0200
+
 gnome-desktop (2.6.1-1) experimental; urgency=low
 
   * Ondřej Surý
