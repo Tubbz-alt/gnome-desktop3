@@ -1,15 +1,15 @@
-diff -Nur gnome-desktop-2.7.1.orig/aclocal.m4 gnome-desktop-2.7.1/aclocal.m4
---- gnome-desktop-2.7.1.orig/aclocal.m4	2004-05-31 15:13:42.000000000 +0200
-+++ gnome-desktop-2.7.1/aclocal.m4	2004-06-27 13:54:06.000000000 +0200
-@@ -1343,6 +1343,7 @@
+diff -ruN gnome-desktop-2.7.90.old/aclocal.m4 gnome-desktop-2.7.90/aclocal.m4
+--- gnome-desktop-2.7.90.old/aclocal.m4	2004-08-03 14:17:00.000000000 +0000
++++ gnome-desktop-2.7.90/aclocal.m4	2004-08-15 14:34:31.000000000 +0000
+@@ -1346,6 +1346,7 @@
  # libtool.m4 - Configure libtool for the host system. -*-Autoconf-*-
  
  # serial 47 AC_PROG_LIBTOOL
-+# Debian $Rev: 203 $
++# Debian $Rev: 214 $
  
  
  # AC_PROVIDE_IFELSE(MACRO-NAME, IF-PROVIDED, IF-NOT-PROVIDED)
-@@ -2761,27 +2762,10 @@
+@@ -2764,27 +2765,10 @@
    # before this can be enabled.
    hardcode_into_libs=yes
  
@@ -38,7 +38,26 @@ diff -Nur gnome-desktop-2.7.1.orig/aclocal.m4 gnome-desktop-2.7.1/aclocal.m4
    fi
  
    # We used to test for /lib/ld.so.1 and disable shared libraries on
-@@ -3520,19 +3504,10 @@
+@@ -2796,6 +2780,18 @@
+   dynamic_linker='GNU/Linux ld.so'
+   ;;
+ 
++netbsdelf*-gnu)
++  version_type=linux
++  need_lib_prefix=no
++  need_version=no
++  library_names_spec='${libname}${release}${shared_ext}$versuffix ${libname}${release}${shared_ext}$major ${libname}${shared_ext}'
++  soname_spec='${libname}${release}${shared_ext}$major'
++  shlibpath_var=LD_LIBRARY_PATH
++  shlibpath_overrides_runpath=no
++  hardcode_into_libs=yes
++  dynamic_linker='NetBSD ld.elf_so'
++  ;;
++
+ knetbsd*-gnu)
+   version_type=linux
+   need_lib_prefix=no
+@@ -3523,19 +3519,10 @@
  
  # This must be Linux ELF.
  linux*)
@@ -55,29 +74,29 @@ diff -Nur gnome-desktop-2.7.1.orig/aclocal.m4 gnome-desktop-2.7.1/aclocal.m4
    ;;
  
 -netbsd*)
-+netbsd* | knetbsd*-gnu)
++netbsd* | netbsdelf*-gnu | knetbsd*-gnu)
    if echo __ELF__ | $CC -E - | grep __ELF__ > /dev/null; then
      lt_cv_deplibs_check_method='match_pattern /lib[[^/]]+(\.so\.[[0-9]]+\.[[0-9]]+|_pic\.a)$'
    else
-@@ -4526,7 +4501,7 @@
+@@ -4529,7 +4516,7 @@
  	;;
      esac
      ;;
 -  netbsd*)
-+  netbsd* | knetbsd*-gnu)
++  netbsd* | netbsdelf*-gnu | knetbsd*-gnu)
      if echo __ELF__ | $CC -E - | grep __ELF__ >/dev/null; then
        _LT_AC_TAGVAR(archive_cmds, $1)='$LD -Bshareable  -o $lib $predep_objects $libobjs $deplibs $postdep_objects $linker_flags'
        wlarc=
-@@ -6016,7 +5991,7 @@
+@@ -6019,7 +6006,7 @@
  	    ;;
  	esac
  	;;
 -      netbsd*)
-+      netbsd* | knetbsd*-gnu)
++      netbsd* | netbsdelf*-gnu | knetbsd*-gnu)
  	;;
        osf3* | osf4* | osf5*)
  	case $cc_basename in
-@@ -6327,6 +6302,9 @@
+@@ -6330,6 +6317,9 @@
    cygwin* | mingw*)
      _LT_AC_TAGVAR(export_symbols_cmds, $1)='$NM $libobjs $convenience | $global_symbol_pipe | $SED -e '\''/^[[BCDGS]] /s/.* \([[^ ]]*\)/\1 DATA/'\'' | $SED -e '\''/^[[AITW]] /s/.* //'\'' | sort | uniq > $export_symbols'
    ;;
@@ -87,16 +106,16 @@ diff -Nur gnome-desktop-2.7.1.orig/aclocal.m4 gnome-desktop-2.7.1/aclocal.m4
    *)
      _LT_AC_TAGVAR(export_symbols_cmds, $1)='$NM $libobjs $convenience | $global_symbol_pipe | $SED '\''s/.* //'\'' | sort | uniq > $export_symbols'
    ;;
-@@ -6456,7 +6434,7 @@
+@@ -6459,7 +6449,7 @@
        fi
        ;;
  
 -    netbsd*)
-+    netbsd* | knetbsd*-gnu)
++    netbsd* | netbsdelf*-gnu | knetbsd*-gnu)
        if echo __ELF__ | $CC -E - | grep __ELF__ >/dev/null; then
  	_LT_AC_TAGVAR(archive_cmds, $1)='$LD -Bshareable $libobjs $deplibs $linker_flags -o $lib'
  	wlarc=
-@@ -6514,6 +6492,7 @@
+@@ -6517,6 +6507,7 @@
        else
          _LT_AC_TAGVAR(archive_expsym_cmds, $1)="$tmp_archive_cmds"
        fi
@@ -104,19 +123,302 @@ diff -Nur gnome-desktop-2.7.1.orig/aclocal.m4 gnome-desktop-2.7.1/aclocal.m4
      else
        _LT_AC_TAGVAR(ld_shlibs, $1)=no
      fi
-@@ -6873,7 +6852,7 @@
+@@ -6876,7 +6867,7 @@
        _LT_AC_TAGVAR(link_all_deplibs, $1)=yes
        ;;
  
 -    netbsd*)
-+    netbsd* | knetbsd*-gnu)
++    netbsd* | netbsdelf*-gnu | knetbsd*-gnu)
        if echo __ELF__ | $CC -E - | grep __ELF__ >/dev/null; then
  	_LT_AC_TAGVAR(archive_cmds, $1)='$LD -Bshareable -o $lib $libobjs $deplibs $linker_flags'  # a.out
        else
-diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
---- gnome-desktop-2.7.1.orig/configure	2004-05-31 15:13:53.000000000 +0200
-+++ gnome-desktop-2.7.1/configure	2004-06-27 13:54:14.000000000 +0200
-@@ -1153,7 +1153,7 @@
+@@ -7276,10 +7267,14 @@
+     dnl More compiler warnings
+     dnl ******************************
+ 
++    if test -z "$1" ; then
++	default_compile_warnings=yes
++    else
++	default_compile_warnings="$1"
++    fi
++
+     AC_ARG_ENABLE(compile-warnings, 
+-                  AC_HELP_STRING([--enable-compile-warnings=@<:@no/minimum/yes/maximum/error@:>@],
+-                                 [Turn on compiler warnings]),,
+-                  [enable_compile_warnings="m4_default([$1],[yes])"])
++    [  --enable-compile-warnings=[no/minimum/yes/maximum/error]	Turn on compiler warnings.],, [enable_compile_warnings="$default_compile_warnings"])
+ 
+     warnCFLAGS=
+     if test "x$GCC" != xyes; then
+@@ -7331,9 +7326,8 @@
+     AC_MSG_RESULT($warning_flags)
+ 
+     AC_ARG_ENABLE(iso-c,
+-                  AC_HELP_STRING([--enable-iso-c],
+-                                 [Try to warn if code is not ISO C ]),,
+-                  [enable_iso_c=no])
++    [  --enable-iso-c          Try to warn if code is not ISO C ],,
++    enable_iso_c=no)
+ 
+     AC_MSG_CHECKING(what language compliance flags to pass to the C compiler)
+     complCFLAGS=
+@@ -7358,10 +7352,8 @@
+ dnl For C++, do basically the same thing.
+ 
+ AC_DEFUN([GNOME_CXX_WARNINGS],[
+-  AC_ARG_ENABLE(cxx-warnings,
+-                AC_HELP_STRING([--enable-cxx-warnings=@<:@no/minimum/yes@:>@]
+-                               [Turn on compiler warnings.]),,
+-                [enable_cxx_warnings="m4_default([$1],[minimum])"])
++  AC_ARG_ENABLE(cxx-warnings, 
++    [  --enable-cxx-warnings=[no/minimum/yes]	Turn on compiler warnings.],,enable_cxx_warnings=minimum)
+ 
+   AC_MSG_CHECKING(what warning flags to pass to the C++ compiler)
+   warnCXXFLAGS=
+@@ -7385,9 +7377,8 @@
+   AC_MSG_RESULT($warnCXXFLAGS)
+ 
+    AC_ARG_ENABLE(iso-cxx,
+-                 AC_HELP_STRING([--enable-iso-cxx],
+-                                [Try to warn if code is not ISO C++ ]),,
+-                 [enable_iso_cxx=no])
++     [  --enable-iso-cxx          Try to warn if code is not ISO C++ ],,
++     enable_iso_cxx=no)
+ 
+    AC_MSG_CHECKING(what language compliance flags to pass to the C++ compiler)
+    complCXXFLAGS=
+diff -ruN gnome-desktop-2.7.90.old/config.guess gnome-desktop-2.7.90/config.guess
+--- gnome-desktop-2.7.90.old/config.guess	2004-05-19 16:14:48.000000000 +0000
++++ gnome-desktop-2.7.90/config.guess	2004-08-15 14:34:11.000000000 +0000
+@@ -1,9 +1,9 @@
+ #! /bin/sh
+ # Attempt to guess a canonical system name.
+ #   Copyright (C) 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999,
+-#   2000, 2001, 2002, 2003 Free Software Foundation, Inc.
++#   2000, 2001, 2002, 2003, 2004 Free Software Foundation, Inc.
+ 
+-timestamp='2004-03-12'
++timestamp='2004-07-19'
+ 
+ # This file is free software; you can redistribute it and/or modify it
+ # under the terms of the GNU General Public License as published by
+@@ -53,7 +53,7 @@
+ GNU config.guess ($timestamp)
+ 
+ Originally written by Per Bothner.
+-Copyright (C) 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001
++Copyright (C) 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004
+ Free Software Foundation, Inc.
+ 
+ This is free software; see the source for copying conditions.  There is NO
+@@ -212,6 +212,9 @@
+     hp300:OpenBSD:*:*)
+ 	echo m68k-unknown-openbsd${UNAME_RELEASE}
+ 	exit 0 ;;
++    luna88k:OpenBSD:*:*)
++    	echo m88k-unknown-openbsd${UNAME_RELEASE}
++	exit 0 ;;
+     mac68k:OpenBSD:*:*)
+ 	echo m68k-unknown-openbsd${UNAME_RELEASE}
+ 	exit 0 ;;
+@@ -227,9 +230,6 @@
+     mvmeppc:OpenBSD:*:*)
+ 	echo powerpc-unknown-openbsd${UNAME_RELEASE}
+ 	exit 0 ;;
+-    pegasos:OpenBSD:*:*)
+-	echo powerpc-unknown-openbsd${UNAME_RELEASE}
+-	exit 0 ;;
+     pmax:OpenBSD:*:*)
+ 	echo mipsel-unknown-openbsd${UNAME_RELEASE}
+ 	exit 0 ;;
+@@ -307,9 +307,6 @@
+ 	# 1.2 uses "1.2" for uname -r.
+ 	echo ${UNAME_MACHINE}-dec-osf`echo ${UNAME_RELEASE} | sed -e 's/^[PVTX]//' | tr 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' 'abcdefghijklmnopqrstuvwxyz'`
+ 	exit 0 ;;
+-    Alpha*:OpenVMS:*:*)
+-	echo alpha-hp-vms
+-	exit 0 ;;
+     Alpha\ *:Windows_NT*:*)
+ 	# How do we know it's Interix rather than the generic POSIX subsystem?
+ 	# Should we change UNAME_MACHINE based on the output of uname instead
+@@ -764,7 +761,7 @@
+ 	echo sv1-cray-unicos${UNAME_RELEASE} | sed -e 's/\.[^.]*$/.X/'
+ 	exit 0 ;;
+     *:UNICOS/mp:*:*)
+-	echo nv1-cray-unicosmp${UNAME_RELEASE} | sed -e 's/\.[^.]*$/.X/'
++	echo craynv-cray-unicosmp${UNAME_RELEASE} | sed -e 's/\.[^.]*$/.X/'
+ 	exit 0 ;;
+     F30[01]:UNIX_System_V:*:* | F700:UNIX_System_V:*:*)
+ 	FUJITSU_PROC=`uname -m | tr 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' 'abcdefghijklmnopqrstuvwxyz'`
+@@ -787,21 +784,7 @@
+ 	echo ${UNAME_MACHINE}-unknown-bsdi${UNAME_RELEASE}
+ 	exit 0 ;;
+     *:FreeBSD:*:*)
+-	# Determine whether the default compiler uses glibc.
+-	eval $set_cc_for_build
+-	sed 's/^	//' << EOF >$dummy.c
+-	#include <features.h>
+-	#if __GLIBC__ >= 2
+-	LIBC=gnu
+-	#else
+-	LIBC=
+-	#endif
+-EOF
+-	eval `$CC_FOR_BUILD -E $dummy.c 2>/dev/null | grep ^LIBC=`
+-	# GNU/KFreeBSD systems have a "k" prefix to indicate we are using
+-	# FreeBSD's kernel, but not the complete OS.
+-	case ${LIBC} in gnu) kernel_only='k' ;; esac
+-	echo ${UNAME_MACHINE}-unknown-${kernel_only}freebsd`echo ${UNAME_RELEASE}|sed -e 's/[-(].*//'`${LIBC:+-$LIBC}
++	echo ${UNAME_MACHINE}-unknown-freebsd`echo ${UNAME_RELEASE}|sed -e 's/[-(].*//'`
+ 	exit 0 ;;
+     i*:CYGWIN*:*)
+ 	echo ${UNAME_MACHINE}-pc-cygwin
+@@ -1096,9 +1079,9 @@
+     M680?0:D-NIX:5.3:*)
+ 	echo m68k-diab-dnix
+ 	exit 0 ;;
+-    M68*:*:R3V[567]*:*)
++    M68*:*:R3V[5678]*:*)
+ 	test -r /sysV68 && echo 'm68k-motorola-sysv' && exit 0 ;;
+-    3[345]??:*:4.0:3.0 | 3[34]??A:*:4.0:3.0 | 3[34]??,*:*:4.0:3.0 | 3[34]??/*:*:4.0:3.0 | 4400:*:4.0:3.0 | 4850:*:4.0:3.0 | SKA40:*:4.0:3.0 | SDS2:*:4.0:3.0 | SHG2:*:4.0:3.0)
++    3[345]??:*:4.0:3.0 | 3[34]??A:*:4.0:3.0 | 3[34]??,*:*:4.0:3.0 | 3[34]??/*:*:4.0:3.0 | 4400:*:4.0:3.0 | 4850:*:4.0:3.0 | SKA40:*:4.0:3.0 | SDS2:*:4.0:3.0 | SHG2:*:4.0:3.0 | S7501*:*:4.0:3.0)
+ 	OS_REL=''
+ 	test -r /etc/.relid \
+ 	&& OS_REL=.`sed -n 's/[^ ]* [^ ]* \([0-9][0-9]\).*/\1/p' < /etc/.relid`
+@@ -1260,6 +1243,13 @@
+     *:DragonFly:*:*)
+ 	echo ${UNAME_MACHINE}-unknown-dragonfly`echo ${UNAME_RELEASE}|sed -e 's/[-(].*//'`
+ 	exit 0 ;;
++    *:*VMS:*:*)
++    	UNAME_MACHINE=`(uname -p) 2>/dev/null`
++	case "${UNAME_MACHINE}" in
++	    A*) echo alpha-dec-vms && exit 0 ;;
++	    I*) echo ia64-dec-vms && exit 0 ;;
++	    V*) echo vax-dec-vms && exit 0 ;;
++	esac
+ esac
+ 
+ #echo '(No uname command or uname output not recognized.)' 1>&2
+diff -ruN gnome-desktop-2.7.90.old/config.sub gnome-desktop-2.7.90/config.sub
+--- gnome-desktop-2.7.90.old/config.sub	2004-05-19 16:14:48.000000000 +0000
++++ gnome-desktop-2.7.90/config.sub	2004-08-15 14:34:11.000000000 +0000
+@@ -1,9 +1,9 @@
+ #! /bin/sh
+ # Configuration validation subroutine script.
+ #   Copyright (C) 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999,
+-#   2000, 2001, 2002, 2003 Free Software Foundation, Inc.
++#   2000, 2001, 2002, 2003, 2004 Free Software Foundation, Inc.
+ 
+-timestamp='2004-03-12'
++timestamp='2004-06-24'
+ 
+ # This file is (in principle) common to ALL GNU software.
+ # The presence of a machine in this file suggests that SOME GNU software
+@@ -70,7 +70,7 @@
+ version="\
+ GNU config.sub ($timestamp)
+ 
+-Copyright (C) 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001
++Copyright (C) 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004
+ Free Software Foundation, Inc.
+ 
+ This is free software; see the source for copying conditions.  There is NO
+@@ -145,7 +145,7 @@
+ 	-convergent* | -ncr* | -news | -32* | -3600* | -3100* | -hitachi* |\
+ 	-c[123]* | -convex* | -sun | -crds | -omron* | -dg | -ultra | -tti* | \
+ 	-harris | -dolphin | -highlevel | -gould | -cbm | -ns | -masscomp | \
+-	-apple | -axis)
++	-apple | -axis | -knuth | -cray)
+ 		os=
+ 		basic_machine=$1
+ 		;;
+@@ -300,7 +300,7 @@
+ 	| avr-* \
+ 	| bs2000-* \
+ 	| c[123]* | c30-* | [cjt]90-* | c4x-* | c54x-* | c55x-* | c6x-* \
+-	| clipper-* | cydra-* \
++	| clipper-* | craynv-* | cydra-* \
+ 	| d10v-* | d30v-* | dlx-* \
+ 	| elxsi-* \
+ 	| f30[01]-* | f700-* | fr30-* | frv-* | fx80-* \
+@@ -326,8 +326,9 @@
+ 	| mipsisa64sb1-* | mipsisa64sb1el-* \
+ 	| mipsisa64sr71k-* | mipsisa64sr71kel-* \
+ 	| mipstx39-* | mipstx39el-* \
++	| mmix-* \
+ 	| msp430-* \
+-	| none-* | np1-* | nv1-* | ns16k-* | ns32k-* \
++	| none-* | np1-* | ns16k-* | ns32k-* \
+ 	| orion-* \
+ 	| pdp10-* | pdp11-* | pj-* | pjl-* | pn-* | power-* \
+ 	| powerpc-* | powerpc64-* | powerpc64le-* | powerpcle-* | ppcbe-* \
+@@ -445,6 +446,10 @@
+ 		basic_machine=j90-cray
+ 		os=-unicos
+ 		;;
++	craynv)
++		basic_machine=craynv-cray
++		os=-unicosmp
++		;;
+ 	cr16c)
+ 		basic_machine=cr16c-unknown
+ 		os=-elf
+@@ -659,10 +664,6 @@
+ 	mips3*)
+ 		basic_machine=`echo $basic_machine | sed -e 's/mips3/mips64/'`-unknown
+ 		;;
+-	mmix*)
+-		basic_machine=mmix-knuth
+-		os=-mmixware
+-		;;
+ 	monitor)
+ 		basic_machine=m68k-rom68k
+ 		os=-coff
+@@ -743,10 +744,6 @@
+ 	np1)
+ 		basic_machine=np1-gould
+ 		;;
+-	nv1)
+-		basic_machine=nv1-cray
+-		os=-unicosmp
+-		;;
+ 	nsr-tandem)
+ 		basic_machine=nsr-tandem
+ 		;;
+@@ -1059,6 +1056,9 @@
+ 	romp)
+ 		basic_machine=romp-ibm
+ 		;;
++	mmix)
++		basic_machine=mmix-knuth
++		;;
+ 	rs6000)
+ 		basic_machine=rs6000-ibm
+ 		;;
+@@ -1374,6 +1374,9 @@
+ 	*-ibm)
+ 		os=-aix
+ 		;;
++    	*-knuth)
++		os=-mmixware
++		;;
+ 	*-wec)
+ 		os=-proelf
+ 		;;
+diff -ruN gnome-desktop-2.7.90.old/configure gnome-desktop-2.7.90/configure
+--- gnome-desktop-2.7.90.old/configure	2004-08-03 14:17:11.000000000 +0000
++++ gnome-desktop-2.7.90/configure	2004-08-15 14:34:42.000000000 +0000
+@@ -1032,8 +1032,7 @@
+   --enable-fast-install[=PKGS]
+                           optimize for fast installation [default=yes]
+   --disable-libtool-lock  avoid locking (might break parallel builds)
+-  --enable-compile-warnings=[no/minimum/yes/maximum/error]
+-                          Turn on compiler warnings
++  --enable-compile-warnings=no/minimum/yes/maximum/error	Turn on compiler warnings.
+   --enable-iso-c          Try to warn if code is not ISO C
+   --enable-deprecations   warn about deprecated usages [default=no]
+   --disable-rebuilds      disable all source autogeneration rules
+@@ -1154,7 +1153,7 @@
      else
        echo "$as_me: WARNING: no configuration information is in $ac_dir" >&2
      fi
@@ -125,7 +427,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    done
  fi
  
-@@ -2541,8 +2541,7 @@
+@@ -2547,8 +2546,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -135,7 +437,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -2600,8 +2599,7 @@
+@@ -2606,8 +2604,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -145,7 +447,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -2717,8 +2715,7 @@
+@@ -2723,8 +2720,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -155,7 +457,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -2772,8 +2769,7 @@
+@@ -2778,8 +2774,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -165,7 +467,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -2818,8 +2814,7 @@
+@@ -2824,8 +2819,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -175,7 +477,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -2863,8 +2858,7 @@
+@@ -2869,8 +2863,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -185,7 +487,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -2943,8 +2937,7 @@
+@@ -2949,8 +2942,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -195,7 +497,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -3342,8 +3335,7 @@
+@@ -3348,8 +3340,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -205,7 +507,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -3401,8 +3393,7 @@
+@@ -3407,8 +3398,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -215,7 +517,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -3518,8 +3509,7 @@
+@@ -3524,8 +3514,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -225,7 +527,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -3573,8 +3563,7 @@
+@@ -3579,8 +3568,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -235,7 +537,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -3619,8 +3608,7 @@
+@@ -3625,8 +3613,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -245,7 +547,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -3664,8 +3652,7 @@
+@@ -3670,8 +3657,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -255,7 +557,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -3987,8 +3974,7 @@
+@@ -3993,8 +3979,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -265,7 +567,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -4587,19 +4573,10 @@
+@@ -4593,19 +4578,10 @@
  
  # This must be Linux ELF.
  linux*)
@@ -282,20 +584,20 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    ;;
  
 -netbsd*)
-+netbsd* | knetbsd*-gnu)
++netbsd* | netbsdelf*-gnu | knetbsd*-gnu)
    if echo __ELF__ | $CC -E - | grep __ELF__ > /dev/null; then
      lt_cv_deplibs_check_method='match_pattern /lib[^/]+(\.so\.[0-9]+\.[0-9]+|_pic\.a)$'
    else
-@@ -4715,7 +4692,7 @@
+@@ -4721,7 +4697,7 @@
    ;;
  *-*-irix6*)
    # Find out which ABI we are using.
--  echo '#line 4718 "configure"' > conftest.$ac_ext
-+  echo '#line 4695 "configure"' > conftest.$ac_ext
+-  echo '#line 4724 "configure"' > conftest.$ac_ext
++  echo '#line 4700 "configure"' > conftest.$ac_ext
    if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
    (eval $ac_compile) 2>&5
    ac_status=$?
-@@ -4835,8 +4812,7 @@
+@@ -4841,8 +4817,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -305,7 +607,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -5157,8 +5133,7 @@
+@@ -5163,8 +5138,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -315,7 +617,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -5225,8 +5200,7 @@
+@@ -5231,8 +5205,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -325,7 +627,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -5486,8 +5460,7 @@
+@@ -5492,8 +5465,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -335,7 +637,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -5545,8 +5518,7 @@
+@@ -5551,8 +5523,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -345,7 +647,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -5617,8 +5589,7 @@
+@@ -5623,8 +5594,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -355,7 +657,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -5662,8 +5633,7 @@
+@@ -5668,8 +5638,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -365,16 +667,16 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -6019,7 +5989,7 @@
+@@ -6025,7 +5994,7 @@
  
  
  # Provide some information about the compiler.
--echo "$as_me:6022:" \
-+echo "$as_me:5992:" \
+-echo "$as_me:6028:" \
++echo "$as_me:5997:" \
       "checking for Fortran 77 compiler version" >&5
  ac_compiler=`set X $ac_compile; echo $2`
  { (eval echo "$as_me:$LINENO: \"$ac_compiler --version </dev/null >&5\"") >&5
-@@ -6065,8 +6035,7 @@
+@@ -6071,8 +6040,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -384,7 +686,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -6115,8 +6084,7 @@
+@@ -6121,8 +6089,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -394,58 +696,58 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -7053,11 +7021,11 @@
+@@ -7059,11 +7026,11 @@
     -e 's:.*FLAGS}? :&$lt_compiler_flag :; t' \
     -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
     -e 's:$: $lt_compiler_flag:'`
--   (eval echo "\"\$as_me:7056: $lt_compile\"" >&5)
-+   (eval echo "\"\$as_me:7024: $lt_compile\"" >&5)
+-   (eval echo "\"\$as_me:7062: $lt_compile\"" >&5)
++   (eval echo "\"\$as_me:7029: $lt_compile\"" >&5)
     (eval "$lt_compile" 2>conftest.err)
     ac_status=$?
     cat conftest.err >&5
--   echo "$as_me:7060: \$? = $ac_status" >&5
-+   echo "$as_me:7028: \$? = $ac_status" >&5
+-   echo "$as_me:7066: \$? = $ac_status" >&5
++   echo "$as_me:7033: \$? = $ac_status" >&5
     if (exit $ac_status) && test -s "$ac_outfile"; then
       # The compiler can only warn and ignore the option if not recognized
       # So say no if there are warnings
-@@ -7286,11 +7254,11 @@
+@@ -7292,11 +7259,11 @@
     -e 's:.*FLAGS}? :&$lt_compiler_flag :; t' \
     -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
     -e 's:$: $lt_compiler_flag:'`
--   (eval echo "\"\$as_me:7289: $lt_compile\"" >&5)
-+   (eval echo "\"\$as_me:7257: $lt_compile\"" >&5)
+-   (eval echo "\"\$as_me:7295: $lt_compile\"" >&5)
++   (eval echo "\"\$as_me:7262: $lt_compile\"" >&5)
     (eval "$lt_compile" 2>conftest.err)
     ac_status=$?
     cat conftest.err >&5
--   echo "$as_me:7293: \$? = $ac_status" >&5
-+   echo "$as_me:7261: \$? = $ac_status" >&5
+-   echo "$as_me:7299: \$? = $ac_status" >&5
++   echo "$as_me:7266: \$? = $ac_status" >&5
     if (exit $ac_status) && test -s "$ac_outfile"; then
       # The compiler can only warn and ignore the option if not recognized
       # So say no if there are warnings
-@@ -7346,11 +7314,11 @@
+@@ -7352,11 +7319,11 @@
     -e 's:.*FLAGS}? :&$lt_compiler_flag :; t' \
     -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
     -e 's:$: $lt_compiler_flag:'`
--   (eval echo "\"\$as_me:7349: $lt_compile\"" >&5)
-+   (eval echo "\"\$as_me:7317: $lt_compile\"" >&5)
+-   (eval echo "\"\$as_me:7355: $lt_compile\"" >&5)
++   (eval echo "\"\$as_me:7322: $lt_compile\"" >&5)
     (eval "$lt_compile" 2>out/conftest.err)
     ac_status=$?
     cat out/conftest.err >&5
--   echo "$as_me:7353: \$? = $ac_status" >&5
-+   echo "$as_me:7321: \$? = $ac_status" >&5
+-   echo "$as_me:7359: \$? = $ac_status" >&5
++   echo "$as_me:7326: \$? = $ac_status" >&5
     if (exit $ac_status) && test -s out/conftest2.$ac_objext
     then
       # The compiler can only warn and ignore the option if not recognized
-@@ -7523,7 +7491,7 @@
+@@ -7529,7 +7496,7 @@
        fi
        ;;
  
 -    netbsd*)
-+    netbsd* | knetbsd*-gnu)
++    netbsd* | netbsdelf*-gnu | knetbsd*-gnu)
        if echo __ELF__ | $CC -E - | grep __ELF__ >/dev/null; then
  	archive_cmds='$LD -Bshareable $libobjs $deplibs $linker_flags -o $lib'
  	wlarc=
-@@ -7581,6 +7549,7 @@
+@@ -7587,6 +7554,7 @@
        else
          archive_expsym_cmds="$tmp_archive_cmds"
        fi
@@ -453,7 +755,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
      else
        ld_shlibs=no
      fi
-@@ -7737,8 +7706,7 @@
+@@ -7743,8 +7711,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -463,7 +765,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -7798,8 +7766,7 @@
+@@ -7804,8 +7771,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -473,16 +775,16 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -8042,7 +8009,7 @@
+@@ -8048,7 +8014,7 @@
        link_all_deplibs=yes
        ;;
  
 -    netbsd*)
-+    netbsd* | knetbsd*-gnu)
++    netbsd* | netbsdelf*-gnu | knetbsd*-gnu)
        if echo __ELF__ | $CC -E - | grep __ELF__ >/dev/null; then
  	archive_cmds='$LD -Bshareable -o $lib $libobjs $deplibs $linker_flags'  # a.out
        else
-@@ -8676,31 +8643,10 @@
+@@ -8682,31 +8648,10 @@
    # before this can be enabled.
    hardcode_into_libs=yes
  
@@ -490,7 +792,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
 -  libsuff=
 -  case "$host_cpu" in
 -  x86_64*|s390x*|powerpc64*)
--    echo '#line 8683 "configure"' > conftest.$ac_ext
+-    echo '#line 8689 "configure"' > conftest.$ac_ext
 -    if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
 -  (eval $ac_compile) 2>&5
 -  ac_status=$?
@@ -515,7 +817,26 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    fi
  
    # We used to test for /lib/ld.so.1 and disable shared libraries on
-@@ -9011,8 +8957,7 @@
+@@ -8718,6 +8663,18 @@
+   dynamic_linker='GNU/Linux ld.so'
+   ;;
+ 
++netbsdelf*-gnu)
++  version_type=linux
++  need_lib_prefix=no
++  need_version=no
++  library_names_spec='${libname}${release}${shared_ext}$versuffix ${libname}${release}${shared_ext}$major ${libname}${shared_ext}'
++  soname_spec='${libname}${release}${shared_ext}$major'
++  shlibpath_var=LD_LIBRARY_PATH
++  shlibpath_overrides_runpath=no
++  hardcode_into_libs=yes
++  dynamic_linker='NetBSD ld.elf_so'
++  ;;
++
+ knetbsd*-gnu)
+   version_type=linux
+   need_lib_prefix=no
+@@ -9017,8 +8974,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -525,7 +846,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -9115,8 +9060,7 @@
+@@ -9121,8 +9077,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -535,7 +856,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -9181,8 +9125,7 @@
+@@ -9187,8 +9142,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -545,7 +866,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -9275,8 +9218,7 @@
+@@ -9281,8 +9235,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -555,7 +876,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -9341,8 +9283,7 @@
+@@ -9347,8 +9300,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -565,7 +886,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -9408,8 +9349,7 @@
+@@ -9414,8 +9366,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -575,7 +896,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -9475,8 +9415,7 @@
+@@ -9481,8 +9432,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -585,25 +906,25 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -9551,7 +9490,7 @@
+@@ -9557,7 +9507,7 @@
    lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
    lt_status=$lt_dlunknown
    cat > conftest.$ac_ext <<EOF
--#line 9554 "configure"
-+#line 9493 "configure"
+-#line 9560 "configure"
++#line 9510 "configure"
  #include "confdefs.h"
  
  #if HAVE_DLFCN_H
-@@ -9649,7 +9588,7 @@
+@@ -9655,7 +9605,7 @@
    lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
    lt_status=$lt_dlunknown
    cat > conftest.$ac_ext <<EOF
--#line 9652 "configure"
-+#line 9591 "configure"
+-#line 9658 "configure"
++#line 9608 "configure"
  #include "confdefs.h"
  
  #if HAVE_DLFCN_H
-@@ -10721,8 +10660,7 @@
+@@ -10727,8 +10677,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -613,7 +934,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -10783,8 +10721,7 @@
+@@ -10789,8 +10738,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -623,53 +944,53 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -11162,7 +11099,7 @@
+@@ -11168,7 +11116,7 @@
  	;;
      esac
      ;;
 -  netbsd*)
-+  netbsd* | knetbsd*-gnu)
++  netbsd* | netbsdelf*-gnu | knetbsd*-gnu)
      if echo __ELF__ | $CC -E - | grep __ELF__ >/dev/null; then
        archive_cmds_CXX='$LD -Bshareable  -o $lib $predep_objects $libobjs $deplibs $postdep_objects $linker_flags'
        wlarc=
-@@ -11717,7 +11654,7 @@
+@@ -11723,7 +11671,7 @@
  	    ;;
  	esac
  	;;
 -      netbsd*)
-+      netbsd* | knetbsd*-gnu)
++      netbsd* | netbsdelf*-gnu | knetbsd*-gnu)
  	;;
        osf3* | osf4* | osf5*)
  	case $cc_basename in
-@@ -11828,11 +11765,11 @@
+@@ -11834,11 +11782,11 @@
     -e 's:.*FLAGS}? :&$lt_compiler_flag :; t' \
     -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
     -e 's:$: $lt_compiler_flag:'`
--   (eval echo "\"\$as_me:11831: $lt_compile\"" >&5)
-+   (eval echo "\"\$as_me:11768: $lt_compile\"" >&5)
+-   (eval echo "\"\$as_me:11837: $lt_compile\"" >&5)
++   (eval echo "\"\$as_me:11785: $lt_compile\"" >&5)
     (eval "$lt_compile" 2>conftest.err)
     ac_status=$?
     cat conftest.err >&5
--   echo "$as_me:11835: \$? = $ac_status" >&5
-+   echo "$as_me:11772: \$? = $ac_status" >&5
+-   echo "$as_me:11841: \$? = $ac_status" >&5
++   echo "$as_me:11789: \$? = $ac_status" >&5
     if (exit $ac_status) && test -s "$ac_outfile"; then
       # The compiler can only warn and ignore the option if not recognized
       # So say no if there are warnings
-@@ -11888,11 +11825,11 @@
+@@ -11894,11 +11842,11 @@
     -e 's:.*FLAGS}? :&$lt_compiler_flag :; t' \
     -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
     -e 's:$: $lt_compiler_flag:'`
--   (eval echo "\"\$as_me:11891: $lt_compile\"" >&5)
-+   (eval echo "\"\$as_me:11828: $lt_compile\"" >&5)
+-   (eval echo "\"\$as_me:11897: $lt_compile\"" >&5)
++   (eval echo "\"\$as_me:11845: $lt_compile\"" >&5)
     (eval "$lt_compile" 2>out/conftest.err)
     ac_status=$?
     cat out/conftest.err >&5
--   echo "$as_me:11895: \$? = $ac_status" >&5
-+   echo "$as_me:11832: \$? = $ac_status" >&5
+-   echo "$as_me:11901: \$? = $ac_status" >&5
++   echo "$as_me:11849: \$? = $ac_status" >&5
     if (exit $ac_status) && test -s out/conftest2.$ac_objext
     then
       # The compiler can only warn and ignore the option if not recognized
-@@ -11958,6 +11895,9 @@
+@@ -11964,6 +11912,9 @@
    cygwin* | mingw*)
      export_symbols_cmds_CXX='$NM $libobjs $convenience | $global_symbol_pipe | $SED -e '\''/^[BCDGS] /s/.* \([^ ]*\)/\1 DATA/'\'' | $SED -e '\''/^[AITW] /s/.* //'\'' | sort | uniq > $export_symbols'
    ;;
@@ -679,7 +1000,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    *)
      export_symbols_cmds_CXX='$NM $libobjs $convenience | $global_symbol_pipe | $SED '\''s/.* //'\'' | sort | uniq > $export_symbols'
    ;;
-@@ -12395,31 +12335,10 @@
+@@ -12401,31 +12352,10 @@
    # before this can be enabled.
    hardcode_into_libs=yes
  
@@ -687,7 +1008,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
 -  libsuff=
 -  case "$host_cpu" in
 -  x86_64*|s390x*|powerpc64*)
--    echo '#line 12402 "configure"' > conftest.$ac_ext
+-    echo '#line 12408 "configure"' > conftest.$ac_ext
 -    if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
 -  (eval $ac_compile) 2>&5
 -  ac_status=$?
@@ -712,7 +1033,26 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    fi
  
    # We used to test for /lib/ld.so.1 and disable shared libraries on
-@@ -12730,8 +12649,7 @@
+@@ -12437,6 +12367,18 @@
+   dynamic_linker='GNU/Linux ld.so'
+   ;;
+ 
++netbsdelf*-gnu)
++  version_type=linux
++  need_lib_prefix=no
++  need_version=no
++  library_names_spec='${libname}${release}${shared_ext}$versuffix ${libname}${release}${shared_ext}$major ${libname}${shared_ext}'
++  soname_spec='${libname}${release}${shared_ext}$major'
++  shlibpath_var=LD_LIBRARY_PATH
++  shlibpath_overrides_runpath=no
++  hardcode_into_libs=yes
++  dynamic_linker='NetBSD ld.elf_so'
++  ;;
++
+ knetbsd*-gnu)
+   version_type=linux
+   need_lib_prefix=no
+@@ -12736,8 +12678,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -722,7 +1062,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -12834,8 +12752,7 @@
+@@ -12840,8 +12781,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -732,7 +1072,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -12900,8 +12817,7 @@
+@@ -12906,8 +12846,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -742,7 +1082,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -12994,8 +12910,7 @@
+@@ -13000,8 +12939,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -752,7 +1092,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -13060,8 +12975,7 @@
+@@ -13066,8 +13004,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -762,7 +1102,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -13127,8 +13041,7 @@
+@@ -13133,8 +13070,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -772,7 +1112,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -13194,8 +13107,7 @@
+@@ -13200,8 +13136,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -782,62 +1122,62 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -13270,7 +13182,7 @@
+@@ -13276,7 +13211,7 @@
    lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
    lt_status=$lt_dlunknown
    cat > conftest.$ac_ext <<EOF
--#line 13273 "configure"
-+#line 13185 "configure"
+-#line 13279 "configure"
++#line 13214 "configure"
  #include "confdefs.h"
  
  #if HAVE_DLFCN_H
-@@ -13368,7 +13280,7 @@
+@@ -13374,7 +13309,7 @@
    lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
    lt_status=$lt_dlunknown
    cat > conftest.$ac_ext <<EOF
--#line 13371 "configure"
-+#line 13283 "configure"
+-#line 13377 "configure"
++#line 13312 "configure"
  #include "confdefs.h"
  
  #if HAVE_DLFCN_H
-@@ -14195,11 +14107,11 @@
+@@ -14201,11 +14136,11 @@
     -e 's:.*FLAGS}? :&$lt_compiler_flag :; t' \
     -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
     -e 's:$: $lt_compiler_flag:'`
--   (eval echo "\"\$as_me:14198: $lt_compile\"" >&5)
-+   (eval echo "\"\$as_me:14110: $lt_compile\"" >&5)
+-   (eval echo "\"\$as_me:14204: $lt_compile\"" >&5)
++   (eval echo "\"\$as_me:14139: $lt_compile\"" >&5)
     (eval "$lt_compile" 2>conftest.err)
     ac_status=$?
     cat conftest.err >&5
--   echo "$as_me:14202: \$? = $ac_status" >&5
-+   echo "$as_me:14114: \$? = $ac_status" >&5
+-   echo "$as_me:14208: \$? = $ac_status" >&5
++   echo "$as_me:14143: \$? = $ac_status" >&5
     if (exit $ac_status) && test -s "$ac_outfile"; then
       # The compiler can only warn and ignore the option if not recognized
       # So say no if there are warnings
-@@ -14255,11 +14167,11 @@
+@@ -14261,11 +14196,11 @@
     -e 's:.*FLAGS}? :&$lt_compiler_flag :; t' \
     -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
     -e 's:$: $lt_compiler_flag:'`
--   (eval echo "\"\$as_me:14258: $lt_compile\"" >&5)
-+   (eval echo "\"\$as_me:14170: $lt_compile\"" >&5)
+-   (eval echo "\"\$as_me:14264: $lt_compile\"" >&5)
++   (eval echo "\"\$as_me:14199: $lt_compile\"" >&5)
     (eval "$lt_compile" 2>out/conftest.err)
     ac_status=$?
     cat out/conftest.err >&5
--   echo "$as_me:14262: \$? = $ac_status" >&5
-+   echo "$as_me:14174: \$? = $ac_status" >&5
+-   echo "$as_me:14268: \$? = $ac_status" >&5
++   echo "$as_me:14203: \$? = $ac_status" >&5
     if (exit $ac_status) && test -s out/conftest2.$ac_objext
     then
       # The compiler can only warn and ignore the option if not recognized
-@@ -14432,7 +14344,7 @@
+@@ -14438,7 +14373,7 @@
        fi
        ;;
  
 -    netbsd*)
-+    netbsd* | knetbsd*-gnu)
++    netbsd* | netbsdelf*-gnu | knetbsd*-gnu)
        if echo __ELF__ | $CC -E - | grep __ELF__ >/dev/null; then
  	archive_cmds_F77='$LD -Bshareable $libobjs $deplibs $linker_flags -o $lib'
  	wlarc=
-@@ -14490,6 +14402,7 @@
+@@ -14496,6 +14431,7 @@
        else
          archive_expsym_cmds_F77="$tmp_archive_cmds"
        fi
@@ -845,7 +1185,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
      else
        ld_shlibs_F77=no
      fi
-@@ -14636,8 +14549,7 @@
+@@ -14642,8 +14578,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -855,7 +1195,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -14687,8 +14599,7 @@
+@@ -14693,8 +14628,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -865,16 +1205,16 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -14931,7 +14842,7 @@
+@@ -14937,7 +14871,7 @@
        link_all_deplibs_F77=yes
        ;;
  
 -    netbsd*)
-+    netbsd* | knetbsd*-gnu)
++    netbsd* | netbsdelf*-gnu | knetbsd*-gnu)
        if echo __ELF__ | $CC -E - | grep __ELF__ >/dev/null; then
  	archive_cmds_F77='$LD -Bshareable -o $lib $libobjs $deplibs $linker_flags'  # a.out
        else
-@@ -15565,31 +15476,10 @@
+@@ -15571,31 +15505,10 @@
    # before this can be enabled.
    hardcode_into_libs=yes
  
@@ -882,7 +1222,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
 -  libsuff=
 -  case "$host_cpu" in
 -  x86_64*|s390x*|powerpc64*)
--    echo '#line 15572 "configure"' > conftest.$ac_ext
+-    echo '#line 15578 "configure"' > conftest.$ac_ext
 -    if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
 -  (eval $ac_compile) 2>&5
 -  ac_status=$?
@@ -907,58 +1247,77 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    fi
  
    # We used to test for /lib/ld.so.1 and disable shared libraries on
-@@ -16310,11 +16200,11 @@
+@@ -15607,6 +15520,18 @@
+   dynamic_linker='GNU/Linux ld.so'
+   ;;
+ 
++netbsdelf*-gnu)
++  version_type=linux
++  need_lib_prefix=no
++  need_version=no
++  library_names_spec='${libname}${release}${shared_ext}$versuffix ${libname}${release}${shared_ext}$major ${libname}${shared_ext}'
++  soname_spec='${libname}${release}${shared_ext}$major'
++  shlibpath_var=LD_LIBRARY_PATH
++  shlibpath_overrides_runpath=no
++  hardcode_into_libs=yes
++  dynamic_linker='NetBSD ld.elf_so'
++  ;;
++
+ knetbsd*-gnu)
+   version_type=linux
+   need_lib_prefix=no
+@@ -16316,11 +16241,11 @@
     -e 's:.*FLAGS}? :&$lt_compiler_flag :; t' \
     -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
     -e 's:$: $lt_compiler_flag:'`
--   (eval echo "\"\$as_me:16313: $lt_compile\"" >&5)
-+   (eval echo "\"\$as_me:16203: $lt_compile\"" >&5)
+-   (eval echo "\"\$as_me:16319: $lt_compile\"" >&5)
++   (eval echo "\"\$as_me:16244: $lt_compile\"" >&5)
     (eval "$lt_compile" 2>conftest.err)
     ac_status=$?
     cat conftest.err >&5
--   echo "$as_me:16317: \$? = $ac_status" >&5
-+   echo "$as_me:16207: \$? = $ac_status" >&5
+-   echo "$as_me:16323: \$? = $ac_status" >&5
++   echo "$as_me:16248: \$? = $ac_status" >&5
     if (exit $ac_status) && test -s "$ac_outfile"; then
       # The compiler can only warn and ignore the option if not recognized
       # So say no if there are warnings
-@@ -16543,11 +16433,11 @@
+@@ -16549,11 +16474,11 @@
     -e 's:.*FLAGS}? :&$lt_compiler_flag :; t' \
     -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
     -e 's:$: $lt_compiler_flag:'`
--   (eval echo "\"\$as_me:16546: $lt_compile\"" >&5)
-+   (eval echo "\"\$as_me:16436: $lt_compile\"" >&5)
+-   (eval echo "\"\$as_me:16552: $lt_compile\"" >&5)
++   (eval echo "\"\$as_me:16477: $lt_compile\"" >&5)
     (eval "$lt_compile" 2>conftest.err)
     ac_status=$?
     cat conftest.err >&5
--   echo "$as_me:16550: \$? = $ac_status" >&5
-+   echo "$as_me:16440: \$? = $ac_status" >&5
+-   echo "$as_me:16556: \$? = $ac_status" >&5
++   echo "$as_me:16481: \$? = $ac_status" >&5
     if (exit $ac_status) && test -s "$ac_outfile"; then
       # The compiler can only warn and ignore the option if not recognized
       # So say no if there are warnings
-@@ -16603,11 +16493,11 @@
+@@ -16609,11 +16534,11 @@
     -e 's:.*FLAGS}? :&$lt_compiler_flag :; t' \
     -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
     -e 's:$: $lt_compiler_flag:'`
--   (eval echo "\"\$as_me:16606: $lt_compile\"" >&5)
-+   (eval echo "\"\$as_me:16496: $lt_compile\"" >&5)
+-   (eval echo "\"\$as_me:16612: $lt_compile\"" >&5)
++   (eval echo "\"\$as_me:16537: $lt_compile\"" >&5)
     (eval "$lt_compile" 2>out/conftest.err)
     ac_status=$?
     cat out/conftest.err >&5
--   echo "$as_me:16610: \$? = $ac_status" >&5
-+   echo "$as_me:16500: \$? = $ac_status" >&5
+-   echo "$as_me:16616: \$? = $ac_status" >&5
++   echo "$as_me:16541: \$? = $ac_status" >&5
     if (exit $ac_status) && test -s out/conftest2.$ac_objext
     then
       # The compiler can only warn and ignore the option if not recognized
-@@ -16780,7 +16670,7 @@
+@@ -16786,7 +16711,7 @@
        fi
        ;;
  
 -    netbsd*)
-+    netbsd* | knetbsd*-gnu)
++    netbsd* | netbsdelf*-gnu | knetbsd*-gnu)
        if echo __ELF__ | $CC -E - | grep __ELF__ >/dev/null; then
  	archive_cmds_GCJ='$LD -Bshareable $libobjs $deplibs $linker_flags -o $lib'
  	wlarc=
-@@ -16838,6 +16728,7 @@
+@@ -16844,6 +16769,7 @@
        else
          archive_expsym_cmds_GCJ="$tmp_archive_cmds"
        fi
@@ -966,7 +1325,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
      else
        ld_shlibs_GCJ=no
      fi
-@@ -16994,8 +16885,7 @@
+@@ -17000,8 +16926,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -976,7 +1335,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -17055,8 +16945,7 @@
+@@ -17061,8 +16986,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -986,16 +1345,16 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -17299,7 +17188,7 @@
+@@ -17305,7 +17229,7 @@
        link_all_deplibs_GCJ=yes
        ;;
  
 -    netbsd*)
-+    netbsd* | knetbsd*-gnu)
++    netbsd* | netbsdelf*-gnu | knetbsd*-gnu)
        if echo __ELF__ | $CC -E - | grep __ELF__ >/dev/null; then
  	archive_cmds_GCJ='$LD -Bshareable -o $lib $libobjs $deplibs $linker_flags'  # a.out
        else
-@@ -17933,31 +17822,10 @@
+@@ -17939,31 +17863,10 @@
    # before this can be enabled.
    hardcode_into_libs=yes
  
@@ -1003,7 +1362,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
 -  libsuff=
 -  case "$host_cpu" in
 -  x86_64*|s390x*|powerpc64*)
--    echo '#line 17940 "configure"' > conftest.$ac_ext
+-    echo '#line 17946 "configure"' > conftest.$ac_ext
 -    if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
 -  (eval $ac_compile) 2>&5
 -  ac_status=$?
@@ -1028,7 +1387,26 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    fi
  
    # We used to test for /lib/ld.so.1 and disable shared libraries on
-@@ -18268,8 +18136,7 @@
+@@ -17975,6 +17878,18 @@
+   dynamic_linker='GNU/Linux ld.so'
+   ;;
+ 
++netbsdelf*-gnu)
++  version_type=linux
++  need_lib_prefix=no
++  need_version=no
++  library_names_spec='${libname}${release}${shared_ext}$versuffix ${libname}${release}${shared_ext}$major ${libname}${shared_ext}'
++  soname_spec='${libname}${release}${shared_ext}$major'
++  shlibpath_var=LD_LIBRARY_PATH
++  shlibpath_overrides_runpath=no
++  hardcode_into_libs=yes
++  dynamic_linker='NetBSD ld.elf_so'
++  ;;
++
+ knetbsd*-gnu)
+   version_type=linux
+   need_lib_prefix=no
+@@ -18274,8 +18189,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -1038,7 +1416,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -18372,8 +18239,7 @@
+@@ -18378,8 +18292,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -1048,7 +1426,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -18438,8 +18304,7 @@
+@@ -18444,8 +18357,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -1058,7 +1436,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -18532,8 +18397,7 @@
+@@ -18538,8 +18450,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -1068,7 +1446,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -18598,8 +18462,7 @@
+@@ -18604,8 +18515,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -1078,7 +1456,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -18665,8 +18528,7 @@
+@@ -18671,8 +18581,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -1088,7 +1466,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -18732,8 +18594,7 @@
+@@ -18738,8 +18647,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -1098,25 +1476,45 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -18808,7 +18669,7 @@
+@@ -18814,7 +18722,7 @@
    lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
    lt_status=$lt_dlunknown
    cat > conftest.$ac_ext <<EOF
--#line 18811 "configure"
-+#line 18672 "configure"
+-#line 18817 "configure"
++#line 18725 "configure"
  #include "confdefs.h"
  
  #if HAVE_DLFCN_H
-@@ -18906,7 +18767,7 @@
+@@ -18912,7 +18820,7 @@
    lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
    lt_status=$lt_dlunknown
    cat > conftest.$ac_ext <<EOF
--#line 18909 "configure"
-+#line 18770 "configure"
+-#line 18915 "configure"
++#line 18823 "configure"
  #include "confdefs.h"
  
  #if HAVE_DLFCN_H
-@@ -20050,8 +19911,7 @@
+@@ -19992,12 +19900,18 @@
+ 
+ 
+ 
++    if test -z "yes" ; then
++	default_compile_warnings=yes
++    else
++	default_compile_warnings="yes"
++    fi
++
+     # Check whether --enable-compile-warnings or --disable-compile-warnings was given.
+ if test "${enable_compile_warnings+set}" = set; then
+   enableval="$enable_compile_warnings"
+ 
+ else
+-  enable_compile_warnings="yes"
++  enable_compile_warnings="$default_compile_warnings"
+ fi;
+ 
+     warnCFLAGS=
+@@ -20050,8 +19964,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -1126,7 +1524,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -20470,8 +20330,7 @@
+@@ -20470,8 +20383,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -1136,7 +1534,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -20616,8 +20475,7 @@
+@@ -20616,8 +20528,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -1146,7 +1544,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -20688,8 +20546,7 @@
+@@ -20688,8 +20599,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -1156,7 +1554,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -20833,8 +20690,7 @@
+@@ -20833,8 +20743,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -1166,7 +1564,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -20930,8 +20786,7 @@
+@@ -20930,8 +20839,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -1176,7 +1574,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -21009,8 +20864,7 @@
+@@ -21009,8 +20917,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -1186,7 +1584,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -21074,8 +20928,7 @@
+@@ -21074,8 +20981,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -1196,7 +1594,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -21150,8 +21003,7 @@
+@@ -21150,8 +21056,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -1206,7 +1604,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -21263,8 +21115,7 @@
+@@ -21263,8 +21168,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -1216,7 +1614,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -21430,8 +21281,7 @@
+@@ -21430,8 +21334,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -1226,7 +1624,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -21564,8 +21414,7 @@
+@@ -21564,8 +21467,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -1236,7 +1634,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -21650,8 +21499,7 @@
+@@ -21650,8 +21552,7 @@
    cat conftest.err >&5
    echo "$as_me:$LINENO: \$? = $ac_status" >&5
    (exit $ac_status); } &&
@@ -1246,7 +1644,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
    (eval $ac_try) 2>&5
    ac_status=$?
-@@ -22882,11 +22730,6 @@
+@@ -22882,11 +22783,6 @@
    *) ac_INSTALL=$ac_top_builddir$INSTALL ;;
    esac
  
@@ -1258,7 +1656,7 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
    # Let's still pretend it is `configure' which instantiates (i.e., don't
    # use $as_me), people would be surprised to read:
    #    /* config.h.  Generated by config.status.  */
-@@ -22925,6 +22768,12 @@
+@@ -22925,6 +22821,12 @@
  	 fi;;
        esac
      done` || { (exit 1); exit 1; }
@@ -1271,9 +1669,9 @@ diff -Nur gnome-desktop-2.7.1.orig/configure gnome-desktop-2.7.1/configure
  _ACEOF
  cat >>$CONFIG_STATUS <<_ACEOF
    sed "$ac_vpsub
-diff -Nur gnome-desktop-2.7.1.orig/ltmain.sh gnome-desktop-2.7.1/ltmain.sh
---- gnome-desktop-2.7.1.orig/ltmain.sh	2004-05-19 18:14:48.000000000 +0200
-+++ gnome-desktop-2.7.1/ltmain.sh	2004-06-27 13:54:00.000000000 +0200
+diff -ruN gnome-desktop-2.7.90.old/ltmain.sh gnome-desktop-2.7.90/ltmain.sh
+--- gnome-desktop-2.7.90.old/ltmain.sh	2004-05-19 16:14:48.000000000 +0000
++++ gnome-desktop-2.7.90/ltmain.sh	2004-08-15 14:34:11.000000000 +0000
 @@ -33,9 +33,6 @@
  # function.
  progpath="$0"
@@ -1289,7 +1687,7 @@ diff -Nur gnome-desktop-2.7.1.orig/ltmain.sh gnome-desktop-2.7.1/ltmain.sh
  PACKAGE=libtool
  VERSION=1.5.6
 -TIMESTAMP=" (1.1220.2.94 2004/04/10 16:27:27)"
-+TIMESTAMP=" (1.1220.2.95 2004/04/11 05:50:42) Debian$Rev: 203 $"
++TIMESTAMP=" (1.1220.2.95 2004/04/11 05:50:42) Debian$Rev: 215 $"
  
  
  # Check that we have a working $echo.
@@ -1305,3 +1703,15 @@ diff -Nur gnome-desktop-2.7.1.orig/ltmain.sh gnome-desktop-2.7.1/ltmain.sh
  	esac
        fi
        if test "$pass" = dlopen; then
+@@ -2933,6 +2933,11 @@
+ 	    age="$number_minor"
+ 	    revision="$number_minor"
+ 	    ;;
++	  *)
++	    $echo "$modename: unknown library version type \`$version_type'" 1>&2
++	    $echo "Fatal configuration error.  See the $PACKAGE docs for more information." 1>&2
++	    exit $EXIT_FAILURE
++	    ;;
+ 	  esac
+ 	  ;;
+ 	no)
