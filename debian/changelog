@@ -1,3 +1,11 @@
+gnome-desktop (2.8.3-2) unstable; urgency=low
+
+  * debian/control.in:
+    Build-Depend on libgnomeui-dev (>= 2.8.1-2) and libgnomevfs2-dev 
+    (>= 2.8.4-2) to remove dependency on howl.
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Tue,  1 Mar 2005 17:39:11 +0100
+
 gnome-desktop (2.8.3-1) unstable; urgency=low
 
   * New upstream version.
