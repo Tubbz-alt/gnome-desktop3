@@ -1,0 +1,12 @@
+This package was debianized by Jim Pick jim@jimpick.com on Sat, 14 Mar
+1998 20:12:23 -0800. Taken over by Raphael Hertzog
+<hertzog@debian.org> on Wed, 22 Sep 1999 13:24:34 +0200, and taken
+over again by James LewisMoss on October 26, 1999.
+
+It was downloaded from ftp://ftp.gnome.org/pub/GNOME/stable/sources/gnome-core.
+
+Copyright: 1998,99,2000 Free Software Foundation, Inc.
+
+This code is released under the terms of the GPL license.
+
+See /usr/share/common-licenses/GPL for the full license.
