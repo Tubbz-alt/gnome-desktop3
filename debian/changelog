@@ -1,12 +1,16 @@
-gnome-desktop (2.6.0-5) UNRELEASED; urgency=low
+gnome-desktop (2.6.1-1) experimental; urgency=low
 
+  * Ondřej Surý
+    - new upstream release.
+    - Relibtoolize again for 2.6.1
+    - Remove *.files.
   * J.H.M. Dassen (Ray):
     - [debian/patches/01_relibtoolise.patch] New. Cuts down the direct
       dependencies of gnome-about.
   * Jordi Mallach:
     - [debian/rules] Configure with --with-gnome-distributor=Debian again.
 
- -- J.H.M. Dassen (Ray) <jdassen@debian.org>  Sun,  4 Apr 2004 18:06:53 +0200
+ -- Ondřej Surý <ondrej@debian.org>  Tue, 20 Apr 2004 12:50:06 +0200
 
 gnome-desktop (2.6.0-4) experimental; urgency=low
 
