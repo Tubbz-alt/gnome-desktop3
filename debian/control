@@ -6,7 +6,8 @@ Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.o
 Standards-Version: 3.6.1
 Build-Depends: debhelper (>= 4.0.0), liborbit2-dev (>= 1:2.10.0), intltool,
  libgnomeui-dev (>= 2.6.0), libbonobo2-dev (>= 2.6.0),
- libstartup-notification0-dev (>= 0.5), cdbs, gnome-pkg-tools
+ libstartup-notification0-dev (>= 0.5), cdbs, gnome-pkg-tools,
+ gtk-doc-tools, docbook-xml
 
 Package: gnome-about
 Architecture: any
