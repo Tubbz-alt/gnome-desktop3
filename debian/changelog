@@ -2,6 +2,8 @@ gnome-desktop (2.7.1-1) experimental; urgency=low
 
   * GNOME Team upload.
   * New (development) upstream release.
+  * debian/patches/01_relibtoolise.patch:
+    - updated
 
  -- Sebastien Bacher <seb128@debian.org>  Sat, 26 Jun 2004 18:20:17 +0200
 
