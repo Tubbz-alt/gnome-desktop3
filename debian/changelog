@@ -1,3 +1,19 @@
+gnome-desktop (2.10.0-1) experimental; urgency=low
+
+  * New upstream version.
+  * debian/control.in:
+    - updated the requirements.
+  * debian/gnome-desktop-data.install:
+    - updated.
+  * debian/libgnome-desktop-2.shlibs:
+    - updated.
+  * debian/patches/01_relibtoolise.patch:
+    - updated.
+  * debian/watch:
+    - updated. 
+
+ -- Sebastien Bacher <seb128@debian.org>  Fri,  8 Apr 2005 17:51:35 +0200
+
 gnome-desktop (2.8.3-2) unstable; urgency=high
 
   * GNOME Team upload.
