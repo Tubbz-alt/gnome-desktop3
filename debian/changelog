@@ -1,3 +1,13 @@
+gnome-desktop (2.10.1-1) experimental; urgency=low
+
+  * New upstream version.
+  * debian/libgnome-desktop-2.shlibs:
+    - updated (Closes: #304449).
+  * debian/patches/01_relibtoolise.patch:
+    - updated.
+
+ -- Sebastien Bacher <seb128@debian.org>  Wed, 13 Apr 2005 16:27:26 +0200
+
 gnome-desktop (2.10.0-1) experimental; urgency=low
 
   * New upstream version.
