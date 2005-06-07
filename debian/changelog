@@ -1,3 +1,9 @@
+gnome-desktop (2.10.1-2) unstable; urgency=low
+
+  * Upload to unstable.
+
+ -- Ondřej Surý <ondrej@sury.org>  Tue,  7 Jun 2005 16:05:50 +0200
+
 gnome-desktop (2.10.1-1) experimental; urgency=low
 
   * New upstream version.
