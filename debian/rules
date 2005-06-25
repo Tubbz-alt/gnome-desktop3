@@ -8,5 +8,5 @@ include /usr/share/gnome-pkg-tools/1/rules/uploaders.mk
 
 version := $(shell sed -n 's/Package: \(.*\)/\1/p' debian/control | head -n 1)
 
-DEB_CONFIGURE_SCRIPT_ENV := LDFLAGS="-Wl,-z,defs -Wl,-O1"
+DEB_CONFIGURE_SCRIPT_ENV += LDFLAGS="-Wl,-z,defs -Wl,-O1 -Wl,--as-needed"
 DEB_CONFIGURE_EXTRA_FLAGS := --with-gnome-distributor=Debian --disable-gtk-doc
