@@ -4,12 +4,13 @@ Priority: optional
 Maintainer: Ondřej Surý <ondrej@debian.org>
 Uploaders: @GNOME_TEAM@
 Standards-Version: 3.6.1
-Build-Depends: debhelper (>= 4.0.0), libglib2.0-dev (>= 2.5.3), liborbit2-dev (>= 1:2.10.2-1.1), intltool, libgnomeui-dev (>= 2.6.1.1-2), libbonobo2-dev (>= 2.6.0-2), scrollkeeper, libstartup-notification0-dev (>= 0.5), cdbs, gnome-pkg-tools, gtk-doc-tools, docbook-xml
+Build-Depends: debhelper (>= 4.0.0), libglib2.0-dev (>= 2.5.3), liborbit2-dev (>= 1:2.10.2-1.1), intltool, libgnomeui-dev (>= 2.12), libbonobo2-dev (>= 2.6.0-2), scrollkeeper, libstartup-notification0-dev (>= 0.5), cdbs, gnome-pkg-tools, gtk-doc-tools, docbook-xml, gnome-doc-utils
 
 Package: gnome-about
 Architecture: any
 Depends: ${shlibs:Depends}
-Conflicts: gnome-core (<< 1.5)
+Conflicts: gnome-core (<< 1.5), gnome-desktop-data (<< 2.12)
+Replaces: gnome-desktop-data (<< 2.12)
 Description: The GNOME about box
  Informative little about thing that lets us brag to our friends as our name
  scrolls by, and lets users click to load the GNOME home pages.
