@@ -1,3 +1,45 @@
+gnome-desktop (2.12.2-2) unstable; urgency=low
+
+  * Upload to unstable.
+
+ -- Ondřej Surý <ondrej@debian.org>  Fri,  6 Jan 2006 22:03:33 +0100
+
+gnome-desktop (2.12.2-1) experimental; urgency=low
+
+  * New upstream release
+  * debian/libgnome-desktop-2.shlibs:
+    - updated (Closes: #344273)
+
+ -- Guilherme de S. Pastore <guilherme.pastore@terra.com.br>  Wed, 21 Dec 2005 17:31:02 -0200
+
+gnome-desktop (2.12.1-1) experimental; urgency=low
+
+  * New upstream version.
+  * debian/control.in:
+    - Build-Depends on gnome-doc-utils.
+    - updated for the packages changes.
+    - updated the libgnomeui requirement.
+  * debian/gnome-desktop-data.install, debian/gnome-about.install:
+    - install the desktop file with the binary.   
+  * debian/rules:
+    - don't update scrollkeeper files on build.
+  * debian/watch:
+    - updated.
+
+ -- Sebastien Bacher <seb128@debian.org>  Tue, 18 Oct 2005 13:03:21 +0200
+
+gnome-desktop (2.10.2-1) unstable; urgency=low
+
+  * Sebastien Bacher:
+    * New upstream version.
+    * debian/patches/01_relibtoolise.patch:
+      - not required.
+  * Josselin Mouette:
+    * Pass --as-needed to ld.
+    * Don't overwrite DEB_CONFIGURE_SCRIPT_ENV completely.
+
+ -- Sebastien Bacher <seb128@debian.org>  Thu, 30 Jun 2005 19:03:25 +0200
+
 gnome-desktop (2.10.2-1) unstable; urgency=low
 
   * Sebastien Bacher:
