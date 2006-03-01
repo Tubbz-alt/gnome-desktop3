@@ -8,7 +8,7 @@ Build-Depends: debhelper (>= 4.0.0), libglib2.0-dev (>= 2.5.3), liborbit2-dev (>
 
 Package: gnome-about
 Architecture: any
-Depends: ${shlibs:Depends}
+Depends: ${misc:Depends}, ${shlibs:Depends}
 Conflicts: gnome-core (<< 1.5), gnome-desktop-data (<< 2.12)
 Replaces: gnome-desktop-data (<< 2.12)
 Description: The GNOME about box
@@ -17,6 +17,7 @@ Description: The GNOME about box
 
 Package: gnome-desktop-data
 Architecture: all
+Depends: ${misc:Depends}
 Conflicts: gnome-panel (<= 2.0.0), gnome-core (<< 1.5), gnome-help (<< 1.5)
 Replaces: gnome-control-center (<= 1:2.0.3.2-2), gnome-core (<= 1.5), gnome-panel-data (<= 2.0)
 Description: Common files for GNOME 2 desktop apps
@@ -26,7 +27,7 @@ Description: Common files for GNOME 2 desktop apps
 Package: libgnome-desktop-2
 Section: libs
 Architecture: any
-Depends: ${shlibs:Depends}
+Depends: ${misc:Depends}, ${shlibs:Depends}
 Replaces: libpanel-applet2 (<= 1.5.4-1)
 Description: Utility library for loading .desktop files - runtime files
  This library is used by GNOME 2 to load the .desktop files.
@@ -34,7 +35,7 @@ Description: Utility library for loading .desktop files - runtime files
 Package: libgnome-desktop-dev
 Section: libdevel
 Architecture: any
-Depends: libgnome-desktop-2 (= ${Source-Version}), libgnomeui-dev (>= 2.6.0), libstartup-notification0-dev (>= 0.5)
+Depends: ${misc:Depends}, libgnome-desktop-2 (= ${Source-Version}), libgnomeui-dev (>= 2.6.0), libstartup-notification0-dev (>= 0.5)
 Replaces: libpanel-applet2-dev (<= 1.5.4-1)
 Description: Utility library for loading .desktop files - development files
  This packages provides the include files and static library for the GNOME 2
