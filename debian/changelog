@@ -1,8 +1,12 @@
-gnome-desktop (2.12.2-3) UNRELEASED; urgency=low
+gnome-desktop (2.12.3-1) unstable; urgency=low
 
+  [ Ondřej Surý ]
   * Add versioned build dependency on gnome-doc-utils (Closes: #351634)
 
- -- Ondřej Surý <ondrej@debian.org>  Mon,  6 Feb 2006 14:49:26 +0100
+  [ Loic Minier ]
+  * New upstream release.
+
+ -- Loic Minier <lool@dooz.org>  Wed,  1 Mar 2006 19:18:54 +0100
 
 gnome-desktop (2.12.2-2) unstable; urgency=low
 
