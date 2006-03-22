@@ -1,3 +1,9 @@
+gnome-desktop (2.14.0) unstable; urgency=low
+
+  * New upstream GNOME 2.14 release.
+
+ -- Ondřej Surý <ondrej@debian.org>  Wed, 22 Mar 2006 12:10:04 +0100
+
 gnome-desktop (2.12.3-1) unstable; urgency=low
 
   [ Ondřej Surý ]
