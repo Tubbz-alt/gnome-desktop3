@@ -2,9 +2,9 @@ Source: gnome-desktop
 Section: gnome
 Priority: optional
 Maintainer: Ondřej Surý <ondrej@debian.org>
-Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Akira TAGOH <tagoh@debian.org>, Andreas Rottmann <rotty@debian.org>, Andrew Lau <netsnipe@users.sourceforge.net>, Carlos Perelló Marín <carlos@pemas.net>, Clément Stenac <zorglub@debian.org>, Ed Boraas <ed@debian.org>, Edd Dumbill <ejad@debian.org>, Emil Soleyman-Zomalan <emil@nishra.com>, Guilherme de S. Pastore <guilherme.pastore@terra.com.br>, Gustavo Noronha Silva <kov@debian.org>, J.H.M. Dassen (Ray) <jdassen@debian.org>, Joe Drew <drew@debian.org>, Johannes Rohr <jr.debian@rohr.org>, Jordi Mallach <jordi@debian.org>, Jose Carlos Garcia Sogo <jsogo@debian.org>, Josselin Mouette <joss@debian.org>, Loic Minier <lool@dooz.org>, Marc 'HE' Brockschmidt <he@debian.org>, Rob Bradford <rob@debianplanet.org>, Robert McQueen <robot101@debian.org>, Ross Burton <ross@debian.org>, Sebastien Bacher <seb128@debian.org>, Sjoerd Simons <sjoerd@debian.org>, Takuo KITAME <kitame@debian.org>
+Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Akira TAGOH <tagoh@debian.org>, Andreas Rottmann <rotty@debian.org>, Andrew Lau <netsnipe@users.sourceforge.net>, Clément Stenac <zorglub@debian.org>, Dafydd Harries <daf@debian.org>, Ed Boraas <ed@debian.org>, Emil Soleyman-Zomalan <emil@nishra.com>, Guilherme de S. Pastore <gpastore@debian.org>, Gustavo Noronha Silva <kov@debian.org>, J.H.M. Dassen (Ray) <jdassen@debian.org>, Joe Drew <drew@debian.org>, Johannes Rohr <jr.debian@rohr.org>, Jordi Mallach <jordi@debian.org>, Jose Carlos Garcia Sogo <jsogo@debian.org>, Josselin Mouette <joss@debian.org>, Loic Minier <lool@dooz.org>, Marc 'HE' Brockschmidt <he@debian.org>, Rob Bradford <rob@debianplanet.org>, Robert McQueen <robot101@debian.org>, Ross Burton <ross@debian.org>, Sebastien Bacher <seb128@debian.org>, Sjoerd Simons <sjoerd@debian.org>, Takuo KITAME <kitame@debian.org>
 Standards-Version: 3.6.2
-Build-Depends: debhelper (>= 4.0.0), libglib2.0-dev (>= 2.5.3), liborbit2-dev (>= 1:2.10.2-1.1), intltool, libgnomeui-dev (>= 2.12), libbonobo2-dev (>= 2.6.0-2), scrollkeeper, libstartup-notification0-dev (>= 0.5), cdbs, gnome-pkg-tools, gtk-doc-tools, docbook-xml, gnome-doc-utils (>= 0.3.2)
+Build-Depends: debhelper (>= 4.0.0), libglib2.0-dev (>= 2.5.3), liborbit2-dev (>= 1:2.10.2-1.1), intltool, libgnomeui-dev (>= 2.14.1-1), libbonobo2-dev (>= 2.6.0-2), scrollkeeper, libstartup-notification0-dev (>= 0.5), cdbs, gnome-pkg-tools, gtk-doc-tools, docbook-xml, gnome-doc-utils (>= 0.3.2)
 
 Package: gnome-about
 Architecture: any
@@ -35,7 +35,7 @@ Description: Utility library for loading .desktop files - runtime files
 Package: libgnome-desktop-dev
 Section: libdevel
 Architecture: any
-Depends: ${misc:Depends}, libgnome-desktop-2 (= ${Source-Version}), libgnomeui-dev (>= 2.6.0), libstartup-notification0-dev (>= 0.5)
+Depends: ${misc:Depends}, libgnome-desktop-2 (= ${Source-Version}), libgnomeui-dev (>= 2.14.1-1), libstartup-notification0-dev (>= 0.5)
 Replaces: libpanel-applet2-dev (<= 1.5.4-1)
 Description: Utility library for loading .desktop files - development files
  This packages provides the include files and static library for the GNOME 2

@@ -1,3 +1,11 @@
+gnome-desktop (2.14.1.1-1) unstable; urgency=low
+
+  * New upstream release.
+  * [debian.control.in] Bumped the libgnomeui dependencies due to the
+    libXcursor/libXrender transition.
+
+ -- J.H.M. Dassen (Ray) <jdassen@debian.org>  Fri, 21 Apr 2006 10:46:12 +0200
+
 gnome-desktop (2.14.0-1) unstable; urgency=low
 
   * New upstream GNOME 2.14 release.
