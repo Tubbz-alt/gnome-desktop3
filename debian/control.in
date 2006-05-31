@@ -3,7 +3,7 @@ Section: gnome
 Priority: optional
 Maintainer: Ondřej Surý <ondrej@debian.org>
 Uploaders: @GNOME_TEAM@
-Standards-Version: 3.6.2
+Standards-Version: 3.7.2
 Build-Depends: debhelper (>= 4.0.0), libglib2.0-dev (>= 2.5.3), liborbit2-dev (>= 1:2.10.2-1.1), intltool, libgnomeui-dev (>= 2.14.1-1), libbonobo2-dev (>= 2.6.0-2), scrollkeeper, libstartup-notification0-dev (>= 0.5), cdbs, gnome-pkg-tools, gtk-doc-tools, docbook-xml, gnome-doc-utils (>= 0.3.2)
 
 Package: gnome-about
