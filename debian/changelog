@@ -1,3 +1,10 @@
+gnome-desktop (2.14.2-2) UNRELEASED; urgency=low
+
+  * Stop shipping *.la files as libeel2-dev and libnautilus-extension-dev were
+    rebuilt without these.
+
+ -- Loic Minier <lool@dooz.org>  Sun, 18 Jun 2006 17:26:39 +0200
+
 gnome-desktop (2.14.2-1) unstable; urgency=low
 
   * Bump up Standards-Version to 3.7.2.
