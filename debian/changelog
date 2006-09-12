@@ -1,3 +1,12 @@
+gnome-desktop (2.16.0-1) experimental; urgency=low
+
+  * New upstream release.
+  * Bump intltool requirement to 0.35.0.
+  * Remove orbit and bonobo requirements.
+  * Require gnome-pkg-tools 0.7 and use clean-la.mk.
+
+ -- Josselin Mouette <joss@debian.org>  Tue, 12 Sep 2006 22:18:19 +0200
+
 gnome-desktop (2.15.91-1) experimental; urgency=low
 
   * New upstream development releases; no API changes.
