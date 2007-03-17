@@ -4,8 +4,10 @@ gnome-desktop (2.16.3-2) UNRELEASED; urgency=low
   * New upstream major stable release; fixes and translations; API additions.
     - Set shlibs to libgnome-desktop-2 (>= 2.17.5).
   * Bump up Debhelper compatibility level to 5.
+  * Set LDFLAGS directly and not via DEB_CONFIGURE_SCRIPT_ENV; build-depend on
+    cdbs >= 0.4.41.
 
- -- Loic Minier <lool@dooz.org>  Sat, 17 Mar 2007 14:03:45 +0100
+ -- Loic Minier <lool@dooz.org>  Sat, 17 Mar 2007 14:07:30 +0100
 
 gnome-desktop (2.16.3-1) experimental; urgency=low
 
