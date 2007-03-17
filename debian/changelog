@@ -1,4 +1,4 @@
-gnome-desktop (2.16.3-2) UNRELEASED; urgency=low
+gnome-desktop (2.18.0-1) experimental; urgency=low
 
   * Drop duplicate scrollkeeper build-dep.
   * New upstream major stable release; fixes and translations; API additions.
@@ -6,8 +6,9 @@ gnome-desktop (2.16.3-2) UNRELEASED; urgency=low
   * Bump up Debhelper compatibility level to 5.
   * Set LDFLAGS directly and not via DEB_CONFIGURE_SCRIPT_ENV; build-depend on
     cdbs >= 0.4.41.
+  * Drop useless version computation from rules.
 
- -- Loic Minier <lool@dooz.org>  Sat, 17 Mar 2007 14:07:30 +0100
+ -- Loic Minier <lool@dooz.org>  Sat, 17 Mar 2007 14:08:08 +0100
 
 gnome-desktop (2.16.3-1) experimental; urgency=low
 
