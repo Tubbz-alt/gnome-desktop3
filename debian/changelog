@@ -1,12 +1,14 @@
-gnome-desktop (2.16.2-2) UNRELEASED; urgency=low
+gnome-desktop (2.16.3-1) experimental; urgency=low
 
   * Add a get-orig-source target to retrieve the upstream tarball.
   * Include the new check-dist Makefile to prevent accidental uploads to
     unstable; bump build-dep on gnome-pkg-tools to >= 0.10.
   * Merge 2.14.3-2; SVN r8331:8963.
     - Drop patch 01_ml.po, obsolete.
+  * New upstream stable release; bug fixes and translations.
+    - Build-depend on libxml2-dev >= 2.4.20.
 
- -- Loic Minier <lool@dooz.org>  Sat, 17 Mar 2007 13:40:12 +0100
+ -- Loic Minier <lool@dooz.org>  Sat, 17 Mar 2007 13:40:59 +0100
 
 gnome-desktop (2.16.2-1) experimental; urgency=low
 
