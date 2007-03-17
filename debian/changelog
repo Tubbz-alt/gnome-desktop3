@@ -1,3 +1,9 @@
+gnome-desktop (2.16.3-2) UNRELEASED; urgency=low
+
+  * Drop duplicate scrollkeeper build-dep.
+
+ -- Loic Minier <lool@dooz.org>  Sat, 17 Mar 2007 13:51:55 +0100
+
 gnome-desktop (2.16.3-1) experimental; urgency=low
 
   * Add a get-orig-source target to retrieve the upstream tarball.
