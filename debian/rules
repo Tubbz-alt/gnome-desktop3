@@ -11,5 +11,7 @@ include /usr/share/gnome-pkg-tools/1/rules/check-dist.mk
 
 version := $(shell sed -n 's/Package: \(.*\)/\1/p' debian/control | head -n 1)
 
+DEB_DH_MAKESHLIBS_ARGS_libgnome-desktop-2 += -V 'libgnome-desktop-2 (>= 2.17.5)'
+
 DEB_CONFIGURE_SCRIPT_ENV += LDFLAGS="-Wl,-z,defs -Wl,-O1 -Wl,--as-needed"
 DEB_CONFIGURE_EXTRA_FLAGS += --with-gnome-distributor=Debian --disable-scrollkeeper --disable-gtk-doc
