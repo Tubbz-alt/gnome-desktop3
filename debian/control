@@ -2,14 +2,30 @@ Source: gnome-desktop
 Section: gnome
 Priority: optional
 Maintainer: Ondřej Surý <ondrej@debian.org>
-Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Andrew Lau <netsnipe@users.sourceforge.net>, Clément Stenac <zorglub@debian.org>, Dafydd Harries <daf@debian.org>, Guilherme de S. Pastore <gpastore@debian.org>, Gustavo Franco <stratus@debian.org>, Gustavo Noronha Silva <kov@debian.org>, J.H.M. Dassen (Ray) <jdassen@debian.org>, Jordi Mallach <jordi@debian.org>, Jose Carlos Garcia Sogo <jsogo@debian.org>, Josselin Mouette <joss@debian.org>, Kilian Krause <kilian@debian.org>, Loic Minier <lool@dooz.org>, Marc 'HE' Brockschmidt <he@debian.org>, Marco Cabizza <marco87@gmail.com>, Oystein Gisnas <oystein@gisnas.net>, Ross Burton <ross@debian.org>, Sebastien Bacher <seb128@debian.org>, Sjoerd Simons <sjoerd@debian.org>
+Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Josselin Mouette <joss@debian.org>, Loic Minier <lool@dooz.org>
 Standards-Version: 3.7.2
-Build-Depends: debhelper (>= 5), libglib2.0-dev (>= 2.8.0), intltool (>= 0.35.0), libgnomeui-dev (>= 2.14.1-1), scrollkeeper, cdbs (>= 0.4.41), gnome-pkg-tools (>= 0.10), gtk-doc-tools (>= 1.4), docbook-xml, gnome-doc-utils (>= 0.3.2), libgtk2.0-dev (>= 2.8.0), libgnomevfs2-dev (>= 2.0.0), libstartup-notification0-dev (>= 0.5), libgnomecanvas2-dev (>= 2.0.0), libxml2-dev (>= 2.4.20)
+Build-Depends: debhelper (>= 5),
+               libglib2.0-dev (>= 2.8.0),
+               intltool (>= 0.35.0),
+               libgnomeui-dev (>= 2.14.1-1),
+               scrollkeeper,
+               cdbs (>= 0.4.41),
+               gnome-pkg-tools (>= 0.10),
+               gtk-doc-tools (>= 1.4),
+               docbook-xml,
+               gnome-doc-utils (>= 0.3.2),
+               libgtk2.0-dev (>= 2.8.0),
+               libgnomevfs2-dev (>= 2.0.0),
+               libstartup-notification0-dev (>= 0.5),
+               libgnomecanvas2-dev (>= 2.0.0),
+               libxml2-dev (>= 2.4.20)
 
 Package: gnome-about
 Architecture: any
-Depends: ${misc:Depends}, ${shlibs:Depends}
-Conflicts: gnome-core (<< 1.5), gnome-desktop-data (<< 2.12)
+Depends: ${misc:Depends},
+         ${shlibs:Depends}
+Conflicts: gnome-core (<< 1.5),
+           gnome-desktop-data (<< 2.12)
 Replaces: gnome-desktop-data (<< 2.12)
 Description: The GNOME about box
  Informative little about thing that lets us brag to our friends as our name
@@ -18,8 +34,12 @@ Description: The GNOME about box
 Package: gnome-desktop-data
 Architecture: all
 Depends: ${misc:Depends}
-Conflicts: gnome-panel (<= 2.0.0), gnome-core (<< 1.5), gnome-help (<< 1.5)
-Replaces: gnome-control-center (<= 1:2.0.3.2-2), gnome-core (<= 1.5), gnome-panel-data (<= 2.0)
+Conflicts: gnome-panel (<= 2.0.0),
+           gnome-core (<< 1.5),
+           gnome-help (<< 1.5)
+Replaces: gnome-control-center (<= 1:2.0.3.2-2),
+          gnome-core (<= 1.5),
+          gnome-panel-data (<= 2.0)
 Description: Common files for GNOME 2 desktop apps
  This package includes some files that are shared between several GNOME 2
  apps (Pixmaps, .desktop files and internationalization files).
@@ -27,7 +47,8 @@ Description: Common files for GNOME 2 desktop apps
 Package: libgnome-desktop-2
 Section: libs
 Architecture: any
-Depends: ${misc:Depends}, ${shlibs:Depends}
+Depends: ${misc:Depends},
+         ${shlibs:Depends}
 Replaces: libpanel-applet2 (<= 1.5.4-1)
 Description: Utility library for loading .desktop files - runtime files
  This library is used by GNOME 2 to load the .desktop files.
@@ -35,7 +56,10 @@ Description: Utility library for loading .desktop files - runtime files
 Package: libgnome-desktop-dev
 Section: libdevel
 Architecture: any
-Depends: ${misc:Depends}, libgnome-desktop-2 (= ${Source-Version}), libgnomeui-dev (>= 2.14.1-1), libstartup-notification0-dev (>= 0.5)
+Depends: ${misc:Depends},
+         libgnome-desktop-2 (= ${Source-Version}),
+         libgnomeui-dev (>= 2.14.1-1),
+         libstartup-notification0-dev (>= 0.5)
 Replaces: libpanel-applet2-dev (<= 1.5.4-1)
 Description: Utility library for loading .desktop files - development files
  This packages provides the include files and static library for the GNOME 2
