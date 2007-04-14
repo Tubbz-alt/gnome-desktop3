@@ -1,3 +1,49 @@
+gnome-desktop (2.18.0-1) experimental; urgency=low
+
+  * Drop duplicate scrollkeeper build-dep.
+  * New upstream major stable release; fixes and translations; API additions.
+    - Set shlibs to libgnome-desktop-2 (>= 2.17.5).
+  * Bump up Debhelper compatibility level to 5.
+  * Set LDFLAGS directly and not via DEB_CONFIGURE_SCRIPT_ENV; build-depend on
+    cdbs >= 0.4.41.
+  * Drop useless version computation from rules.
+
+ -- Loic Minier <lool@dooz.org>  Sat, 17 Mar 2007 14:08:08 +0100
+
+gnome-desktop (2.16.3-1) experimental; urgency=low
+
+  * Add a get-orig-source target to retrieve the upstream tarball.
+  * Include the new check-dist Makefile to prevent accidental uploads to
+    unstable; bump build-dep on gnome-pkg-tools to >= 0.10.
+  * Merge 2.14.3-2; SVN r8331:8963.
+    - Drop patch 01_ml.po, obsolete.
+  * New upstream stable release; bug fixes and translations.
+    - Build-depend on libxml2-dev >= 2.4.20.
+
+ -- Loic Minier <lool@dooz.org>  Sat, 17 Mar 2007 13:40:59 +0100
+
+gnome-desktop (2.16.2-1) experimental; urgency=low
+
+  * New upstream release.
+
+ -- Josselin Mouette <joss@debian.org>  Sun,  3 Dec 2006 21:55:03 +0100
+
+gnome-desktop (2.16.0-1) experimental; urgency=low
+
+  * New upstream release.
+  * Bump intltool requirement to 0.35.0.
+  * Remove orbit and bonobo requirements.
+  * Require gnome-pkg-tools 0.7 and use clean-la.mk.
+
+ -- Josselin Mouette <joss@debian.org>  Tue, 12 Sep 2006 22:18:19 +0200
+
+gnome-desktop (2.15.91-1) experimental; urgency=low
+
+  * New upstream development releases; no API changes.
+    - Target at experimental.
+
+ -- Loic Minier <lool@dooz.org>  Sun, 13 Aug 2006 21:23:21 +0200
+
 gnome-desktop (2.14.3-2) unstable; urgency=low
 
   [ Loic Minier ]
