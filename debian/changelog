@@ -1,3 +1,9 @@
+gnome-desktop (2.18.1-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Sebastian Dröge <slomo@debian.org>  Wed, 25 Apr 2007 07:18:49 +0200
+
 gnome-desktop (2.18.0-2) unstable; urgency=low
 
   * Upload to unstable; drop check-dist include.
