@@ -2,7 +2,7 @@ Source: gnome-desktop
 Section: gnome
 Priority: optional
 Maintainer: Ondřej Surý <ondrej@debian.org>
-Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Josselin Mouette <joss@debian.org>, Loic Minier <lool@dooz.org>
+Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Josselin Mouette <joss@debian.org>, Loic Minier <lool@dooz.org>, Sebastian Dröge <slomo@debian.org>
 Standards-Version: 3.7.2
 Build-Depends: debhelper (>= 5),
                libglib2.0-dev (>= 2.8.0),
