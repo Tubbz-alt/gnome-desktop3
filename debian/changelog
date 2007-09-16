@@ -1,3 +1,9 @@
+gnome-desktop (2.18.3-2) UNRELEASED; urgency=low
+
+  * Don't include autotools.mk as it's already included by gnome.mk.
+
+ -- Loic Minier <lool@dooz.org>  Sun, 16 Sep 2007 20:21:28 +0200
+
 gnome-desktop (2.18.3-1) unstable; urgency=low
 
   [ Josselin Mouette ]
