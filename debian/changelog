@@ -1,8 +1,16 @@
-gnome-desktop (2.18.3-2) UNRELEASED; urgency=low
+gnome-desktop (2.20.0-1) unstable; urgency=low
 
+  [ Loic Minier ]
   * Don't include autotools.mk as it's already included by gnome.mk.
 
- -- Loic Minier <lool@dooz.org>  Sun, 16 Sep 2007 20:21:28 +0200
+  [ Sebastian Dröge ]
+  * New upstream release:
+    + debian/control.in:
+      - Add libgconf2-dev to build dependencies, bump the minimum required
+        version of libglib2.0-dev and libgtk2.0-dev as specified in
+        configure.in.
+
+ -- Sebastian Dröge <slomo@debian.org>  Fri, 21 Sep 2007 09:52:59 +0200
 
 gnome-desktop (2.18.3-1) unstable; urgency=low
 
