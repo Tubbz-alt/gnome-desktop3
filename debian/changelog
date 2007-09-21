@@ -1,3 +1,10 @@
+gnome-desktop (2.20.0-2) unstable; urgency=low
+
+  * Move gnome-version.xml to gnome-desktop-data. This is required for 
+    bug-buddy.
+
+ -- Josselin Mouette <joss@debian.org>  Fri, 21 Sep 2007 20:59:42 +0200
+
 gnome-desktop (2.20.0-1) unstable; urgency=low
 
   [ Loic Minier ]

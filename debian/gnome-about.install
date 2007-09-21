@@ -1,4 +1,6 @@
 debian/tmp/usr/bin
-debian/tmp/usr/share/gnome-about
+debian/tmp/usr/share/gnome-about/*.png
+debian/tmp/usr/share/gnome-about/*.list
+debian/tmp/usr/share/gnome-about/headers
 debian/tmp/usr/share/man/man1/gnome-about.1
 debian/tmp/usr/share/applications/gnome-about.desktop
