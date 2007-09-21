@@ -58,7 +58,7 @@ Package: libgnome-desktop-dev
 Section: libdevel
 Architecture: any
 Depends: ${misc:Depends},
-         libgnome-desktop-2 (= ${Source-Version}),
+         libgnome-desktop-2 (= ${binary:Version}),
          libgnomeui-dev (>= 2.14.1-1),
          libstartup-notification0-dev (>= 0.5)
 Replaces: libpanel-applet2-dev (<= 1.5.4-1)
