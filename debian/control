@@ -37,7 +37,8 @@ Architecture: all
 Depends: ${misc:Depends}
 Conflicts: gnome-panel (<= 2.0.0),
            gnome-core (<< 1.5),
-           gnome-help (<< 1.5)
+           gnome-help (<< 1.5),
+           gnome-about (<< 2.20.0-2)
 Replaces: gnome-control-center (<= 1:2.0.3.2-2),
           gnome-core (<= 1.5),
           gnome-panel-data (<= 2.0)
