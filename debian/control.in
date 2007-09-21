@@ -24,7 +24,8 @@ Build-Depends: debhelper (>= 5),
 Package: gnome-about
 Architecture: any
 Depends: ${misc:Depends},
-         ${shlibs:Depends}
+         ${shlibs:Depends},
+         gnome-desktop-data (= ${source:Version})
 Conflicts: gnome-core (<< 1.5),
            gnome-desktop-data (<< 2.12)
 Replaces: gnome-desktop-data (<< 2.12)
