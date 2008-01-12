@@ -1,3 +1,11 @@
+gnome-desktop (2.20.3-1) unstable; urgency=low
+
+  * New upstream release with minor updates.
+  * libgnome-desktop-dev.dirs: removed, useless.
+  * Standards version is 3.7.3.
+
+ -- Josselin Mouette <joss@debian.org>  Sat, 12 Jan 2008 04:32:34 +0100
+
 gnome-desktop (2.20.2-1) unstable; urgency=low
 
   * New upstream bugfix release with updated translations.
