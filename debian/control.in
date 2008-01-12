@@ -3,7 +3,7 @@ Section: gnome
 Priority: optional
 Maintainer: Ondřej Surý <ondrej@debian.org>
 Uploaders: @GNOME_TEAM@
-Standards-Version: 3.7.2
+Standards-Version: 3.7.3
 Build-Depends: debhelper (>= 5),
                libglib2.0-dev (>= 2.13.0),
                intltool (>= 0.35.0),
