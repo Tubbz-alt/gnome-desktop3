@@ -1,3 +1,17 @@
+gnome-desktop (2.22.0-1) UNRELEASED; urgency=low
+
+  * New upstream stable release:
+    + debian/control.in:
+      - Update and cleanup build dependencies.
+    + debian/control.in,
+      debian/rules:
+      - gnome-about is now written in python, change things accordingly.
+    + debian/rules,
+      debian/libgnome-desktop-2.shlibs:
+      - Update shlibs to >= 2.22.0 because of new API.
+
+ -- Sebastian Dröge <slomo@debian.org>  Thu, 13 Mar 2008 21:06:48 +0100
+
 gnome-desktop (2.20.3-1) unstable; urgency=low
 
   * New upstream release with minor updates.
