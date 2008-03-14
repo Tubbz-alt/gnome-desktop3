@@ -1,4 +1,4 @@
-gnome-desktop (2.22.0-1) UNRELEASED; urgency=low
+gnome-desktop (2.22.0-1) unstable; urgency=low
 
   * New upstream stable release:
     + debian/control.in:
