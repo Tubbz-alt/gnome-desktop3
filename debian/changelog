@@ -1,3 +1,9 @@
+gnome-desktop (2.22.1-1) unstable; urgency=low
+
+  * New upstream bugfix release.
+
+ -- Sebastian Dröge <slomo@debian.org>  Tue, 08 Apr 2008 13:18:00 +0200
+
 gnome-desktop (2.22.0-1) unstable; urgency=low
 
   * New upstream stable release:
