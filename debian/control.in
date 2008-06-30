@@ -3,7 +3,7 @@ Section: gnome
 Priority: optional
 Maintainer: Ondřej Surý <ondrej@debian.org>
 Uploaders: @GNOME_TEAM@
-Standards-Version: 3.7.3
+Standards-Version: 3.8.0
 XS-Python-Version: >= 2.4
 Build-Depends: debhelper (>= 5),
                libglib2.0-dev (>= 2.15.4),

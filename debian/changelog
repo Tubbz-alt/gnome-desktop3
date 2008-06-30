@@ -1,3 +1,11 @@
+gnome-desktop (2.22.3-1) unstable; urgency=low
+
+  * New upstream bugfix release.
+  * debian/control.in:
+    + Update Standards-Version to 3.8.0, no additional changes needed.
+
+ -- Sebastian Dröge <slomo@debian.org>  Mon, 30 Jun 2008 12:30:12 +0200
+
 gnome-desktop (2.22.2-1) unstable; urgency=low
 
   * New upstream translation and bugfix release.
