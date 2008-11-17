@@ -9,6 +9,8 @@ gnome-desktop (2.24.1-1) experimental; urgency=low
   * Add a ~ to build-depend on libgnomeui-dev.
   * Rename the library package to libgnome-desktop-2-7.
   * Ship the documentation in libgnome-desktop-dev.
+  * 90_relibtoolize.patch: relibtoolize to avoid the rpath issue on 
+    amd64.
 
  -- Josselin Mouette <joss@debian.org>  Mon, 17 Nov 2008 21:43:38 +0100
 
