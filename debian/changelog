@@ -1,3 +1,118 @@
+gnome-desktop (2.22.3-2) unstable; urgency=low
+
+  * Ship files in /usr/share/omf in gnome-desktop-data. Closes: #492872. 
+
+ -- Josselin Mouette <joss@debian.org>  Thu, 18 Sep 2008 15:03:53 +0200
+
+gnome-desktop (2.22.3-1) unstable; urgency=low
+
+  * New upstream bugfix release.
+  * debian/control.in:
+    + Update Standards-Version to 3.8.0, no additional changes needed.
+
+ -- Sebastian Dröge <slomo@debian.org>  Mon, 30 Jun 2008 12:30:12 +0200
+
+gnome-desktop (2.22.2-1) unstable; urgency=low
+
+  * New upstream translation and bugfix release.
+
+ -- Josselin Mouette <joss@debian.org>  Thu, 29 May 2008 01:32:08 +0200
+
+gnome-desktop (2.22.1-1) unstable; urgency=low
+
+  * New upstream bugfix release.
+
+ -- Sebastian Dröge <slomo@debian.org>  Tue, 08 Apr 2008 13:18:00 +0200
+
+gnome-desktop (2.22.0-1) unstable; urgency=low
+
+  * New upstream stable release:
+    + debian/control.in:
+      - Update and cleanup build dependencies.
+    + debian/control.in,
+      debian/rules:
+      - gnome-about is now written in python, change things accordingly.
+    + debian/rules,
+      debian/libgnome-desktop-2.shlibs:
+      - Update shlibs to >= 2.22.0 because of new API.
+
+ -- Sebastian Dröge <slomo@debian.org>  Thu, 13 Mar 2008 21:06:48 +0100
+
+gnome-desktop (2.20.3-1) unstable; urgency=low
+
+  * New upstream release with minor updates.
+  * libgnome-desktop-dev.dirs: removed, useless.
+  * Standards version is 3.7.3.
+
+ -- Josselin Mouette <joss@debian.org>  Sat, 12 Jan 2008 04:32:34 +0100
+
+gnome-desktop (2.20.2-1) unstable; urgency=low
+
+  * New upstream bugfix release with updated translations.
+
+ -- Sebastian Dröge <slomo@debian.org>  Thu, 29 Nov 2007 11:15:09 +0100
+
+gnome-desktop (2.20.1-1) unstable; urgency=low
+
+  * New upstream bugfix release.
+
+ -- Sebastian Dröge <slomo@debian.org>  Fri, 26 Oct 2007 19:03:07 +0200
+
+gnome-desktop (2.20.0-2) unstable; urgency=low
+
+  * Move gnome-version.xml to gnome-desktop-data. This is required for
+    bug-buddy.
+  * gnome-about depends on gnome-desktop-data.
+
+ -- Josselin Mouette <joss@debian.org>  Fri, 21 Sep 2007 21:09:03 +0200
+
+gnome-desktop (2.20.0-1) unstable; urgency=low
+
+  [ Loic Minier ]
+  * Don't include autotools.mk as it's already included by gnome.mk.
+
+  [ Sebastian Dröge ]
+  * New upstream release:
+    + debian/control.in:
+      - Add libgconf2-dev to build dependencies, bump the minimum required
+        version of libglib2.0-dev and libgtk2.0-dev as specified in
+        configure.in.
+  * debian/control.in:
+    + Use ${binary:Version} instead of ${Source-Version} to make lintian happy.
+
+ -- Sebastian Dröge <slomo@debian.org>  Fri, 21 Sep 2007 09:52:59 +0200
+
+gnome-desktop (2.18.3-1) unstable; urgency=low
+
+  [ Josselin Mouette ]
+  * 99_ltmain_as-needed.patch: get --as-needed back to work.
+
+  [ Loic Minier ]
+  * New upstream stable release; translation.
+
+ -- Loic Minier <lool@dooz.org>  Tue, 03 Jul 2007 21:53:55 +0200
+
+gnome-desktop (2.18.2-1) unstable; urgency=low
+
+  * New stable release; no API change.
+  * Wrap configure flags.
+
+ -- Loic Minier <lool@dooz.org>  Mon, 28 May 2007 16:08:59 +0200
+
+gnome-desktop (2.18.1-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Sebastian Dröge <slomo@debian.org>  Wed, 25 Apr 2007 07:18:49 +0200
+
+gnome-desktop (2.18.0-2) unstable; urgency=low
+
+  * Upload to unstable; drop check-dist include.
+  * Wrap build-deps and deps.
+  * Fix URL in copyright.
+
+ -- Loic Minier <lool@dooz.org>  Sat, 14 Apr 2007 15:41:23 +0200
+
 gnome-desktop (2.18.0-1) experimental; urgency=low
 
   * Drop duplicate scrollkeeper build-dep.
