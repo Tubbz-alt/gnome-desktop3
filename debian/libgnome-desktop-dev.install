@@ -2,3 +2,4 @@ debian/tmp/usr/include
 debian/tmp/usr/lib/pkgconfig
 debian/tmp/usr/lib/libgnome-desktop-2.a
 debian/tmp/usr/lib/libgnome-desktop-2.so
+debian/tmp/usr/share/gtk-doc
