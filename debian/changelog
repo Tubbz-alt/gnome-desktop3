@@ -1,3 +1,24 @@
+gnome-desktop (1:2.25.3-0ubuntu1) jaunty; urgency=low
+
+  * New upstream version
+  * New soname change
+  * debian/patches/100_load_desired_settings.patch:
+    - dropped for now (old version is still in bzr)
+      while the change are reworked to the new version
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 16 Dec 2008 14:25:50 +0100
+
+gnome-desktop (1:2.25.2-0ubuntu1) jaunty; urgency=low
+
+  * New upstream version
+  * debian/control.in:
+    - updated the requirements
+    - updated to the new soname version
+  * debian/rules:
+    - updated to the new soname version
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 02 Dec 2008 16:44:50 +0100
+
 gnome-desktop (1:2.24.1-1ubuntu2) jaunty; urgency=low
 
   * Rebuild due to the gtk change
