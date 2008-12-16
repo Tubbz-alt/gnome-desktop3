@@ -1,0 +1,74 @@
+diff -Nur gnome-desktop-2.19.4/libgnome-desktop/gnome-desktop-item.c gnome-desktop-2.19.4.new/libgnome-desktop/gnome-desktop-item.c
+--- gnome-desktop-2.19.4/libgnome-desktop/gnome-desktop-item.c	2007-06-17 20:55:15.000000000 +0200
++++ gnome-desktop-2.19.4.new/libgnome-desktop/gnome-desktop-item.c	2007-06-29 13:48:58.000000000 +0200
+@@ -84,6 +84,7 @@
+ 	GHashTable *main_hash;
+ 
+ 	char *location;
++    char *gettext_domain;
+ 
+ 	time_t mtime;
+ 
+@@ -383,6 +384,7 @@
+ 				       "1.0");
+ 
+ 	retval->launch_time = 0;
++    retval->gettext_domain = NULL;
+ 
+ 	return retval;
+ }
+@@ -563,6 +565,12 @@
+ 	return dirname;
+ }
+ 
++/*
++ * ZK: I needed lookup before the real declaration so here's a prototype
++ */
++static const char *
++lookup (const GnomeDesktopItem *item, const char *key);
++
+ /**
+  * gnome_desktop_item_new_from_uri:
+  * @uri: GnomeVFSURI to load the GnomeDesktopItem from
+@@ -684,6 +692,7 @@
+ 
+ 	g_free (subfn);
+ 
++    retval->gettext_domain = lookup(retval, GNOME_DESKTOP_ITEM_GETTEXT_DOMAIN);
+ 	return retval;
+ }
+ 
+@@ -723,6 +732,7 @@
+ 	
+ 	/* FIXME: Sort order? */
+ 
++    retval->gettext_domain = lookup(retval, GNOME_DESKTOP_ITEM_GETTEXT_DOMAIN);
+ 	return retval;
+ }
+ 
+@@ -992,6 +1002,14 @@
+ 	    strcmp (locale, "C") == 0) {
+ 		return lookup (item, key);
+ 	} else {
++        if (item->gettext_domain) {
++            char *value = lookup(item, key);
++            if (value != NULL && value[0] != '\0') {
++                char *locale_value = dgettext(item->gettext_domain, value);
++                if (locale_value)
++                    return locale_value;
++            }
++        }
+ 		const char *ret;
+ 		char *full = g_strdup_printf ("%s[%s]", key, locale);
+ 		ret = lookup (item, full);
+diff -Nur gnome-desktop-2.19.4/libgnome-desktop/libgnome/gnome-desktop-item.h gnome-desktop-2.19.4.new/libgnome-desktop/libgnome/gnome-desktop-item.h
+--- gnome-desktop-2.19.4/libgnome-desktop/libgnome/gnome-desktop-item.h	2007-06-17 20:55:15.000000000 +0200
++++ gnome-desktop-2.19.4.new/libgnome-desktop/libgnome/gnome-desktop-item.h	2007-06-29 13:48:20.000000000 +0200
+@@ -96,6 +96,7 @@
+ #define GNOME_DESKTOP_ITEM_SORT_ORDER	"SortOrder" /* strings */
+ #define GNOME_DESKTOP_ITEM_URL		"URL" /* string */
+ #define GNOME_DESKTOP_ITEM_DOC_PATH	"X-GNOME-DocPath" /* string */
++#define GNOME_DESKTOP_ITEM_GETTEXT_DOMAIN	"X-Ubuntu-Gettext-Domain" /* string */
+ 
+ /* The vfolder proposal */
+ #define GNOME_DESKTOP_ITEM_CATEGORIES	"Categories" /* string */
