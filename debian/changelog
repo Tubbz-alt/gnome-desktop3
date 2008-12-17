@@ -1,7 +1,9 @@
 gnome-desktop (1:2.25.3-0ubuntu1) jaunty; urgency=low
 
+  [ Sebastien Bacher ]
   * New upstream version
   * New soname change
+
   [ Alberto Milone ]
   * debian/patches/100_load_desired_settings.patch:
     - update patch to match the current API
