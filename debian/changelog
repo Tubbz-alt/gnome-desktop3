@@ -2,9 +2,10 @@ gnome-desktop (1:2.25.5-0ubuntu1) jaunty; urgency=low
 
   * New upstream version:
     libgnome-desktop
-    - GnomeBG: use gdk_color_equal
+    - GnomeBG: use gdk_color_equal() instead of custom function 
     - GnomeRR: use XRRGetScreenResourcesCurrent instead of
       XRRGetScreenResources when available (xrandr 1.3) because it's cheaper 
+      (lp: #307306)
     - GnomeBG: emit "transitioned" signal instead of "changed" signal for
       new frames in a slideshow background 
     - GnomeBG: reorganize code a bit 
