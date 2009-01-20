@@ -1,3 +1,17 @@
+gnome-desktop (1:2.25.5-0ubuntu1) jaunty; urgency=low
+
+  * New upstream version:
+    libgnome-desktop
+    - GnomeBG: use gdk_color_equal
+    - GnomeRR: use XRRGetScreenResourcesCurrent instead of
+      XRRGetScreenResources when available (xrandr 1.3) because it's cheaper 
+    - GnomeBG: emit "transitioned" signal instead of "changed" signal for
+      new frames in a slideshow background 
+    - GnomeBG: reorganize code a bit 
+    - GnomeBG: add fading API to support fading between two backgrounds
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 20 Jan 2009 10:50:09 +0100
+
 gnome-desktop (1:2.25.3-0ubuntu2) jaunty; urgency=low
 
   * debian/patches/100_load_desired_settings.patch:
