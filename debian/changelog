@@ -1,3 +1,16 @@
+gnome-desktop (1:2.25.3-0ubuntu2) jaunty; urgency=low
+
+  * debian/patches/100_load_desired_settings.patch:
+    - libgnome-desktop/gnome-rr-config.c:
+      + clean up the patch to reuse code from the current API
+      + don't segfault with old configuration files (LP: #314406)
+      + remove notification on login when the configuration file
+        is absent or invalid
+      + don't let configurations_read_from_file() try to read xml
+        files which don't exist
+
+ -- Alberto Milone (tseliot) <albertomilone@alice.it>  Wed, 14 Jan 2009 18:35:56 +0100
+
 gnome-desktop (1:2.25.3-0ubuntu1) jaunty; urgency=low
 
   [ Sebastien Bacher ]

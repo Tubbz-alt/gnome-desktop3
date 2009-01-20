@@ -1,6 +1,6 @@
-diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.25.3/libgnome-desktop/gnome-rr-config.c gnome-desktop-2.25.3-patched/libgnome-desktop/gnome-rr-config.c
---- gnome-desktop-2.25.3/libgnome-desktop/gnome-rr-config.c	2008-12-14 11:53:55.000000000 +0100
-+++ gnome-desktop-2.25.3-patched/libgnome-desktop/gnome-rr-config.c	2008-12-16 16:38:15.000000000 +0100
+diff -Nur gnome-desktop-2.25.4.orig/libgnome-desktop/gnome-rr-config.c gnome-desktop-2.25.4/libgnome-desktop/gnome-rr-config.c
+--- gnome-desktop-2.25.4.orig/libgnome-desktop/gnome-rr-config.c	2009-01-15 11:00:52.000000000 +0100
++++ gnome-desktop-2.25.4/libgnome-desktop/gnome-rr-config.c	2009-01-15 16:44:06.000000000 +0100
 @@ -34,6 +34,7 @@
  #include "edid.h"
  
@@ -20,29 +20,25 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.25.3/libgnome-desktop/gnome-rr-con
  typedef struct Parser Parser;
  
  /* Parser for monitor configurations */
-@@ -915,6 +920,21 @@
-     return result;
- }
- 
-+static GnomeRRConfig *
-+gnome_rr_config_find (GnomeRRConfig **haystack,
-+		    GnomeRRConfig  *needle)
-+{
-+    int i;
-+
-+    for (i = 0; haystack[i] != NULL; ++i)
+@@ -396,7 +401,16 @@
+ 	NULL, /* passthrough */
+ 	NULL, /* error */
+     };
+-
++	
++	/* return NULL if the file doesn't exist */
++	if (!g_file_test (filename, G_FILE_TEST_EXISTS))
 +    {
-+	if (gnome_rr_config_match (haystack[i], needle))
-+	    return haystack[i];
++	result = NULL;
++	
++	return result;
 +    }
-+
-+    return NULL;
-+}
-+
- /* Database management */
- 
- static gchar *
-@@ -924,11 +944,62 @@
++	
++	
+     parser->config_file_version = 0;
+     parser->configurations = g_ptr_array_new ();
+     parser->outputs = g_ptr_array_new ();
+@@ -924,11 +938,71 @@
  }
  
  static gchar *
@@ -68,22 +64,29 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.25.3/libgnome-desktop/gnome-rr-con
 +
 +    filename = get_desired_config_filename ();
 +    
-+    g_print("desired is = %s\n", filename);
-+    
++#if 0
++    g_debug("desired is = %s\n", filename);
++#endif
 +    err = NULL;
-+    
-+    g_print("reading configuration...\n");
++
++#if 0
++    g_debug("reading configuration...\n");
++#endif
 +    configs = configurations_read_from_file (filename, &err);
 +
 +    g_free (filename);
 +    
-+    g_print("done\n");
++#if 0
++    g_debug("done\n");
++#endif
 +    if (err)
 +    {
 +        if (g_error_matches (err, G_FILE_ERROR, G_FILE_ERROR_NOENT))
 +        {
 +            
-+            g_print("error MATCHES");
++#if 0
++            g_debug("error MATCHES\n");
++#endif
 +            g_error_free (err);
 +            
 +            /* Okay, so try the old configuration file */
@@ -93,7 +96,9 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.25.3/libgnome-desktop/gnome-rr-con
 +        }
 +        else
 +        {
-+            g_print("error does NOT MATCH");
++#if 0
++            g_debug("error does NOT MATCH\n");
++#endif
 +            g_propagate_error (error, err);
 +        }
 +    }
@@ -105,7 +110,7 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.25.3/libgnome-desktop/gnome-rr-con
  static const char *
  get_rotation_name (GnomeRRRotation r)
  {
-@@ -1050,13 +1121,12 @@
+@@ -1050,13 +1124,12 @@
  }
  
  
@@ -121,7 +126,7 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.25.3/libgnome-desktop/gnome-rr-con
      gboolean result;
  
      g_return_val_if_fail (configuration != NULL, FALSE);
-@@ -1101,6 +1171,37 @@
+@@ -1101,6 +1174,37 @@
      return result;
  }
  
@@ -159,7 +164,68 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.25.3/libgnome-desktop/gnome-rr-con
  static GnomeRRConfig *
  gnome_rr_config_copy (GnomeRRConfig *config)
  {
-@@ -1187,15 +1288,84 @@
+@@ -1119,6 +1223,48 @@
+     return copy;
+ }
+ 
++static GnomeRRConfig *
++gnome_rr_desired_config_new_stored (GnomeRRScreen *screen, GError **error)
++{
++    GnomeRRConfig *current;
++    GnomeRRConfig **configs;
++    GnomeRRConfig *result;
++
++    g_return_val_if_fail (screen != NULL, NULL);
++    g_return_val_if_fail (error == NULL || *error == NULL, NULL);
++    
++    current = gnome_rr_config_new_current (screen);
++    
++    configs = desired_configurations_read (error);
++
++    result = NULL;
++    if (configs)
++    {
++	int i;
++	
++	for (i = 0; configs[i] != NULL; ++i)
++	{
++	    if (gnome_rr_config_match (configs[i], current))
++	    {
++		result = gnome_rr_config_copy (configs[i]);
++		break;
++	    }
++	}
++
++	/*
++	if (result == NULL)
++	    g_set_error (error, GNOME_RR_ERROR, GNOME_RR_ERROR_NO_MATCHING_CONFIG,
++			 _("none of the saved display configurations matched the active configuration"));
++	*/
++
++	configurations_free (configs);
++    }
++
++    gnome_rr_config_free (current);
++    
++    return result;
++}
++
+ GnomeRRConfig *
+ gnome_rr_config_new_stored (GnomeRRScreen *screen, GError **error)
+ {
+@@ -1147,9 +1293,11 @@
+ 	    }
+ 	}
+ 
++	/*
+ 	if (result == NULL)
+ 	    g_set_error (error, GNOME_RR_ERROR, GNOME_RR_ERROR_NO_MATCHING_CONFIG,
+ 			 _("none of the saved display configurations matched the active configuration"));
++	*/
+ 
+ 	configurations_free (configs);
+     }
+@@ -1187,10 +1335,68 @@
      return result;
  }
  
@@ -206,11 +272,11 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.25.3/libgnome-desktop/gnome-rr-con
 +    gnome_rr_screen_get_ranges (screen, &min_width, &max_width, &min_height, &max_height);
 +
 +#if 0
-+    g_print ("X Server supports:\n");
-+    g_print ("min_width = %d, max_width = %d\n", min_width, max_width);
-+    g_print ("min_height = %d, max_height = %d\n", min_height, max_height);
++    g_debug ("X Server supports:\n");
++    g_debug ("min_width = %d, max_width = %d\n", min_width, max_width);
++    g_debug ("min_height = %d, max_height = %d\n", min_height, max_height);
 +
-+    g_print ("Requesting size of %dx%d\n", req_width, req_height);
++    g_debug ("Requesting size of %dx%d\n", req_width, req_height);
 +#endif
 +
 +    if (!(min_width <= req_width && req_width <= max_width
@@ -224,83 +290,96 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.25.3/libgnome-desktop/gnome-rr-con
  gnome_rr_config_apply_stored (GnomeRRScreen *screen, GError **error)
  {
      GnomeRRConfig *stored;
-+    GnomeRRConfig **desired_configs;
-+    GnomeRRConfig *desired_found;
-+    gboolean result = TRUE;
++    gboolean is_desired = FALSE;
      GError *my_error;
  
      g_return_val_if_fail (screen != NULL, FALSE);
-     g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
+@@ -1206,22 +1412,68 @@
+ 	    /* This means the screen didn't change, so just proceed */
+     }
  
+-    stored = gnome_rr_config_new_stored (screen, error);
+-
+-    if (stored)
+-    {
+-	gboolean result;
+-
+-	result = gnome_rr_config_apply (stored, screen, error);
+-
+-	gnome_rr_config_free (stored);
+-	
+-	return result;
 +    /* Look for the desired settings and try to load that
 +     * instead.
 +     * Then remove such settings.
 +     * else read the usual configuration
 +     */
++    gchar *filename;
++    filename = get_desired_config_filename ();
 +    
-+    desired_configs = desired_configurations_read (NULL); /* NULL-GError */
-+    
++    /* If the desired file exists */
++    if ((g_file_test(filename, G_FILE_TEST_EXISTS))) {
++        stored = gnome_rr_desired_config_new_stored (screen, error);
++        
++        /* If the desired file can't be applied */
++        if (!stored) {
++            stored = gnome_rr_config_new_stored (screen, error);
++        }
++        else {
++            /* the desired file is valid and 
++               can be applied */
++            is_desired = TRUE;
++        }
++    }
++    /* If the desired file does not exist */
++    else {
++        stored = gnome_rr_config_new_stored (screen, error);
++    }
 +
-     my_error = NULL;
-     if (!gnome_rr_screen_refresh (screen, &my_error)) {
- 	    if (my_error) {
-@@ -1208,12 +1378,52 @@
- 
-     stored = gnome_rr_config_new_stored (screen, error);
- 
-+    if (desired_configs)/* desired settings available */
-+    {
-+	if ((desired_found = gnome_rr_config_find (desired_configs, stored)))
-+	{/* desired settings available and applicable */
-+	    
-+	    /* Check framebuffer size. Do not apply
++    /* remove desired */
++	remove_desired_settings();
++	
++    if (stored) {
++    	gboolean result = FALSE;
++        
++        /* Check framebuffer size. Do not apply
 +	     * the settings if the fb is not big
 +	     * enough
 +	     */
-+	    if (check_framebuffer_size (desired_found, screen))
-+	    {
-+	        gnome_rr_config_apply (desired_found, screen, error);
-+            
-+            /* result's default value is TRUE therefore
-+             * we set it to FALSE here (so that it's
-+             * clear that the desired settings were
-+             * applied) then, after the next check we
-+             * set it to TRUE again. A bit confusing but
-+             * there might be a reason behind having
-+             * TRUE as result's default value.
-+             */
-+            result = FALSE;
-+            /* Try to save the desired settings to the default
-+             * settings file
-+             */
-+            GError *err = NULL;
-+            gnome_rr_config_sanitize (desired_found);
-+            gnome_rr_config_save (desired_found, &error);
-+        }
-+	}
-+	
-+	configurations_free (desired_configs);
-+	remove_desired_settings();
-+    }
-+    
-+    if (result)/* no desired settings */
-+    {
-     if (stored)
-     {
- 	gboolean result;
++        if (check_framebuffer_size (stored, screen)) {
++        
++        	result = gnome_rr_config_apply (stored, screen, error);
++
++        	/* if we are using the desired settings and
++        	   the settings were applied successfully */
++        	if (is_desired && result) {
++                /* Try to save the desired settings to the default
++                 * settings file
++                 */
++                error = NULL;
++                gnome_rr_config_sanitize (stored);
++                gnome_rr_config_save (stored, &error);
++        	}
++    	
++    	}
++    	
++    	gnome_rr_config_free (stored);
++    	
++    	return result;
+     }
+-    else
+-    {
+-	return FALSE;
++    else {
++	    return FALSE;
+     }
++
+ }
  
- 	result = gnome_rr_config_apply (stored, screen, error);
--
-+    }
-+    else/* applied desired settings */
-+        result = TRUE;
-+    
- 	gnome_rr_config_free (stored);
- 	
- 	return result;
-diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.25.3/libgnome-desktop/libgnomeui/gnome-rr-config.h gnome-desktop-2.25.3-patched/libgnome-desktop/libgnomeui/gnome-rr-config.h
---- gnome-desktop-2.25.3/libgnome-desktop/libgnomeui/gnome-rr-config.h	2008-12-14 11:53:55.000000000 +0100
-+++ gnome-desktop-2.25.3-patched/libgnome-desktop/libgnomeui/gnome-rr-config.h	2008-12-16 15:39:56.000000000 +0100
+ /*
+diff -Nur gnome-desktop-2.25.4.orig/libgnome-desktop/libgnomeui/gnome-rr-config.h gnome-desktop-2.25.4/libgnome-desktop/libgnomeui/gnome-rr-config.h
+--- gnome-desktop-2.25.4.orig/libgnome-desktop/libgnomeui/gnome-rr-config.h	2009-01-15 11:00:52.000000000 +0100
++++ gnome-desktop-2.25.4/libgnome-desktop/libgnomeui/gnome-rr-config.h	2009-01-15 13:28:21.000000000 +0100
 @@ -92,6 +92,11 @@
  					      GnomeRRScreen  *screen,
  					      GError        **error);
