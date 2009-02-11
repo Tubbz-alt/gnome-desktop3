@@ -1,17 +1,17 @@
-diff -Nur gnome-desktop-2.25.4.orig/libgnome-desktop/gnome-rr-config.c gnome-desktop-2.25.4/libgnome-desktop/gnome-rr-config.c
---- gnome-desktop-2.25.4.orig/libgnome-desktop/gnome-rr-config.c	2009-01-15 11:00:52.000000000 +0100
-+++ gnome-desktop-2.25.4/libgnome-desktop/gnome-rr-config.c	2009-01-15 16:44:06.000000000 +0100
-@@ -34,6 +34,7 @@
- #include "edid.h"
+diff -Nur gnome-desktop-2.25.90.orig/libgnome-desktop/gnome-rr-config.c gnome-desktop-2.25.90/libgnome-desktop/gnome-rr-config.c
+--- gnome-desktop-2.25.90.orig/libgnome-desktop/gnome-rr-config.c	2009-02-04 01:09:50.000000000 +0100
++++ gnome-desktop-2.25.90/libgnome-desktop/gnome-rr-config.c	2009-02-08 16:06:14.000000000 +0100
+@@ -37,6 +37,7 @@
  
- #define CONFIG_BASENAME "monitors.xml"
+ #define CONFIG_INTENDED_BASENAME "monitors.xml"
+ #define CONFIG_BACKUP_BASENAME "monitors.xml.backup"
 +#define CONFIG_DESIRED_BASENAME "monitors.xml.desired"
  
  /* In version 0 of the config file format, we had several <configuration>
   * toplevel elements and no explicit version number.  So, the filed looked
 @@ -80,6 +81,10 @@
- static gchar *get_old_config_filename (void);
- static gchar *get_config_filename (void);
+ static void             output_free           (GnomeOutputInfo  *output);
+ static GnomeOutputInfo *output_copy           (GnomeOutputInfo  *output);
  
 +static gboolean        gnome_rr_config_save_to_file (GnomeRRConfig *configuration,
 +                       GError **err, gchar *filename);
@@ -20,12 +20,10 @@ diff -Nur gnome-desktop-2.25.4.orig/libgnome-desktop/gnome-rr-config.c gnome-des
  typedef struct Parser Parser;
  
  /* Parser for monitor configurations */
-@@ -396,7 +401,16 @@
- 	NULL, /* passthrough */
+@@ -397,6 +402,15 @@
  	NULL, /* error */
      };
--
-+	
+ 
 +	/* return NULL if the file doesn't exist */
 +	if (!g_file_test (filename, G_FILE_TEST_EXISTS))
 +    {
@@ -33,26 +31,21 @@ diff -Nur gnome-desktop-2.25.4.orig/libgnome-desktop/gnome-rr-config.c gnome-des
 +	
 +	return result;
 +    }
-+	
-+	
++
++
      parser->config_file_version = 0;
      parser->configurations = g_ptr_array_new ();
      parser->outputs = g_ptr_array_new ();
-@@ -924,11 +938,71 @@
+@@ -901,6 +915,65 @@
+     return g_build_filename (g_get_user_config_dir (), CONFIG_INTENDED_BASENAME, NULL);
  }
  
- static gchar *
++static gchar *
 +get_desired_config_filename (void)
 +{
 +    return g_build_filename (g_get_user_config_dir (), CONFIG_DESIRED_BASENAME, NULL);
 +}
 +
-+static gchar *
- get_config_filename (void)
- {
-     return g_build_filename (g_get_user_config_dir (), CONFIG_BASENAME, NULL);
- }
- 
 +static GnomeRRConfig **
 +desired_configurations_read (GError **error)
 +{
@@ -90,7 +83,7 @@ diff -Nur gnome-desktop-2.25.4.orig/libgnome-desktop/gnome-rr-config.c gnome-des
 +            g_error_free (err);
 +            
 +            /* Okay, so try the old configuration file */
-+            filename = get_config_filename ();
++            filename = gnome_rr_config_get_intended_filename ();
 +            configs = configurations_read_from_file (filename, error);
 +            g_free (filename);
 +        }
@@ -106,37 +99,46 @@ diff -Nur gnome-desktop-2.25.4.orig/libgnome-desktop/gnome-rr-config.c gnome-des
 +    return configs;
 +}
 +
-+
  static const char *
  get_rotation_name (GnomeRRRotation r)
  {
-@@ -1050,13 +1124,12 @@
+@@ -1022,13 +1095,13 @@
  }
  
  
 -gboolean
 -gnome_rr_config_save (GnomeRRConfig *configuration, GError **error)
 +static gboolean
-+gnome_rr_config_save_to_file (GnomeRRConfig *configuration, GError **error, gchar *filename)
++gnome_rr_config_save_to_file (GnomeRRConfig *configuration, GError **error, gchar *intended_filename)
  {
      GnomeRRConfig **configurations;
      GString *output;
      int i;
--    gchar *filename;
+-    gchar *intended_filename;
++
+     gchar *backup_filename;
      gboolean result;
  
-     g_return_val_if_fail (configuration != NULL, FALSE);
-@@ -1101,6 +1174,37 @@
+@@ -1038,7 +1111,7 @@
+     output = g_string_new ("");
+ 
+     backup_filename = gnome_rr_config_get_backup_filename ();
+-    intended_filename = gnome_rr_config_get_intended_filename ();
++
+ 
+     configurations = configurations_read_from_file (intended_filename, NULL); /* NULL-GError */
+     
+@@ -1073,6 +1146,37 @@
      return result;
  }
  
 +gboolean
 +gnome_rr_config_save (GnomeRRConfig *configuration, GError **err)
 +{
-+    gchar *filename;
-+    filename = get_config_filename ();
++    gchar *intended_filename;
++    intended_filename = gnome_rr_config_get_intended_filename ();
 +    
-+    return(gnome_rr_config_save_to_file(configuration, err, filename));
++    return(gnome_rr_config_save_to_file(configuration, err, intended_filename));
 +}
 +
 +gboolean
@@ -164,12 +166,43 @@ diff -Nur gnome-desktop-2.25.4.orig/libgnome-desktop/gnome-rr-config.c gnome-des
  static GnomeRRConfig *
  gnome_rr_config_copy (GnomeRRConfig *config)
  {
-@@ -1119,6 +1223,48 @@
-     return copy;
+@@ -1092,7 +1196,7 @@
  }
  
-+static GnomeRRConfig *
+ static GnomeRRConfig *
+-config_new_stored (GnomeRRScreen *screen, const char *filename, GError **error)
 +gnome_rr_desired_config_new_stored (GnomeRRScreen *screen, GError **error)
+ {
+     GnomeRRConfig *current;
+     GnomeRRConfig **configs;
+@@ -1103,7 +1207,7 @@
+     
+     current = gnome_rr_config_new_current (screen);
+     
+-    configs = configurations_read_from_file (filename, error);
++    configs = desired_configurations_read (error);
+ 
+     result = NULL;
+     if (configs)
+@@ -1119,9 +1223,11 @@
+ 	    }
+ 	}
+ 
++	/*
+ 	if (result == NULL)
+ 	    g_set_error (error, GNOME_RR_ERROR, GNOME_RR_ERROR_NO_MATCHING_CONFIG,
+ 			 _("none of the saved display configurations matched the active configuration"));
++	*/
+ 
+ 	configurations_free (configs);
+     }
+@@ -1131,6 +1237,47 @@
+     return result;
+ }
+ 
++
++static GnomeRRConfig *
++config_new_stored (GnomeRRScreen *screen, const char *filename, GError **error)
 +{
 +    GnomeRRConfig *current;
 +    GnomeRRConfig **configs;
@@ -180,7 +213,7 @@ diff -Nur gnome-desktop-2.25.4.orig/libgnome-desktop/gnome-rr-config.c gnome-des
 +    
 +    current = gnome_rr_config_new_current (screen);
 +    
-+    configs = desired_configurations_read (error);
++    configs = configurations_read_from_file (filename, error);
 +
 +    result = NULL;
 +    if (configs)
@@ -195,13 +228,11 @@ diff -Nur gnome-desktop-2.25.4.orig/libgnome-desktop/gnome-rr-config.c gnome-des
 +		break;
 +	    }
 +	}
-+
-+	/*
++    /*
 +	if (result == NULL)
 +	    g_set_error (error, GNOME_RR_ERROR, GNOME_RR_ERROR_NO_MATCHING_CONFIG,
 +			 _("none of the saved display configurations matched the active configuration"));
-+	*/
-+
++    */
 +	configurations_free (configs);
 +    }
 +
@@ -213,22 +244,11 @@ diff -Nur gnome-desktop-2.25.4.orig/libgnome-desktop/gnome-rr-config.c gnome-des
  GnomeRRConfig *
  gnome_rr_config_new_stored (GnomeRRScreen *screen, GError **error)
  {
-@@ -1147,9 +1293,11 @@
- 	    }
- 	}
- 
-+	/*
- 	if (result == NULL)
- 	    g_set_error (error, GNOME_RR_ERROR, GNOME_RR_ERROR_NO_MATCHING_CONFIG,
- 			 _("none of the saved display configurations matched the active configuration"));
-+	*/
- 
- 	configurations_free (configs);
-     }
-@@ -1187,10 +1335,68 @@
-     return result;
+@@ -1146,6 +1293,65 @@
+     return config;
  }
  
++
 +void
 +ubuntu_compute_virtual_size_for_configuration (GnomeRRConfig *config, int *ret_width, int *ret_height)
 +{
@@ -286,19 +306,23 @@ diff -Nur gnome-desktop-2.25.4.orig/libgnome-desktop/gnome-rr-config.c gnome-des
 +        return TRUE;
 +}
 +
++
  gboolean
- gnome_rr_config_apply_stored (GnomeRRScreen *screen, GError **error)
+ gnome_rr_config_apply (GnomeRRConfig *config,
+ 		       GnomeRRScreen *screen,
+@@ -1234,6 +1440,7 @@
+ gnome_rr_config_apply_from_filename (GnomeRRScreen *screen, const char *filename, GError **error)
  {
      GnomeRRConfig *stored;
 +    gboolean is_desired = FALSE;
      GError *my_error;
  
      g_return_val_if_fail (screen != NULL, FALSE);
-@@ -1206,22 +1412,68 @@
+@@ -1250,22 +1457,68 @@
  	    /* This means the screen didn't change, so just proceed */
      }
  
--    stored = gnome_rr_config_new_stored (screen, error);
+-    stored = config_new_stored (screen, filename, error);
 -
 -    if (stored)
 -    {
@@ -314,11 +338,11 @@ diff -Nur gnome-desktop-2.25.4.orig/libgnome-desktop/gnome-rr-config.c gnome-des
 +     * Then remove such settings.
 +     * else read the usual configuration
 +     */
-+    gchar *filename;
-+    filename = get_desired_config_filename ();
++    gchar *desired_filename;
++    desired_filename = get_desired_config_filename ();
 +    
 +    /* If the desired file exists */
-+    if ((g_file_test(filename, G_FILE_TEST_EXISTS))) {
++    if ((g_file_test(desired_filename, G_FILE_TEST_EXISTS))) {
 +        stored = gnome_rr_desired_config_new_stored (screen, error);
 +        
 +        /* If the desired file can't be applied */
@@ -333,7 +357,7 @@ diff -Nur gnome-desktop-2.25.4.orig/libgnome-desktop/gnome-rr-config.c gnome-des
 +    }
 +    /* If the desired file does not exist */
 +    else {
-+        stored = gnome_rr_config_new_stored (screen, error);
++        stored = config_new_stored (screen, filename, error);
 +    }
 +
 +    /* remove desired */
@@ -377,18 +401,18 @@ diff -Nur gnome-desktop-2.25.4.orig/libgnome-desktop/gnome-rr-config.c gnome-des
  }
  
  /*
-diff -Nur gnome-desktop-2.25.4.orig/libgnome-desktop/libgnomeui/gnome-rr-config.h gnome-desktop-2.25.4/libgnome-desktop/libgnomeui/gnome-rr-config.h
---- gnome-desktop-2.25.4.orig/libgnome-desktop/libgnomeui/gnome-rr-config.h	2009-01-15 11:00:52.000000000 +0100
-+++ gnome-desktop-2.25.4/libgnome-desktop/libgnomeui/gnome-rr-config.h	2009-01-15 13:28:21.000000000 +0100
-@@ -92,6 +92,11 @@
- 					      GnomeRRScreen  *screen,
- 					      GError        **error);
+diff -Nur gnome-desktop-2.25.90.orig/libgnome-desktop/libgnomeui/gnome-rr-config.h gnome-desktop-2.25.90/libgnome-desktop/libgnomeui/gnome-rr-config.h
+--- gnome-desktop-2.25.90.orig/libgnome-desktop/libgnomeui/gnome-rr-config.h	2009-02-04 01:09:50.000000000 +0100
++++ gnome-desktop-2.25.90/libgnome-desktop/libgnomeui/gnome-rr-config.h	2009-02-08 16:12:53.000000000 +0100
+@@ -102,6 +102,11 @@
+ char *gnome_rr_config_get_backup_filename (void);
+ char *gnome_rr_config_get_intended_filename (void);
  
 +gboolean        ubuntu_gnome_rr_config_save_desired (GnomeRRConfig *configuration,
 +                        GError **err);
 +void            ubuntu_compute_virtual_size_for_configuration (GnomeRRConfig *config,
 +                          int *ret_width, int *ret_height);
-+                          
++          
  /* A utility function that isn't really in the spirit of this file, but I don't
   * don't know a better place for it.
   */
