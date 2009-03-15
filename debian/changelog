@@ -1,3 +1,10 @@
+gnome-desktop (2.24.2-2) UNRELEASED; urgency=low
+
+  * Build-depend on libglib2.0-doc and libgtk2.0-doc to ensure proper 
+    xrefs.
+
+ -- Josselin Mouette <joss@debian.org>  Sun, 15 Mar 2009 15:21:12 +0100
+
 gnome-desktop (2.24.2-1) experimental; urgency=low
 
   * New upstream release.
