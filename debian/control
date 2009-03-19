@@ -3,9 +3,10 @@ Section: gnome
 Priority: optional
 Maintainer: Ubuntu Desktop Team <ubuntu-desktop@lists.ubuntu.com>
 XSBC-Original-Maintainer: Ondřej Surý <ondrej@debian.org>
-Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Josselin Mouette <joss@debian.org>, Sebastian Dröge <slomo@debian.org>
+Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>
 Standards-Version: 3.8.0
 XS-Python-Version: >= 2.4
+Vcs-Bzr: http://code.launchpad.net/~ubuntu-desktop/gnome-desktop/ubuntu
 Build-Depends: debhelper (>= 5),
                libglib2.0-dev (>= 2.15.4),
                intltool (>= 0.40.0),

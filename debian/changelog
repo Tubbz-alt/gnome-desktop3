@@ -1,3 +1,40 @@
+gnome-desktop (1:2.26.0-0ubuntu1) jaunty; urgency=low
+
+  * New upstream version
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 17 Mar 2009 01:15:30 +0100
+
+gnome-desktop (1:2.25.92-0uubuntu1) jaunty; urgency=low
+
+  * New upstream version:
+    libgnome-desktop
+    - GnomeBG: Allow apps to ignore a pending change so they can avoid
+      updating their background twice 
+    - GnomeBG: Blow all expensive caches if we're not gonna update the
+      background again in one minute 
+    - GnomeBG: Do slightly less steps in slide transitions to avoid using
+      to much resources on things that are not visible 
+    - GnomeBG: Remove outstanding transitions on finalize
+    - GnomeRR: Use g_new0() instead of calloc() for consistency
+    - GnomeRR: Fix leak 
+    - GnomeRR: Code cleanup 
+    - GnomeRR: Revert the change to use XRRGetScreenResourcesCurrent
+      it's not needed anymore and it broke the "Detect Monitors" button   
+    - General: Make sure that the translation system is initiliazed so that
+    translations can be used 
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 03 Mar 2009 19:38:04 +0100
+
+gnome-desktop (1:2.25.91-0ubuntu1) jaunty; urgency=low
+
+  * New upstream version
+  * debian/control.in:
+    - use the ubuntu-desktop team for packaging work rather
+  * debian/patches/90_relibtoolize.patch:
+    - new version update
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 17 Feb 2009 14:05:26 +0100
+
 gnome-desktop (1:2.25.90-0ubuntu1) jaunty; urgency=low
 
   * New upstream version:

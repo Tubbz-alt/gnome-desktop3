@@ -6,7 +6,7 @@ XSBC-Original-Maintainer: Ondřej Surý <ondrej@debian.org>
 Uploaders: @GNOME_TEAM@
 Standards-Version: 3.8.0
 XS-Python-Version: >= 2.4
-Vcs-Bzr: http://code.launchpad.net/~ubuntu-core-dev/gnome-desktop/ubuntu
+Vcs-Bzr: http://code.launchpad.net/~ubuntu-desktop/gnome-desktop/ubuntu
 Build-Depends: debhelper (>= 5),
                libglib2.0-dev (>= 2.15.4),
                intltool (>= 0.40.0),
