@@ -1,0 +1,100 @@
+diff -Nur gnome-desktop-2.26.0.orig/libgnome-desktop/gnome-rr.c gnome-desktop-2.26.0/libgnome-desktop/gnome-rr.c
+--- gnome-desktop-2.26.0.orig/libgnome-desktop/gnome-rr.c	2009-03-16 23:37:06.000000000 +0100
++++ gnome-desktop-2.26.0/libgnome-desktop/gnome-rr.c	2009-03-19 10:39:45.000000000 +0100
+@@ -295,7 +295,7 @@
+ fill_out_screen_info (Display *xdisplay,
+ 		      Window xroot,
+ 		      ScreenInfo *info,
+-		      GError **error)
++		      GError **error, gboolean is_cheap)
+ {
+     XRRScreenResources *resources;
+     
+@@ -330,7 +330,10 @@
+ 	     screen->min_height, screen->max_height);
+ #endif
+     
+-    resources = XRRGetScreenResources (xdisplay, xroot);
++    if (is_cheap)
++        resources = XRRGetScreenResourcesCurrent (xdisplay, xroot);
++    else
++        resources = XRRGetScreenResources (xdisplay, xroot);
+     
+     if (resources)
+     {
+@@ -415,7 +418,7 @@
+ }
+ 
+ static ScreenInfo *
+-screen_info_new (GnomeRRScreen *screen, GError **error)
++screen_info_new (GnomeRRScreen *screen, GError **error, gboolean is_cheap)
+ {
+     ScreenInfo *info = g_new0 (ScreenInfo, 1);
+     
+@@ -426,7 +429,7 @@
+     info->modes = NULL;
+     info->screen = screen;
+     
+-    if (fill_out_screen_info (screen->xdisplay, screen->xroot, info, error))
++    if (fill_out_screen_info (screen->xdisplay, screen->xroot, info, error, is_cheap))
+     {
+ 	return info;
+     }
+@@ -438,14 +441,14 @@
+ }
+ 
+ static gboolean
+-screen_update (GnomeRRScreen *screen, gboolean force_callback, GError **error)
++screen_update (GnomeRRScreen *screen, gboolean force_callback, GError **error, gboolean is_cheap)
+ {
+     ScreenInfo *info;
+     gboolean changed = FALSE;
+     
+     g_assert (screen != NULL);
+ 
+-    info = screen_info_new (screen, error);
++    info = screen_info_new (screen, error, is_cheap);
+     if (!info)
+ 	    return FALSE;
+ 
+@@ -476,6 +479,13 @@
+ 	
+ 	switch (event->subtype)
+ 	{
++	case RRNotify_OutputProperty:
++	    /* Use a cheap call for 
++	     * changes in output 
++	     * properties
++	     */
++	    screen_update (screen, TRUE, NULL, TRUE);
++	    return GDK_FILTER_CONTINUE;
+ 	default:
+ 	    break;
+ 	}
+@@ -483,7 +493,7 @@
+ 	/* FIXME: we may need to be more discriminating in
+ 	 * what causes 'changed' events
+ 	 */
+-	screen_update (screen, TRUE, NULL); /* NULL-GError */
++	screen_update (screen, TRUE, NULL, FALSE); /* NULL-GError */
+     }
+     
+     /* Pass the event on to GTK+ */
+@@ -522,7 +532,7 @@
+ 	
+ 	screen->randr_event_base = event_base;
+ 	
+-	screen->info = screen_info_new (screen, error);
++	screen->info = screen_info_new (screen, error, FALSE);
+ 	
+ 	if (!screen->info) {
+ 	    g_free (screen);
+@@ -618,7 +628,7 @@
+ 			 GError       **error)
+ {
+     g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
+-    return screen_update (screen, FALSE, error);
++    return screen_update (screen, FALSE, error, FALSE);
+ }
+ 
+ GnomeRRMode **

@@ -1,3 +1,16 @@
+gnome-desktop (1:2.26.0-0ubuntu2) jaunty; urgency=low
+
+  * debian/patches/101_output_props_events_use_cheap_call.patch:
+    - libgnome-desktop/gnome-rr.c:
+      + Additional gboolean argument for screen_update() static
+        function so that TRUE means that the cheap call (with no
+        hardware probing) is called while FALSE means that the more
+        expensive one is used. This prevents the gnome-settings-
+        daemon from causing X.org to waste CPU cycles when
+        output properties are changed (LP: #339228).
+
+ -- Alberto Milone <alberto.milone@canonical.com>  Thu, 19 Mar 2009 09:51:14 +0100
+
 gnome-desktop (1:2.26.0-0ubuntu1) jaunty; urgency=low
 
   * New upstream version
