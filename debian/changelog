@@ -1,3 +1,33 @@
+gnome-desktop (2.24.2-2) UNRELEASED; urgency=low
+
+  * Build-depend on libglib2.0-doc and libgtk2.0-doc to ensure proper 
+    xrefs.
+
+ -- Josselin Mouette <joss@debian.org>  Sun, 15 Mar 2009 15:21:12 +0100
+
+gnome-desktop (2.24.2-1) experimental; urgency=low
+
+  * New upstream release.
+  * 90_relibtoolize.patch: regenerate for the new version.
+
+ -- Josselin Mouette <joss@debian.org>  Sun, 04 Jan 2009 10:27:14 +0100
+
+gnome-desktop (2.24.1-1) experimental; urgency=low
+
+  [ Andreas Henriksson ]
+  * New upstream release.
+    - update patches/99_ltmain_as-needed.patch to apply.
+
+  [ Josselin Mouette ]
+  * Bump build-dependency on intltool, add one on libxrandr-dev.
+  * Add a ~ to build-depend on libgnomeui-dev.
+  * Rename the library package to libgnome-desktop-2-7.
+  * Ship the documentation in libgnome-desktop-dev.
+  * 90_relibtoolize.patch: relibtoolize to avoid the rpath issue on 
+    amd64.
+
+ -- Josselin Mouette <joss@debian.org>  Mon, 17 Nov 2008 21:43:38 +0100
+
 gnome-desktop (2.22.3-2) unstable; urgency=low
 
   * Ship files in /usr/share/omf in gnome-desktop-data. Closes: #492872. 
