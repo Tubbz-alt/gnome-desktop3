@@ -1,3 +1,13 @@
+gnome-desktop (2.26.0-1) experimental; urgency=low
+
+  * New upstream release.
+  * Standards version is 3.8.1.
+  * Rename library package to libgnome-desktop-2-11.
+  * Update build-dependencies and -dev dependencies.
+  * 90_relibtoolize.patch: updated for the new version.
+
+ -- Josselin Mouette <joss@debian.org>  Sat, 11 Apr 2009 12:47:08 +0200
+
 gnome-desktop (2.24.3-1) unstable; urgency=low
 
   * Build-depend on libglib2.0-doc and libgtk2.0-doc to ensure proper 
