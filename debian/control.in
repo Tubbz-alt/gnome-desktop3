@@ -3,12 +3,11 @@ Section: gnome
 Priority: optional
 Maintainer: Ondřej Surý <ondrej@debian.org>
 Uploaders: @GNOME_TEAM@
-Standards-Version: 3.8.0
+Standards-Version: 3.8.1
 XS-Python-Version: >= 2.4
 Build-Depends: debhelper (>= 5),
-               libglib2.0-dev (>= 2.15.4),
+               libglib2.0-dev (>= 2.19.1),
                intltool (>= 0.40.0),
-               libgnomeui-dev (>= 2.14.1-1~),
                scrollkeeper,
                cdbs (>= 0.4.41),
                gnome-pkg-tools (>= 0.10),
@@ -17,7 +16,7 @@ Build-Depends: debhelper (>= 5),
                gnome-doc-utils (>= 0.3.2),
                libx11-dev,
                libxrandr-dev (>= 1.2),
-               libgtk2.0-dev (>= 2.11.3),
+               libgtk2.0-dev (>= 2.14.0),
                libstartup-notification0-dev (>= 0.5),
                libxml2-dev (>= 2.4.20),
                libgconf2-dev (>= 2.0.0),
@@ -58,7 +57,7 @@ Description: Common files for GNOME 2 desktop apps
  This package includes some files that are shared between several GNOME 2
  apps (Pixmaps, .desktop files and internationalization files).
 
-Package: libgnome-desktop-2-7
+Package: libgnome-desktop-2-11
 Section: libs
 Architecture: any
 Depends: ${misc:Depends},
@@ -70,9 +69,8 @@ Package: libgnome-desktop-dev
 Section: libdevel
 Architecture: any
 Depends: ${misc:Depends},
-         libgnome-desktop-2-7 (= ${binary:Version}),
-         libgnomeui-dev (>= 2.14.1-1),
-         libgtk2.0-dev (>= 2.11.3),
+         libgnome-desktop-2-11 (= ${binary:Version}),
+         libgtk2.0-dev (>= 2.14.0),
          libstartup-notification0-dev (>= 0.5)
 Replaces: libpanel-applet2-dev (<= 1.5.4-1)
 Description: Utility library for loading .desktop files - development files
