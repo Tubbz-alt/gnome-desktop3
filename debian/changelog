@@ -1,3 +1,11 @@
+gnome-desktop (1:2.26.1-0ubuntu2) jaunty-proposed; urgency=low
+
+  * debian/patches/90_git_change_reprobe_when_required.patch:
+    - git change to refresh correctly the screen settings 
+      (lp: #365210)
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 04 May 2009 14:42:53 +0200
+
 gnome-desktop (1:2.26.1-0ubuntu1) jaunty; urgency=low
 
   * New upstream version:

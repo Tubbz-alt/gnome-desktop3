@@ -1,0 +1,26 @@
+From 3f811a611185a3bdbb6b6d4c19590bd26ae1dc82 Mon Sep 17 00:00:00 2001
+From: Matthias Clasen <mclasen@redhat.com>
+Date: Tue, 28 Apr 2009 23:34:44 +0000
+Subject: Fill out ScreenInfo structs sufficiently without reprobing, too
+
+This fixes the symptoms described in bug 578111 where rotations
+get lost after applying one rotation. Thanks for Federicos help
+in tracking this down.
+---
+diff --git a/libgnome-desktop/gnome-rr.c b/libgnome-desktop/gnome-rr.c
+index 0f1c9c1..0b95e3a 100644
+--- a/libgnome-desktop/gnome-rr.c
++++ b/libgnome-desktop/gnome-rr.c
+@@ -329,6 +329,11 @@ fill_out_screen_info (Display *xdisplay,
+     }
+     else
+     {
++        gnome_rr_screen_get_ranges (info->screen, 
++					 &(info->min_width),
++					 &(info->max_width),
++					 &(info->min_height),
++					 &(info->max_height));
+ 	/* XRRGetScreenResourcesCurrent is less expensive than
+ 	 * XRRGetScreenResources, however it is available only
+ 	 * in RandR 1.3 or higher
+
