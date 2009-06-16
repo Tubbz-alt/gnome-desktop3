@@ -4,8 +4,9 @@ gnome-desktop (1:2.27.3-0ubuntu1) UNRELEASED; urgency=low
   * debian/patches:
     - 100_load_desired_settings.patch: replace gnome_rr_config_apply with
       gnome_rr_config_apply_with_time to make it apply again
+    - 90_relibtoolize.patch: new version update
 
- -- Didier Roche <didrocks@ubuntu.com>  Tue, 16 Jun 2009 14:34:33 +0200
+ -- Didier Roche <didrocks@ubuntu.com>  Tue, 16 Jun 2009 14:55:48 +0200
 
 gnome-desktop (1:2.26.1-0ubuntu2) jaunty-proposed; urgency=low
 
