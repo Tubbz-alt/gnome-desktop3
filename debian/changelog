@@ -17,13 +17,14 @@ gnome-desktop (1:2.27.3-0ubuntu1) UNRELEASED; urgency=low
       Mena Quintero)
     - Svg backgrounds not scaled correctly (LP: #9722)
     - Updated translations
+  * debian/rules: bump shlibs
   * update debian/watch to take unstable version
   * debian/patches:
     - 100_load_desired_settings.patch: replace gnome_rr_config_apply with
       gnome_rr_config_apply_with_time to make it apply again
     - 90_relibtoolize.patch: new version update
 
- -- Didier Roche <didrocks@ubuntu.com>  Tue, 16 Jun 2009 15:46:16 +0200
+ -- Didier Roche <didrocks@ubuntu.com>  Tue, 16 Jun 2009 16:11:33 +0200
 
 gnome-desktop (1:2.26.1-0ubuntu2) jaunty-proposed; urgency=low
 
