@@ -328,7 +328,7 @@ diff -Nur gnome-desktop-2.25.90.orig/libgnome-desktop/gnome-rr-config.c gnome-de
 -    {
 -	gboolean result;
 -
--	result = gnome_rr_config_apply (stored, screen, error);
+-	result = gnome_rr_config_apply_with_time (stored, screen, timestamp, error);
 -
 -	gnome_rr_config_free (stored);
 -	
@@ -372,7 +372,7 @@ diff -Nur gnome-desktop-2.25.90.orig/libgnome-desktop/gnome-rr-config.c gnome-de
 +	     */
 +        if (check_framebuffer_size (stored, screen)) {
 +        
-+        	result = gnome_rr_config_apply (stored, screen, error);
++        	result = gnome_rr_config_apply_with_time (stored, screen, timestamp, error);
 +
 +        	/* if we are using the desired settings and
 +        	   the settings were applied successfully */
