@@ -1,12 +1,29 @@
 gnome-desktop (1:2.27.3-0ubuntu1) UNRELEASED; urgency=low
 
+  * new upstream release: (LP: #387919)
+    - GnomeRR: Only select for RRScreenChangeNotifyMask, not for the more
+      detailed RANDR 1.2 events (Federico Mena Quintero)
+    - GnomeRR: Don't ask for RANDR events if the caller doesn't specify a
+      callback (Federico Mena Quintero)
+    - GnomeRR: Add _with_time() versions to the GnomeRR and GnomeRRConfig
+      functions that change the RANDR configuration (Federico Mena Quintero)
+    - GnomeRR: Add gnome_rr_screen_get_timestamps() to query the XRR
+      timestamps (Federico Mena Quintero)
+    - GnomeRR: Don't force a reprobe of the RANDR outputs on every RANDR
+      event (Federico Mena Quintero)
+    - GnomeRR: First update screen resources, then update the screen size
+      range (Federico Mena Quintero)
+    - GnomeRR: Add debug dialog to show the RANDR timestamps (Federico
+      Mena Quintero)
+    - Svg backgrounds not scaled correctly (LP: #9722)
+    - Updated translations
   * update debian/watch to take unstable version
   * debian/patches:
     - 100_load_desired_settings.patch: replace gnome_rr_config_apply with
       gnome_rr_config_apply_with_time to make it apply again
     - 90_relibtoolize.patch: new version update
 
- -- Didier Roche <didrocks@ubuntu.com>  Tue, 16 Jun 2009 14:55:48 +0200
+ -- Didier Roche <didrocks@ubuntu.com>  Tue, 16 Jun 2009 15:46:16 +0200
 
 gnome-desktop (1:2.26.1-0ubuntu2) jaunty-proposed; urgency=low
 
