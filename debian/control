@@ -1,7 +1,7 @@
 Source: gnome-desktop
 Section: gnome
 Priority: optional
-Maintainer: Ondřej Surý <ondrej@debian.org>
+Maintainer: Josselin Mouette <joss@debian.org>
 Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Josselin Mouette <joss@debian.org>, Sebastian Dröge <slomo@debian.org>
 Standards-Version: 3.8.1
 XS-Python-Version: >= 2.4
