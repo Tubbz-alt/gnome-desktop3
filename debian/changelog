@@ -1,3 +1,22 @@
+gnome-desktop (1:2.27.91-0ubuntu1) UNRELEASED; urgency=low
+
+  * New upstream release: (LP: #419587)
+    libgnome-desktop
+    - GnomeRR: add support for primary monitor (Matthias Clasen)
+    - GnomeRR: in clone mode, don't label each output (Federico Mena Quintero)
+    - GnomeBG: add gnome_bg_changes_with_time() API (Matthias Clasen)
+    - GnomeBG: gnome_bg_create_frame_thumbnail() API (Matthias Clasen)
+    - Build fixes.
+    gnome-about
+    - Remove deprecated Encoding key from desktop file (Frédéric Péters)
+  * debian/patches/01_desktopfile_gettext.patch:
+  * debian/patches/100_load_desired_settings.patch:
+  * debian/patches/90_relibtoolize.patch:
+  * debian/patches/99_ltmain_as-needed.patch:
+    - Refreshed
+
+ -- Robert Ancell <robert.ancell@canonical.com>  Thu, 27 Aug 2009 10:36:38 +1000
+
 gnome-desktop (1:2.27.5-0ubuntu1) karmic; urgency=low
 
   * New upstream version
