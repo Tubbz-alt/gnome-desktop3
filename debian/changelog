@@ -1,8 +1,15 @@
-gnome-desktop (2.26.1-2) UNRELEASED; urgency=low
+gnome-desktop (2.28.0-1) unstable; urgency=low
 
+  [ Josselin Mouette ]
   * Stop mentioning GNOME 2.
 
- -- Josselin Mouette <joss@debian.org>  Sat, 25 Apr 2009 15:05:28 +0200
+  [ Emilio Pozuelo Monfort ]
+  * New upstream release.
+  * debian/watch: Don't uupdate.
+  * debian/patches/90_relibtoolize.patch:
+    - Removed, not needed anymore now that upstream uses a recent libtool.
+
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Sun, 27 Sep 2009 23:30:02 +0200
 
 gnome-desktop (2.26.1-1) unstable; urgency=low
 
