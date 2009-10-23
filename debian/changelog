@@ -1,3 +1,9 @@
+gnome-desktop (1:2.28.1-0ubuntu1) karmic; urgency=low
+
+  * New upstream version
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Fri, 23 Oct 2009 17:12:49 +0200
+
 gnome-desktop (1:2.28.0-0ubuntu1) karmic; urgency=low
 
   * New upstream version
