@@ -1,0 +1,24 @@
+diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.28.1/configure gnome-desktop-2.28.1.new/configure
+--- gnome-desktop-2.28.1/configure	2009-10-22 15:11:19.000000000 +0200
++++ gnome-desktop-2.28.1.new/configure	2009-10-23 19:22:34.000000000 +0200
+@@ -12385,7 +12385,7 @@
+ 
+ GNOME_PLATFORM=2
+ GNOME_MINOR=28
+-GNOME_MICRO=0
++GNOME_MICRO=1
+ GNOME_DISTRIBUTOR="GNOME.Org"
+ GNOME_DATE=`date +"%Y-%m-%d"`
+ 
+diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.28.1/configure.in gnome-desktop-2.28.1.new/configure.in
+--- gnome-desktop-2.28.1/configure.in	2009-10-22 15:01:52.000000000 +0200
++++ gnome-desktop-2.28.1.new/configure.in	2009-10-23 19:22:13.000000000 +0200
+@@ -36,7 +36,7 @@
+ 
+ GNOME_PLATFORM=2
+ GNOME_MINOR=28
+-GNOME_MICRO=0
++GNOME_MICRO=1
+ GNOME_DISTRIBUTOR="GNOME.Org"
+ GNOME_DATE=`date +"%Y-%m-%d"`
+ 

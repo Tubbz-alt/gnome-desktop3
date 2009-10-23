@@ -1,3 +1,10 @@
+gnome-desktop (1:2.28.1-0ubuntu2) karmic; urgency=low
+
+  * debian/patches/80_correct_version_update.patch:
+    - update the version used in the about GNOME too
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Fri, 23 Oct 2009 19:15:28 +0200
+
 gnome-desktop (1:2.28.1-0ubuntu1) karmic; urgency=low
 
   * New upstream version
