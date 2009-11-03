@@ -1,3 +1,12 @@
+gnome-desktop (1:2.28.1-0ubuntu3) karmic-proposed; urgency=low
+
+  * debian/patches/101_trap_rr_x_errors.patch:
+    - XRRGetScreenResources is only available on RANDR 1.2 and above.
+      Trap and handle the BadRequest error when called on servers which 
+      don't implement this call, instead of crashing (LP: #454487) 
+
+ -- Chris Coulson <chrisccoulson@ubuntu.com>  Fri, 23 Oct 2009 23:23:56 +0100
+
 gnome-desktop (1:2.28.1-0ubuntu2) karmic; urgency=low
 
   * debian/patches/80_correct_version_update.patch:
