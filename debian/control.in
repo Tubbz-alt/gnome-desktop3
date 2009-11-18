@@ -23,7 +23,7 @@ Build-Depends: debhelper (>= 5),
                libxml2-dev (>= 2.4.20),
                libgconf2-dev (>= 2.0.0),
                python-dev,
-               python-central (>= 0.5.6),
+               python-support (>= 0.7),
                libglib2.0-doc,
                libgtk2.0-doc
 
@@ -39,8 +39,6 @@ Depends: ${misc:Depends},
 Conflicts: gnome-core (<< 1.5),
            gnome-desktop-data (<< 2.12)
 Replaces: gnome-desktop-data (<< 2.12)
-Provides: ${python:Provides}
-XB-Python-Version: ${python:Versions}
 Description: The GNOME about box
  Informative little about thing that lets us brag to our friends as our name
  scrolls by, and lets users click to load the GNOME home pages.

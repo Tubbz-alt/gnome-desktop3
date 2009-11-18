@@ -15,4 +15,4 @@ DEB_CONFIGURE_EXTRA_FLAGS += \
 			--disable-gtk-doc
 
 binary-install/gnome-about::
-	dh_pycentral -pgnome-about
+	dh_pysupport -pgnome-about
