@@ -74,5 +74,5 @@ Depends: ${misc:Depends},
          libstartup-notification0-dev (>= 0.5)
 Replaces: libpanel-applet2-dev (<= 1.5.4-1)
 Description: Utility library for loading .desktop files - development files
- This packages provides the include files and static library for the GNOME
+ This package provides the include files and static library for the GNOME
  desktop library functions.

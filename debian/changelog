@@ -1,3 +1,9 @@
+gnome-desktop (2.28.1-4) UNRELEASED; urgency=low
+
+  * Fix typo in description. Closes: #557400.
+
+ -- Josselin Mouette <joss@debian.org>  Sun, 22 Nov 2009 01:19:26 +0100
+
 gnome-desktop (2.28.1-3) unstable; urgency=low
 
   * 01_trap_rr_x_errors.patch: dropped, this solution is fugly.
