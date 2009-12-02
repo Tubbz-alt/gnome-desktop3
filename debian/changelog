@@ -1,261 +1,13 @@
-gnome-desktop (1:2.28.1-0ubuntu3) karmic-proposed; urgency=low
+gnome-desktop (1:2.29.3-0ubuntu1) lucid; urgency=low
 
-  * debian/patches/101_trap_rr_x_errors.patch:
-    - XRRGetScreenResources is only available on RANDR 1.2 and above.
-      Trap and handle the BadRequest error when called on servers which 
-      don't implement this call, instead of crashing (LP: #454487) 
-
- -- Chris Coulson <chrisccoulson@ubuntu.com>  Fri, 23 Oct 2009 23:23:56 +0100
-
-gnome-desktop (1:2.28.1-0ubuntu2) karmic; urgency=low
-
-  * debian/patches/80_correct_version_update.patch:
-    - update the version used in the about GNOME too
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Fri, 23 Oct 2009 19:15:28 +0200
-
-gnome-desktop (1:2.28.1-0ubuntu1) karmic; urgency=low
-
-  * New upstream version
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Fri, 23 Oct 2009 17:12:49 +0200
-
-gnome-desktop (1:2.28.0-0ubuntu1) karmic; urgency=low
-
-  * New upstream version
-  * debian/patches/90_relibtoolize.patch:
-    - new version update
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 21 Sep 2009 18:30:09 +0200
-
-gnome-desktop (1:2.27.92-0ubuntu1) karmic; urgency=low
-
-  * New upstream version
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 09 Sep 2009 11:14:10 +0200
-
-gnome-desktop (1:2.27.91-0ubuntu1) karmic; urgency=low
-
-  * New upstream release: (LP: #419587)
+  * New upstream versions:
     libgnome-desktop
-    - GnomeRR: add support for primary monitor (Matthias Clasen)
-    - GnomeRR: in clone mode, don't label each output (Federico Mena Quintero)
-    - GnomeBG: add gnome_bg_changes_with_time() API (Matthias Clasen)
-    - GnomeBG: gnome_bg_create_frame_thumbnail() API (Matthias Clasen)
-    - Build fixes.
-    gnome-about
-    - Remove deprecated Encoding key from desktop file (Frédéric Péters)
-  * debian/patches/01_desktopfile_gettext.patch:
-  * debian/patches/100_load_desired_settings.patch:
-  * debian/patches/90_relibtoolize.patch:
-  * debian/patches/99_ltmain_as-needed.patch:
-    - Refreshed
-
- -- Robert Ancell <robert.ancell@canonical.com>  Thu, 27 Aug 2009 10:36:38 +1000
-
-gnome-desktop (1:2.27.5-0ubuntu1) karmic; urgency=low
-
-  * New upstream version
-  * debian/patches/90_git_change_reprobe_when_required.patch:
-    - the issue is fixed in the new version
-  * debian/patches/90_relibtoolize.patch:
-    - new version update
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 28 Jul 2009 23:15:29 +0200
-
-gnome-desktop (1:2.27.4-0ubuntu1) karmic; urgency=low
-
-  * New upstream version:
-    libgnome-desktop
-    - Adapt to RANDR 1.3's name for the EDID property 
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 15 Jul 2009 21:59:02 +0200
-
-gnome-desktop (1:2.27.3-0ubuntu1) karmic; urgency=low
-
-  * new upstream release: (LP: #387919)
-    - GnomeRR: Only select for RRScreenChangeNotifyMask, not for the more
-      detailed RANDR 1.2 events (Federico Mena Quintero)
-    - GnomeRR: Don't ask for RANDR events if the caller doesn't specify a
-      callback (Federico Mena Quintero)
-    - GnomeRR: Add _with_time() versions to the GnomeRR and GnomeRRConfig
-      functions that change the RANDR configuration (Federico Mena Quintero)
-    - GnomeRR: Add gnome_rr_screen_get_timestamps() to query the XRR
-      timestamps (Federico Mena Quintero)
-    - GnomeRR: Don't force a reprobe of the RANDR outputs on every RANDR
-      event (Federico Mena Quintero)
-    - GnomeRR: First update screen resources, then update the screen size
-      range (Federico Mena Quintero)
-    - GnomeRR: Add debug dialog to show the RANDR timestamps (Federico
-      Mena Quintero)
-    - Svg backgrounds not scaled correctly (LP: #9722)
-    - Updated translations
-  * debian/rules: bump shlibs
-  * update debian/watch to take unstable version
-  * debian/patches:
-    - 100_load_desired_settings.patch: replace gnome_rr_config_apply with
-      gnome_rr_config_apply_with_time to make it apply again
-    - 90_relibtoolize.patch: new version update
-
- -- Didier Roche <didrocks@ubuntu.com>  Tue, 16 Jun 2009 16:11:33 +0200
-
-gnome-desktop (1:2.26.1-0ubuntu2) jaunty-proposed; urgency=low
-
-  * debian/patches/90_git_change_reprobe_when_required.patch:
-    - git change to refresh correctly the screen settings 
-      (lp: #365210)
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 04 May 2009 14:42:53 +0200
-
-gnome-desktop (1:2.26.1-0ubuntu1) jaunty; urgency=low
-
-  * New upstream version:
-    libgnome-desktop
-    - GnomeBG: handle X errors when the root properties point to something
-      wrong when getting the root pixmap 
-    - GnomeRR: use XRRGetScreenResourcesCurrent() from RANDR 1.3 when possible, 
-      when we only need to fetch the current RANDR status
-    gnome-about
-    - Make parsing of gnome-version.xml more tolerant against missing fields 
+    - GnomeRR: Allow rotation if the virtual size has the correct number of
+      pixels 
+    - GnomeRR: Add gamma API 
     Misc
-    - Add a --disable-date-in-gnome-version configure option to remove the
-      build date from gnome-version.xml 
-    - Remove unused --with-kde-datadir configure option 
-  * debian/patches/101_output_props_events_use_cheap_call.patch:
-    - dropped, the new version fixes this issue
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 14 Apr 2009 11:04:26 +0200
-
-gnome-desktop (1:2.26.0-0ubuntu2) jaunty; urgency=low
-
-  * debian/patches/101_output_props_events_use_cheap_call.patch:
-    - libgnome-desktop/gnome-rr.c:
-      + Additional gboolean argument for screen_update() static
-        function so that TRUE means that the cheap call (with no
-        hardware probing) is called while FALSE means that the more
-        expensive one is used. This prevents the gnome-settings-
-        daemon from causing X.org to waste CPU cycles when
-        output properties are changed (LP: #339228).
-
- -- Alberto Milone <alberto.milone@canonical.com>  Thu, 19 Mar 2009 09:51:14 +0100
-
-gnome-desktop (1:2.26.0-0ubuntu1) jaunty; urgency=low
-
-  * New upstream version
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 17 Mar 2009 01:15:30 +0100
-
-gnome-desktop (1:2.25.92-0uubuntu1) jaunty; urgency=low
-
-  * New upstream version:
-    libgnome-desktop
-    - GnomeBG: Allow apps to ignore a pending change so they can avoid
-      updating their background twice 
-    - GnomeBG: Blow all expensive caches if we're not gonna update the
-      background again in one minute 
-    - GnomeBG: Do slightly less steps in slide transitions to avoid using
-      to much resources on things that are not visible 
-    - GnomeBG: Remove outstanding transitions on finalize
-    - GnomeRR: Use g_new0() instead of calloc() for consistency
-    - GnomeRR: Fix leak 
-    - GnomeRR: Code cleanup 
-    - GnomeRR: Revert the change to use XRRGetScreenResourcesCurrent
-      it's not needed anymore and it broke the "Detect Monitors" button   
-    - General: Make sure that the translation system is initiliazed so that
-    translations can be used 
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 03 Mar 2009 19:38:04 +0100
-
-gnome-desktop (1:2.25.91-0ubuntu1) jaunty; urgency=low
-
-  * New upstream version
-  * debian/control.in:
-    - use the ubuntu-desktop team for packaging work rather
-  * debian/patches/90_relibtoolize.patch:
-    - new version update
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 17 Feb 2009 14:05:26 +0100
-
-gnome-desktop (1:2.25.90-0ubuntu1) jaunty; urgency=low
-
-  * New upstream version:
-    libgnome-desktop
-    - GnomeRR: Create a backup file of the configuration when saving
-    - GnomeRR: Add public API to get to $(XDG_CONFIG_HOME)/monitors.xml and
-      a backup of that file 
-    - GnomeRR: Add gnome_rr_config_apply_from_filename()
-    - GnomeRR: Deprecate gnome_rr_config_apply_stored()
-  * debian/patches/90_relibtoolize.patch:
-    - new version update
-  * debian/rules:
-    - updated shlibs version
-  
-  [ Alberto Milone ]
-
-  * debian/partches/100_load_desired_settings.patch:
-    - adapt it to the changes in 2.25.90 
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 10 Feb 2009 18:34:05 +0100
-
-gnome-desktop (1:2.25.5-0ubuntu1) jaunty; urgency=low
-
-  * New upstream version:
-    libgnome-desktop
-    - GnomeBG: use gdk_color_equal() instead of custom function 
-    - GnomeRR: use XRRGetScreenResourcesCurrent instead of
-      XRRGetScreenResources when available (xrandr 1.3) because it's cheaper 
-      (lp: #307306)
-    - GnomeBG: emit "transitioned" signal instead of "changed" signal for
-      new frames in a slideshow background 
-    - GnomeBG: reorganize code a bit 
-    - GnomeBG: add fading API to support fading between two backgrounds
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 20 Jan 2009 10:50:09 +0100
-
-gnome-desktop (1:2.25.3-0ubuntu2) jaunty; urgency=low
-
-  * debian/patches/100_load_desired_settings.patch:
-    - libgnome-desktop/gnome-rr-config.c:
-      + clean up the patch to reuse code from the current API
-      + don't segfault with old configuration files (LP: #314406)
-      + remove notification on login when the configuration file
-        is absent or invalid
-      + don't let configurations_read_from_file() try to read xml
-        files which don't exist
-
- -- Alberto Milone (tseliot) <albertomilone@alice.it>  Wed, 14 Jan 2009 18:35:56 +0100
-
-gnome-desktop (1:2.25.3-0ubuntu1) jaunty; urgency=low
-
-  [ Sebastien Bacher ]
-  * New upstream version
-  * New soname change
-
-  [ Alberto Milone ]
-  * debian/patches/100_load_desired_settings.patch:
-    - update patch to match the current API
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 16 Dec 2008 14:25:50 +0100
-
-gnome-desktop (1:2.25.2-0ubuntu1) jaunty; urgency=low
-
-  * New upstream version
-  * debian/control.in:
-    - updated the requirements
-    - updated to the new soname version
-  * debian/rules:
-    - updated to the new soname version
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 02 Dec 2008 16:44:50 +0100
-
-gnome-desktop (1:2.24.1-1ubuntu2) jaunty; urgency=low
-
-  * Rebuild due to the gtk change
-
- -- Sebastien Bacher <seb128@canonical.com>  Thu, 27 Nov 2008 18:41:59 +0100
-
-gnome-desktop (1:2.24.1-1ubuntu1) jaunty; urgency=low
-
+    - Build improvement 
+    Translators
   * Sync on debian
   * debian/control.in:
     - usr breaks on gnome-control-center (<< 1:2.23.5) and 
@@ -268,9 +20,84 @@ gnome-desktop (1:2.24.1-1ubuntu1) jaunty; urgency=low
       saved by the xrandr capplet when the virtual resolution has
       to be saved and the settings cannot be applied immediately.
   * debian/rules:
+    - set shlibs version
     - use "Ubuntu" as distributor
+  * debian/watch:
+    - watch unstable serie
 
- -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 26 Nov 2008 14:18:15 +0100
+ -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 02 Dec 2009 12:53:50 +0100
+
+gnome-desktop (2.28.1-3) unstable; urgency=low
+
+  * 01_trap_rr_x_errors.patch: dropped, this solution is fugly.
+  * 01_check_xrandr_version.patch: check that the extension is available 
+    at version 1.2 before running code that requires version 1.2 anyway.
+
+ -- Josselin Mouette <joss@debian.org>  Sat, 21 Nov 2009 10:38:16 +0100
+
+gnome-desktop (2.28.1-2) unstable; urgency=low
+
+  * Switch to python-support.
+  * 01_trap_rr_x_errors.patch: patch from Chris Coulson to support 
+    FreeNX, it fixes some BadRequest errors. Closes: #556797.
+
+ -- Josselin Mouette <joss@debian.org>  Wed, 18 Nov 2009 09:16:11 +0100
+
+gnome-desktop (2.28.1-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/control.in:
+    - bumped standards-version to 3.8.3. No changes needed.
+    - added Vcs-* fields.
+
+ -- Andrea Veri <andrea.veri89@gmail.com>  Mon, 26 Oct 2009 22:04:51 +0100
+
+gnome-desktop (2.28.0-1) unstable; urgency=low
+
+  [ Josselin Mouette ]
+  * Stop mentioning GNOME 2.
+
+  [ Emilio Pozuelo Monfort ]
+  * New upstream release.
+  * debian/watch: Don't uupdate.
+  * debian/patches/90_relibtoolize.patch:
+    - Removed, not needed anymore now that upstream uses a recent libtool.
+
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Sun, 27 Sep 2009 23:30:02 +0200
+
+gnome-desktop (2.26.1-1) unstable; urgency=low
+
+  * New upstream release.
+  * 90_relibtoolize.patch: updated for the new version.
+
+ -- Josselin Mouette <joss@debian.org>  Tue, 14 Apr 2009 12:16:16 +0200
+
+gnome-desktop (2.26.0-1) experimental; urgency=low
+
+  * New upstream release.
+  * Standards version is 3.8.1.
+  * Rename library package to libgnome-desktop-2-11.
+  * Update build-dependencies and -dev dependencies.
+  * 90_relibtoolize.patch: updated for the new version.
+
+ -- Josselin Mouette <joss@debian.org>  Sat, 11 Apr 2009 12:47:08 +0200
+
+gnome-desktop (2.24.3-1) unstable; urgency=low
+
+  * Build-depend on libglib2.0-doc and libgtk2.0-doc to ensure proper 
+    xrefs.
+  * New upstream release.
+  * 90_relibtoolize.patch: regenerate for the new version.
+  * Upload to unstable!!1!omgwtfbbq
+
+ -- Josselin Mouette <joss@debian.org>  Sun, 15 Mar 2009 15:21:12 +0100
+
+gnome-desktop (2.24.2-1) experimental; urgency=low
+
+  * New upstream release.
+  * 90_relibtoolize.patch: regenerate for the new version.
+
+ -- Josselin Mouette <joss@debian.org>  Sun, 04 Jan 2009 10:27:14 +0100
 
 gnome-desktop (2.24.1-1) experimental; urgency=low
 
