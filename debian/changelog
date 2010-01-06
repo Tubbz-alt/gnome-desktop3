@@ -1,3 +1,17 @@
+gnome-desktop (1:2.29.4-0ubuntu1) lucid; urgency=low
+
+  * New upstream version
+  * debian/control.in, debian/rules:
+    - updated binaries for the soname change
+  * debian/gnome-desktop-data.install:
+    - updated to install the ids monitors list too
+  * debian/patches/80_correct_rgba_use.patch:
+    - change by Cody Russell to fix rgba issues (lp: #491521)
+  * debian/patches/90_git_soname_update.patch:
+    - update the soname since the abi changed
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 06 Jan 2010 15:08:09 +0100
+
 gnome-desktop (1:2.29.3-0ubuntu1) lucid; urgency=low
 
   * New upstream versions:

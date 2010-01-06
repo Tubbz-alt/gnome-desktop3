@@ -1,0 +1,11 @@
+--- libgnome-desktop/gnome-bg.c	2010-01-05 16:46:31 +0000
++++ libgnome-desktop/gnome-bg.c	2010-01-05 19:45:41 +0000
+@@ -1134,7 +1134,7 @@
+ 
+ 		if (source_pixmap != NULL) {
+ 			gdk_drawable_set_colormap (source_pixmap,
+-						   gdk_screen_get_default_colormap (screen));
++						   gdk_screen_get_system_colormap (screen));
+ 		}
+ 	}
+ 
