@@ -1,3 +1,11 @@
+gnome-desktop (1:2.29.6-0ubuntu1) lucid; urgency=low
+
+  * New upstream version
+  * debian/patches/90_git_soname_update.patch:
+    - dropped since the change is in the new version 
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 27 Jan 2010 17:27:26 +0100
+
 gnome-desktop (1:2.29.4-0ubuntu1) lucid; urgency=low
 
   * New upstream version
