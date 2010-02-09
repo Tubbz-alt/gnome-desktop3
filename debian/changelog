@@ -1,6 +1,8 @@
 gnome-desktop (1:2.29.90-0ubuntu1) lucid; urgency=low
 
   * New upstream version
+  * debian/control.in:
+    - updated a description to fix a typo pointed by lintian 
 
  -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 09 Feb 2010 15:28:10 +0100
 
