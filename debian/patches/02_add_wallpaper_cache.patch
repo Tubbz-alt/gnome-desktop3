@@ -1,8 +1,9 @@
-# Description: cache wallpapers resized and transformed are stored in ~/.cache/wallpaper/.
-# the cache is refreshed for each new current wallpaper depending on the resolution or transformation,
-# and each time the source image is refreshed. The source image format is preserved.
-# Origin: Ubuntu
-# Bug: https://bugzilla.gnome.org/show_bug.cgi?id=608419
+Description: cache wallpapers resized and transformed are stored in ~/.cache/wallpaper/.
+the cache is refreshed for each new current wallpaper depending on the resolution or transformation,
+and each time the source image is refreshed. The source image format is preserved.
+Origin: Ubuntu
+Bug: https://bugzilla.gnome.org/show_bug.cgi?id=608419
+Author: Didier Roche <didrocks@ubuntu.com>
 
 diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.29.90/libgnome-desktop/gnome-bg.c gnome-desktop-2.29.90.new/libgnome-desktop/gnome-bg.c
 --- gnome-desktop-2.29.90/libgnome-desktop/gnome-bg.c	2009-12-17 12:27:18.000000000 +0100
