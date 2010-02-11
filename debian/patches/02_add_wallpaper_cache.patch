@@ -15,7 +15,7 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.29.90/libgnome-desktop/gnome-bg.c 
  
  #include <gdk/gdkx.h>
  #include <X11/Xlib.h>
-@@ -576,6 +577,90 @@
+@@ -576,6 +577,87 @@
  	return bg->filename;
  }
  
