@@ -31,22 +31,21 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.29.90/libgnome-desktop/gnome-bg.c 
 +                              int                width,
 +                              int                height)
 +{
-+	gchar *changed_filename;
++	gchar *cache_basename;
 +	gchar *cache_filename;
-+	gchar *cache_fullpath;
 +	gchar *cache_dir;
++	const char* placement_name;
 +
-+	changed_filename = g_strdup (filename);
-+	changed_filename = g_strdelimit (changed_filename, G_DIR_SEPARATOR_S, '_');
-+	cache_filename = g_strdup_printf ("%i_%i_%i_%s", placement, width, height, changed_filename);
++	placement_name = placement_to_string (placement);
++	cache_basename = g_strdup_printf ("%s_%i_%i_%s", placement_name, width, height, filename);
++	cache_basename = g_strdelimit (cache_basename, G_DIR_SEPARATOR_S, '_');
 +	cache_dir = get_wallpaper_cache_dir ();
-+	cache_fullpath = g_build_filename (cache_dir, cache_filename, NULL);
++	cache_filename = g_build_filename (cache_dir, cache_basename, NULL);
 +
-+	g_free (changed_filename);
-+	g_free (cache_filename);
++	g_free (cache_basename);
 +	g_free (cache_dir);
 +
-+	return cache_fullpath;
++	return cache_filename;
 +
 +}
 +
@@ -57,9 +56,7 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.29.90/libgnome-desktop/gnome-bg.c 
 +	time_t mtime = get_mtime (filename);
 +	time_t cache_mtime = get_mtime (cache_filename);
 +
-+	if (mtime < cache_mtime)
-+		return TRUE;
-+	return FALSE;
++	return (mtime < cache_mtime);
 +}
 +
 +static void
@@ -133,7 +130,7 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.29.90/libgnome-desktop/gnome-bg.c 
  	}
 +
 +	if ((dest_width > 300) && (dest_height > 300))
-+		refresh_cache_file(bg, scaled, dest_width, dest_height);
++		refresh_cache_file (bg, scaled, dest_width, dest_height);
  	
  	g_object_unref (scaled);
  }
@@ -201,9 +198,9 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.29.90/libgnome-desktop/gnome-bg.c 
 -			pixbuf = gdk_pixbuf_new_from_file (filename, NULL);
 +		/* Try to hit local cache first */
 +		cache_filename = get_wallpaper_cache_filename (bg->placement, filename, best_width, best_height);
-+		if (cache_file_is_valid(filename, cache_filename))
++		if (cache_file_is_valid (filename, cache_filename))
 +			pixbuf = gdk_pixbuf_new_from_file (cache_filename, NULL);
-+		g_free(cache_filename);
++		g_free (cache_filename);
 +
 +		if (!pixbuf) {
 +			/* If scalable choose maximum size */
