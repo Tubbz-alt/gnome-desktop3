@@ -7,7 +7,7 @@ Author: Didier Roche <didrocks@ubuntu.com>
 
 diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.29.90/libgnome-desktop/gnome-bg.c gnome-desktop-2.29.90.new/libgnome-desktop/gnome-bg.c
 --- gnome-desktop-2.29.90/libgnome-desktop/gnome-bg.c	2009-12-17 12:27:18.000000000 +0100
-+++ gnome-desktop-2.29.90.new/libgnome-desktop/gnome-bg.c	2010-02-10 14:35:44.296186178 +0100
++++ gnome-desktop-2.29.90.new/libgnome-desktop/gnome-bg.c	2010-02-15 10:05:57.474734047 +0100
 @@ -33,6 +33,7 @@
  #include <stdlib.h>
  
@@ -16,7 +16,7 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.29.90/libgnome-desktop/gnome-bg.c 
  
  #include <gdk/gdkx.h>
  #include <X11/Xlib.h>
-@@ -576,6 +577,87 @@
+@@ -576,6 +577,93 @@
  	return bg->filename;
  }
  
@@ -69,6 +69,7 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.29.90/libgnome-desktop/gnome-bg.c 
 +	gchar *cache_filename;
 +	gchar *cache_dir;
 +	GdkPixbufFormat *format;
++	gchar* format_name;
 +	GDir* g_cache_dir;
 +	const gchar* file;
 +
@@ -93,7 +94,12 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.29.90/libgnome-desktop/gnome-bg.c 
 +				}
 +				g_dir_close (g_cache_dir);
 +			}
-+			gdk_pixbuf_save (new_pixbuf, cache_filename, gdk_pixbuf_format_get_name (format), NULL, NULL);
++			format_name = gdk_pixbuf_format_get_name (format);
++			if (strcmp (format_name, "jpeg") == 0)
++				gdk_pixbuf_save (new_pixbuf, cache_filename, format_name, NULL, "quality", "100", NULL);
++			else
++				gdk_pixbuf_save (new_pixbuf, cache_filename, format_name, NULL, NULL);
++			g_free (format_name);
 +		}
 +	}
 +
@@ -104,7 +110,7 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.29.90/libgnome-desktop/gnome-bg.c 
  static void
  file_changed (GFileMonitor *file_monitor,
  	      GFile *child,
-@@ -762,7 +847,7 @@
+@@ -762,7 +850,7 @@
  }
  
  static void
@@ -113,7 +119,7 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.29.90/libgnome-desktop/gnome-bg.c 
  		 GdkPixbuf        *pixbuf,
  		 GdkPixbuf        *dest,
  		 GdkRectangle     *area)
-@@ -775,9 +860,9 @@
+@@ -775,9 +863,9 @@
  	if (!pixbuf)
  		return;
  
@@ -125,7 +131,7 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.29.90/libgnome-desktop/gnome-bg.c 
  	case GNOME_BG_PLACEMENT_TILED:
  		pixbuf_tile (scaled, dest);
  		break;
-@@ -791,12 +876,15 @@
+@@ -791,12 +879,15 @@
  		g_assert_not_reached ();
  		break;
  	}
@@ -142,7 +148,7 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.29.90/libgnome-desktop/gnome-bg.c 
  	    GdkPixbuf        *pixbuf,
  	    GdkPixbuf        *dest)
  {
-@@ -807,7 +895,7 @@
+@@ -807,7 +898,7 @@
  	rect.width = gdk_pixbuf_get_width (dest);
  	rect.height = gdk_pixbuf_get_height (dest);
  
@@ -151,7 +157,7 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.29.90/libgnome-desktop/gnome-bg.c 
  }
  
  static void
-@@ -825,7 +913,7 @@
+@@ -825,7 +916,7 @@
  
  	pixbuf = get_pixbuf_for_size (bg, gdk_pixbuf_get_width (dest), gdk_pixbuf_get_height (dest));
  	if (pixbuf) {
@@ -160,7 +166,7 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.29.90/libgnome-desktop/gnome-bg.c 
  				 pixbuf,
  				 dest,
  				 &rect);
-@@ -848,7 +936,7 @@
+@@ -848,7 +939,7 @@
  		gdk_screen_get_monitor_geometry (screen, monitor, &rect);
  		pixbuf = get_pixbuf_for_size (bg, rect.width, rect.height);
  		if (pixbuf) {
@@ -169,7 +175,7 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.29.90/libgnome-desktop/gnome-bg.c 
  					 pixbuf,
  					 dest, &rect);
  			g_object_unref (pixbuf);
-@@ -1191,7 +1279,7 @@
+@@ -1191,7 +1282,7 @@
  	thumb = create_img_thumbnail (bg, factory, screen, dest_width, dest_height, -1);
  	
  	if (thumb) {
@@ -178,7 +184,7 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.29.90/libgnome-desktop/gnome-bg.c 
  		g_object_unref (thumb);
  	}
  	
-@@ -1638,19 +1726,28 @@
+@@ -1638,19 +1729,28 @@
  	}
  	else {
  		GdkPixbufFormat *format;
@@ -219,7 +225,7 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.29.90/libgnome-desktop/gnome-bg.c 
  
  		if (pixbuf)
  			file_cache_add_pixbuf (bg, filename, pixbuf);
-@@ -2895,7 +2992,7 @@
+@@ -2895,7 +2995,7 @@
  	thumb = create_img_thumbnail (bg, factory, screen, dest_width, dest_height, frame_num + skipped);
  
  	if (thumb) {

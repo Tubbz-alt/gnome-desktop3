@@ -1,11 +1,16 @@
-gnome-desktop (1:2.29.90-0ubuntu3) UNRELEASED; urgency=low
+gnome-desktop (1:2.29.90-0ubuntu4) UNRELEASED; urgency=low
 
+  [ Chris Coulson ]
   * debian/patches/100_load_desired_settings.patch:
     - Update to ensure that gnome_rr_config_apply_from_filename_with_time()
       always sets a GError when the call fails. Thanks to James Westby for
       contributing to this too (LP: #384439)
 
- -- Chris Coulson <chrisccoulson@ubuntu.com>  Sun, 14 Feb 2010 23:43:51 +0000
+  [ Didier Roche ]
+  * debian/patches/02_add_wallpaper_cache.patch:
+    - keep maximum quality when saving the cached image in jpeg
+
+ -- Didier Roche <didrocks@ubuntu.com>  Mon, 15 Feb 2010 10:08:39 +0100
 
 gnome-desktop (1:2.29.90-0ubuntu2) lucid; urgency=low
 
