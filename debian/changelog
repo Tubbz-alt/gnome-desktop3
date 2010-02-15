@@ -1,4 +1,4 @@
-gnome-desktop (1:2.29.90-0ubuntu4) UNRELEASED; urgency=low
+gnome-desktop (1:2.29.90-0ubuntu3) UNRELEASED; urgency=low
 
   [ Chris Coulson ]
   * debian/patches/100_load_desired_settings.patch:
