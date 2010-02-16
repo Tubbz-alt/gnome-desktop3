@@ -7,7 +7,7 @@ Author: Didier Roche <didrocks@ubuntu.com>
 
 diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.29.90/libgnome-desktop/gnome-bg.c gnome-desktop-2.29.90.new/libgnome-desktop/gnome-bg.c
 --- gnome-desktop-2.29.90/libgnome-desktop/gnome-bg.c	2009-12-17 12:27:18.000000000 +0100
-+++ gnome-desktop-2.29.90.new/libgnome-desktop/gnome-bg.c	2010-02-15 10:05:57.474734047 +0100
++++ gnome-desktop-2.29.90.new/libgnome-desktop/gnome-bg.c	2010-02-16 20:37:50.016322577 +0100
 @@ -33,6 +33,7 @@
  #include <stdlib.h>
  
@@ -16,7 +16,16 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.29.90/libgnome-desktop/gnome-bg.c 
  
  #include <gdk/gdkx.h>
  #include <X11/Xlib.h>
-@@ -576,6 +577,93 @@
+@@ -42,6 +43,8 @@
+ 
+ #include <gconf/gconf-client.h>
+ 
++#include <gdk-pixbuf/gdk-pixdata.h>
++
+ #define GNOME_DESKTOP_USE_UNSTABLE_API
+ #include <libgnomeui/gnome-bg.h>
+ #include <libgnomeui/gnome-bg-crossfade.h>
+@@ -576,6 +579,91 @@
  	return bg->filename;
  }
  
@@ -38,7 +47,7 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.29.90/libgnome-desktop/gnome-bg.c 
 +	const char* placement_name;
 +
 +	placement_name = placement_to_string (placement);
-+	cache_basename = g_strdup_printf ("%s_%i_%i_%s", placement_name, width, height, filename);
++	cache_basename = g_strdup_printf ("%s_%i_%i_%s.cache", placement_name, width, height, filename);
 +	cache_basename = g_strdelimit (cache_basename, G_DIR_SEPARATOR_S, '_');
 +	cache_dir = get_wallpaper_cache_dir ();
 +	cache_filename = g_build_filename (cache_dir, cache_basename, NULL);
@@ -68,43 +77,41 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.29.90/libgnome-desktop/gnome-bg.c 
 +{
 +	gchar *cache_filename;
 +	gchar *cache_dir;
-+	GdkPixbufFormat *format;
-+	gchar* format_name;
++
++	GdkPixdata pixdata;
++	guint length;
++	gchar *data;
++
 +	GDir* g_cache_dir;
 +	const gchar* file;
 +
 +	cache_filename = get_wallpaper_cache_filename (bg->placement, bg->filename, width, height);
 +	cache_dir = get_wallpaper_cache_dir ();
 +
-+	/* Only refresh scaled file on disk if useful (and don't cache slideshow) */
-+	if (!cache_file_is_valid (bg->filename, cache_filename)) {
-+		format = gdk_pixbuf_get_file_info (bg->filename, NULL, NULL);
-+		if (format != NULL) {
-+			if (!g_file_test (cache_dir, G_FILE_TEST_IS_DIR))
-+				g_mkdir (cache_dir, 0700);
-+			else {
-+				g_cache_dir = g_dir_open (cache_dir, 0, NULL);
++	/* Only refresh scaled file on disk if useful and don't cache slideshow for now */
++	if (!cache_file_is_valid (bg->filename, cache_filename) && (strstr (cache_filename, ".xml") == NULL)) {
++		if (!g_file_test (cache_dir, G_FILE_TEST_IS_DIR))
++			g_mkdir (cache_dir, 0700);
++		else {
++			g_cache_dir = g_dir_open (cache_dir, 0, NULL);
++			file = g_dir_read_name (g_cache_dir);
++			while (file != NULL) {
++				gchar *path = g_build_filename (cache_dir, file, NULL);
++				if (g_file_test (path, G_FILE_TEST_IS_REGULAR))
++					g_unlink (path);
 +				file = g_dir_read_name (g_cache_dir);
-+				while (file != NULL) {
-+					gchar *path = g_build_filename (cache_dir, file, NULL);
-+					if (g_file_test (path, G_FILE_TEST_IS_REGULAR))
-+						g_unlink (path);
-+					file = g_dir_read_name (g_cache_dir);
-+					g_free (path);
-+				}
-+				g_dir_close (g_cache_dir);
++				g_free (path);
 +			}
-+			format_name = gdk_pixbuf_format_get_name (format);
-+			if (strcmp (format_name, "jpeg") == 0)
-+				gdk_pixbuf_save (new_pixbuf, cache_filename, format_name, NULL, "quality", "100", NULL);
-+			else
-+				gdk_pixbuf_save (new_pixbuf, cache_filename, format_name, NULL, NULL);
-+			g_free (format_name);
++			g_dir_close (g_cache_dir);
 +		}
++		gdk_pixdata_from_pixbuf (&pixdata, new_pixbuf, TRUE); 
++		data = (gchar *) gdk_pixdata_serialize(&pixdata, &length);
++		g_file_set_contents (cache_filename, data, (gsize) length, NULL);
++		g_free (data);
 +	}
 +
-+	g_free(cache_filename);
-+	g_free(cache_dir);
++	g_free (cache_filename);
++	g_free (cache_dir);
 +}
 +
  static void
@@ -184,13 +191,41 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.29.90/libgnome-desktop/gnome-bg.c 
  		g_object_unref (thumb);
  	}
  	
-@@ -1638,19 +1729,28 @@
+@@ -1627,6 +1718,28 @@
+ }
+ 
+ static GdkPixbuf *
++load_from_cache_file (GnomeBG    *bg,
++		      const char *filename,
++		      int         best_width,
++		      int         best_height)
++{
++	GdkPixbuf *pixbuf = NULL;
++	gchar *cache_filename;
++	gchar *data;
++	gsize length;
++	GdkPixdata pixdata;
++
++	cache_filename = get_wallpaper_cache_filename (bg->placement, filename, best_width, best_height);
++	if (cache_file_is_valid (filename, cache_filename) && g_file_get_contents (cache_filename, &data, &length, NULL)) {
++		if (gdk_pixdata_deserialize  (&pixdata, length, (guint8 *) data, NULL))
++			pixbuf = gdk_pixbuf_from_pixdata (&pixdata, FALSE, FALSE);
++		g_free (data);
++	}
++	g_free (cache_filename);
++	return (pixbuf);
++}
++
++static GdkPixbuf *
+ get_as_pixbuf_for_size (GnomeBG    *bg,
+ 			const char *filename,
+ 			int         best_width,
+@@ -1638,19 +1751,23 @@
  	}
  	else {
  		GdkPixbufFormat *format;
 -		GdkPixbuf *pixbuf;
 +		GdkPixbuf *pixbuf = NULL;
-+		gchar *cache_filename;
  
 -		/* If scalable choose maximum size */
 -		format = gdk_pixbuf_get_file_info (filename, NULL, NULL);
@@ -204,11 +239,7 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.29.90/libgnome-desktop/gnome-bg.c 
 -		else
 -			pixbuf = gdk_pixbuf_new_from_file (filename, NULL);
 +		/* Try to hit local cache first */
-+		cache_filename = get_wallpaper_cache_filename (bg->placement, filename, best_width, best_height);
-+		if (cache_file_is_valid (filename, cache_filename))
-+			pixbuf = gdk_pixbuf_new_from_file (cache_filename, NULL);
-+		g_free (cache_filename);
-+
++		pixbuf = load_from_cache_file(bg, filename, best_width, best_height);
 +		if (!pixbuf) {
 +			/* If scalable choose maximum size */
 +			format = gdk_pixbuf_get_file_info (filename, NULL, NULL);
@@ -225,7 +256,7 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.29.90/libgnome-desktop/gnome-bg.c 
  
  		if (pixbuf)
  			file_cache_add_pixbuf (bg, filename, pixbuf);
-@@ -2895,7 +2995,7 @@
+@@ -2895,7 +3012,7 @@
  	thumb = create_img_thumbnail (bg, factory, screen, dest_width, dest_height, frame_num + skipped);
  
  	if (thumb) {
