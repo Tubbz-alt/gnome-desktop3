@@ -1,4 +1,4 @@
-gnome-desktop (1:2.29.90-0ubuntu3) UNRELEASED; urgency=low
+gnome-desktop (1:2.29.90-0ubuntu3) lucid; urgency=low
 
   [ Chris Coulson ]
   * debian/patches/100_load_desired_settings.patch:
@@ -13,7 +13,7 @@ gnome-desktop (1:2.29.90-0ubuntu3) UNRELEASED; urgency=low
       transformation and resolution
     - some refactoring, cleanage
 
- -- Didier Roche <didrocks@ubuntu.com>  Mon, 15 Feb 2010 10:08:39 +0100
+ -- Didier Roche <didrocks@ubuntu.com>  Wed, 17 Feb 2010 19:19:03 +0100
 
 gnome-desktop (1:2.29.90-0ubuntu2) lucid; urgency=low
 
