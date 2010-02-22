@@ -1,3 +1,18 @@
+gnome-desktop (1:2.29.91-0ubuntu1) lucid; urgency=low
+
+  * New upstream version:
+    libgnome-desktop
+    - GnomeBG: Fix a memory leak 
+    - GnomeBG: Add a picture option to make the background span monitors
+    - GnomeDesktopItem: Improve error string 
+    - Add translator comments 
+  * debian/patches/02_add_wallpaper_cache.patch:
+    - new version update
+  * debian/rules:
+    - updated shlibs version
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 22 Feb 2010 23:06:58 +0100
+
 gnome-desktop (1:2.29.90-0ubuntu3) lucid; urgency=low
 
   [ Chris Coulson ]
