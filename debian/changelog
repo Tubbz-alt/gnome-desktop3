@@ -1,3 +1,20 @@
+gnome-desktop (1:2.29.92-0ubuntu1) lucid; urgency=low
+
+  * New upstream version:
+    libgnome-desktop
+    - GnomeRR: Add new API gnome_rr_output_get_connector_type() and
+      gnome_rr_output_is_laptop()
+    - GnomeRR: fix leak 
+    - GnomeRR: build fix 
+    - GnomeBG: Drop pixbuf cache before switching slides 
+    Misc
+    - Make xrandr an optional dependency 
+    - Add main category to gnome-about desktop file 
+  * debian/rules:
+    - update the shlib
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 08 Mar 2010 19:02:01 +0100
+
 gnome-desktop (1:2.29.91-0ubuntu1) lucid; urgency=low
 
   * New upstream version:
