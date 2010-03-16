@@ -1,3 +1,11 @@
+gnome-desktop (1:2.29.92-0ubuntu2) lucid; urgency=low
+
+  * debian/patches/90_upstream_gsd_crash.patch:
+    - change from https://bugzilla.gnome.org/606456 to fix a gsd crash issue 
+      (lp: #522639)
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 16 Mar 2010 15:16:40 +0100
+
 gnome-desktop (1:2.29.92-0ubuntu1) lucid; urgency=low
 
   * New upstream version:
