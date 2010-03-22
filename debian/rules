@@ -11,8 +11,9 @@ LDFLAGS += -Wl,-z,defs -Wl,-O1 -Wl,--as-needed
 
 DEB_CONFIGURE_EXTRA_FLAGS += \
 			--with-gnome-distributor=Debian \
+			--with-pnp-ids-path=/usr/share/hwdata/pnp.ids \
 			--disable-scrollkeeper \
 			--disable-gtk-doc
 
 binary-install/gnome-about::
-	dh_pycentral -pgnome-about
+	dh_pysupport -pgnome-about
