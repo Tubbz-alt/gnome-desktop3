@@ -1,3 +1,11 @@
+gnome-desktop (1:2.29.92-0ubuntu3) UNRELEASED; urgency=low
+
+  * debian/patches/100_load_desired_settings.patch:
+    - Fix another case where gnome_rr_config_apply_from_filename_with_time
+      can fail without setting a GError, and really fix LP: #384439
+
+ -- Chris Coulson <chris.coulson@canonical.com>  Sat, 27 Mar 2010 23:54:00 +0000
+
 gnome-desktop (1:2.29.92-0ubuntu2) lucid; urgency=low
 
   * debian/patches/90_upstream_gsd_crash.patch:
