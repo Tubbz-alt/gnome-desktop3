@@ -1,4 +1,4 @@
-gnome-desktop (1:2.29.92-0ubuntu3) UNRELEASED; urgency=low
+gnome-desktop (1:2.29.92-0ubuntu3) lucid; urgency=low
 
   * debian/patches/100_load_desired_settings.patch:
     - Fix another case where gnome_rr_config_apply_from_filename_with_time
