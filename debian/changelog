@@ -1,3 +1,18 @@
+gnome-desktop (1:2.30.0-0ubuntu1) lucid; urgency=low
+
+  * New upstream version
+    libgnome-desktop
+    - GnomeRR: Fix build failure with GTK 2.19+ 
+    - GnomeRR: Fix build with -DGSEAL_ENABLE 
+    - GnomeBG: Fix crash in gradient handling code 
+    - GnomeRR: Ignore errors when setting the monitor size fails 
+  * debian/control.in:
+    - updated gtk requirement
+  * debian/patches/90_upstream_gsd_crash.patch:
+    - the change is in the new version
+    
+ -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 31 Mar 2010 10:38:56 +0200
+
 gnome-desktop (1:2.29.92-0ubuntu3) lucid; urgency=low
 
   * debian/patches/100_load_desired_settings.patch:
