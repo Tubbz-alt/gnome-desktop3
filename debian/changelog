@@ -1,11 +1,18 @@
-gnome-desktop (2.28.2-2) UNRELEASED; urgency=low
+gnome-desktop (2.30.0-1) experimental; urgency=low
 
+  [ Emilio Pozuelo Monfort ]
   * debian/rules:
     - Use the system pnp.ids from hwdata.
   * debian/control.in:
     - Recommend hwdata.
 
- -- Emilio Pozuelo Monfort <pochu@debian.org>  Mon, 01 Mar 2010 21:26:01 +0100
+  [ Josselin Mouette ]
+  * New upstream release.
+  * Bump build-dependencies.
+  * Rename runtime library package.
+  * 01_check_xrandr_version.patch: dropped, merged upstream.
+
+ -- Josselin Mouette <joss@debian.org>  Tue, 13 Apr 2010 21:05:05 +0200
 
 gnome-desktop (2.28.2-1) unstable; urgency=low
 
