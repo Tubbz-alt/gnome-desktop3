@@ -1,4 +1,4 @@
-gnome-desktop (2.30.0-2ubuntu1) maverick; urgency=low
+gnome-desktop (1:2.30.0-2ubuntu1) maverick; urgency=low
 
   * Merge with Debian unstable, remaining Ubuntu changes:
   * debian/control.in:
