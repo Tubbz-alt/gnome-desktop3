@@ -1,3 +1,7 @@
+Description: Enable gnome-settings-daemon to load the desired settings saved by the xrandr capplet when the virtual resolution has to be saved and the settings cannot be applied immediately.
+Bug: https://bugs.edge.launchpad.net/ubuntu/+bug/384439
+Author: ?
+
 diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.29.92/libgnome-desktop/gnome-rr-config.c gnome-desktop-2.29.92.new/libgnome-desktop/gnome-rr-config.c
 --- gnome-desktop-2.29.92/libgnome-desktop/gnome-rr-config.c	2010-03-08 14:52:09.000000000 +0000
 +++ gnome-desktop-2.29.92.new/libgnome-desktop/gnome-rr-config.c	2010-03-27 23:53:20.462671123 +0000

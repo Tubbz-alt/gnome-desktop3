@@ -1,5 +1,4 @@
 debian/tmp/usr/share/pixmaps
-debian/tmp/usr/share/libgnome-desktop/*.ids
 debian/tmp/usr/share/locale
 debian/tmp/usr/share/gnome
 debian/tmp/usr/share/gnome-about/*.xml

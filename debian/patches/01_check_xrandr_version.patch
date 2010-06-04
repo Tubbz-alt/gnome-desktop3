@@ -1,6 +1,7 @@
-Debian #556797
-LP #454487
-GNOME #600188
+Description: XRandR support cannot be disabled
+Bug: https://bugzilla.gnome.org/show_bug.cgi?id=554263
+Bug-Debian: http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=556797
+Bug-Ubuntu: https://bugs.launchpad.net/ubuntu/+source/gnome-desktop/+bug/454487
 
 --- libgnome-desktop/gnome-rr.c.orig	2009-11-18 12:39:32.274397008 +0100
 +++ libgnome-desktop/gnome-rr.c	2009-11-18 12:53:22.690898043 +0100
