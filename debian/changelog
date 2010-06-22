@@ -1,3 +1,9 @@
+gnome-desktop (1:2.30.2-0ubuntu1.1) maverick; urgency=low
+
+  * New upstream version (lp: #597167)
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 22 Jun 2010 11:44:01 +0200
+
 gnome-desktop (1:2.30.0-2ubuntu1) maverick; urgency=low
 
   * Merge with Debian unstable, remaining Ubuntu changes:
