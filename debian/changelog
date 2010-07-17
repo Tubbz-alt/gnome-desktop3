@@ -6,6 +6,8 @@ gnome-desktop (2.30.2-1) UNRELEASED; urgency=low
     - Add debian/patches/series.
     - Remove /usr/share/cdbs/1/rules/simple-patchsys.mk from debian/rules.
     - Refresh debian/patches/99_ltmain_as-needed.patch.
+  * debian/control.in
+    - Remove ancient Conflicts/Replaces which are no longer relevant.
 
  -- Michael Biebl <biebl@debian.org>  Sat, 17 Jul 2010 04:30:00 +0200
 
