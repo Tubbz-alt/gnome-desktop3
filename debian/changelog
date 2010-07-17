@@ -1,3 +1,9 @@
+gnome-desktop (2.30.2-1) UNRELEASED; urgency=low
+
+  * New upstream stable release.
+
+ -- Michael Biebl <biebl@debian.org>  Sat, 17 Jul 2010 04:30:00 +0200
+
 gnome-desktop (2.30.0-2) unstable; urgency=low
 
   * Upload to unstable.

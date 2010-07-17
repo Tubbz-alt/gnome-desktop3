@@ -7,7 +7,7 @@ Source: gnome-desktop
 Section: gnome
 Priority: optional
 Maintainer: Josselin Mouette <joss@debian.org>
-Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Emilio Pozuelo Monfort <pochu@debian.org>
+Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Emilio Pozuelo Monfort <pochu@debian.org>, Michael Biebl <biebl@debian.org>
 Vcs-Svn: svn://svn.debian.org/svn/pkg-gnome/desktop/unstable/gnome-desktop
 Vcs-Browser: http://svn.debian.org/viewsvn/pkg-gnome/desktop/unstable/gnome-desktop
 Standards-Version: 3.8.3
@@ -23,7 +23,7 @@ Build-Depends: debhelper (>= 5),
                gnome-doc-utils (>= 0.3.2),
                libx11-dev,
                libxrandr-dev (>= 1.2),
-               libgtk2.0-dev (>= 2.14.0),
+               libgtk2.0-dev (>= 2.18.0),
                libstartup-notification0-dev (>= 0.5),
                libxml2-dev (>= 2.4.20),
                libgconf2-dev (>= 2.0.0),
