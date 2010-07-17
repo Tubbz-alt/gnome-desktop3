@@ -1,4 +1,4 @@
-gnome-desktop (2.30.2-1) UNRELEASED; urgency=low
+gnome-desktop (2.30.2-1) unstable; urgency=low
 
   * New upstream stable release.
   * Switch to source format 3.0 (quilt)
@@ -10,7 +10,7 @@ gnome-desktop (2.30.2-1) UNRELEASED; urgency=low
     - Remove ancient Conflicts/Replaces which are no longer relevant.
     - Bump Standards-Version to 3.9.0. No further changes.
 
- -- Michael Biebl <biebl@debian.org>  Sat, 17 Jul 2010 04:30:00 +0200
+ -- Michael Biebl <biebl@debian.org>  Sat, 17 Jul 2010 04:45:22 +0200
 
 gnome-desktop (2.30.0-2) unstable; urgency=low
 
