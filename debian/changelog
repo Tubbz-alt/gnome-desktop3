@@ -1,7 +1,7 @@
 gnome-desktop (1:2.31.6-0ubuntu1) maverick; urgency=low
 
   * New upstream version:
-    - Don't use deprecated Gdk drawing APIs 
+    - Don't use deprecated Gdk drawing APIs
 
  -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 05 Aug 2010 12:20:45 +0200
 
