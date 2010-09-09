@@ -1,3 +1,9 @@
+gnome-desktop (1:2.31.90-0ubuntu2) maverick; urgency=low
+
+  * debian/patches/01_check_xrandr_version.patch: drop duplicate change
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 09 Sep 2010 17:18:10 +0200
+
 gnome-desktop (1:2.31.90-0ubuntu1) maverick; urgency=low
 
   * New upstream version
