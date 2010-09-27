@@ -1,3 +1,9 @@
+gnome-desktop (1:2.32.0-0ubuntu1) maverick; urgency=low
+
+  * New upstream version
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 27 Sep 2010 14:05:11 +0200
+
 gnome-desktop (1:2.31.92-0ubuntu1) maverick; urgency=low
 
   * New upstream version
