@@ -1,3 +1,9 @@
+gnome-desktop (1:2.32.0-0ubuntu2) UNRELEASED; urgency=low
+
+  * debian/control.in: don't depends on python-gnome2
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 14 Oct 2010 14:36:10 +0200
+
 gnome-desktop (1:2.32.0-0ubuntu1) maverick; urgency=low
 
   * New upstream version

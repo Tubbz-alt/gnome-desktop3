@@ -33,7 +33,6 @@ Depends: ${misc:Depends},
          ${python:Depends},
          python-gtk2,
          python-gobject,
-         python-gnome2,
          python-cairo,
          gnome-desktop-data (= ${source:Version})
 Conflicts: gnome-core (<< 1.5),
