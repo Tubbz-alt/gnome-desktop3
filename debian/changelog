@@ -1,3 +1,23 @@
+gnome-desktop3 (2.91.0-1) UNRELEASED; urgency=low
+
+  * New upstream version
+  * Rename the source for the GNOME3 version since they are abi incompatible
+  * debian/control.in:
+    - clean some old conflicts and replaces
+    - don't build the gnome-about binary from this version
+    - updated for the source and binaries renaming
+    - updated the build-depends and depends
+  * Updated the .install for the new version
+  * debian/patches/99_ltmain_as-needed.patch:
+    - refreshed
+  * debian/rules:
+    - updated to the new library name
+    - use quilt as a patch system
+    - use --disable-gnome-about --disable-desktop-docs to avoid conflicting 
+      with the gtk2 version
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 14 Oct 2010 10:44:10 +0200
+
 gnome-desktop (2.30.2-1) unstable; urgency=low
 
   * New upstream stable release.
