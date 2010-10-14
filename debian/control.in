@@ -8,7 +8,6 @@ Vcs-Browser: http://svn.debian.org/viewsvn/pkg-gnome/desktop/experimental/gnome-
 Standards-Version: 3.9.1
 XS-Python-Version: >= 2.4
 Build-Depends: debhelper (>= 5),
-               quilt,
                libglib2.0-dev (>= 2.19.1),
                intltool (>= 0.40.0),
                scrollkeeper,
