@@ -1,9 +1,10 @@
 Description: Gettext support for desktop files
 Author: ?
 
-diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.27.91/libgnome-desktop/gnome-desktop-item.c gnome-desktop-2.27.91.new/libgnome-desktop/gnome-desktop-item.c
---- gnome-desktop-2.27.91/libgnome-desktop/gnome-desktop-item.c	2009-04-20 03:39:06.000000000 +1000
-+++ gnome-desktop-2.27.91.new/libgnome-desktop/gnome-desktop-item.c	2009-08-27 10:47:12.000000000 +1000
+Index: gnome-desktop-2.32.0/libgnome-desktop/gnome-desktop-item.c
+===================================================================
+--- gnome-desktop-2.32.0.orig/libgnome-desktop/gnome-desktop-item.c	2010-09-24 11:24:03.000000000 +0200
++++ gnome-desktop-2.32.0/libgnome-desktop/gnome-desktop-item.c	2010-10-15 16:38:41.156592194 +0200
 @@ -83,6 +83,7 @@
  	GHashTable *main_hash;
  
@@ -12,7 +13,7 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.27.91/libgnome-desktop/gnome-deskt
  
  	time_t mtime;
  
-@@ -383,6 +384,7 @@
+@@ -386,6 +387,7 @@
  				       "1.0");
  
  	retval->launch_time = 0;
@@ -20,7 +21,7 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.27.91/libgnome-desktop/gnome-deskt
  
  	return retval;
  }
-@@ -544,6 +546,12 @@
+@@ -547,6 +549,12 @@
  	return retval;
  }
  
@@ -33,7 +34,7 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.27.91/libgnome-desktop/gnome-deskt
  /**
   * gnome_desktop_item_new_from_uri:
   * @uri: URI to load the GnomeDesktopItem from
-@@ -679,6 +687,7 @@
+@@ -682,6 +690,7 @@
  
  	g_object_unref (subfn);
  
@@ -41,7 +42,7 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.27.91/libgnome-desktop/gnome-deskt
  	return retval;
  }
  
-@@ -722,6 +731,7 @@
+@@ -725,6 +734,7 @@
  	
  	/* FIXME: Sort order? */
  
@@ -49,7 +50,7 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.27.91/libgnome-desktop/gnome-deskt
  	return retval;
  }
  
-@@ -991,6 +1001,14 @@
+@@ -994,6 +1004,14 @@
  	    strcmp (locale, "C") == 0) {
  		return lookup (item, key);
  	} else {
@@ -64,9 +65,10 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.27.91/libgnome-desktop/gnome-deskt
  		const char *ret;
  		char *full = g_strdup_printf ("%s[%s]", key, locale);
  		ret = lookup (item, full);
-diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.27.91/libgnome-desktop/libgnome/gnome-desktop-item.h gnome-desktop-2.27.91.new/libgnome-desktop/libgnome/gnome-desktop-item.h
---- gnome-desktop-2.27.91/libgnome-desktop/libgnome/gnome-desktop-item.h	2009-04-20 03:39:06.000000000 +1000
-+++ gnome-desktop-2.27.91.new/libgnome-desktop/libgnome/gnome-desktop-item.h	2009-08-27 10:47:12.000000000 +1000
+Index: gnome-desktop-2.32.0/libgnome-desktop/libgnome/gnome-desktop-item.h
+===================================================================
+--- gnome-desktop-2.32.0.orig/libgnome-desktop/libgnome/gnome-desktop-item.h	2010-09-24 11:24:03.000000000 +0200
++++ gnome-desktop-2.32.0/libgnome-desktop/libgnome/gnome-desktop-item.h	2010-10-15 16:38:41.160592196 +0200
 @@ -95,6 +95,7 @@
  #define GNOME_DESKTOP_ITEM_SORT_ORDER	"SortOrder" /* strings */
  #define GNOME_DESKTOP_ITEM_URL		"URL" /* string */

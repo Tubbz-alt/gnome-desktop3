@@ -2,10 +2,11 @@ Description: Enable gnome-settings-daemon to load the desired settings saved by 
 Bug: https://bugs.edge.launchpad.net/ubuntu/+bug/384439
 Author: ?
 
-diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.29.92/libgnome-desktop/gnome-rr-config.c gnome-desktop-2.29.92.new/libgnome-desktop/gnome-rr-config.c
---- gnome-desktop-2.29.92/libgnome-desktop/gnome-rr-config.c	2010-03-08 14:52:09.000000000 +0000
-+++ gnome-desktop-2.29.92.new/libgnome-desktop/gnome-rr-config.c	2010-03-27 23:53:20.462671123 +0000
-@@ -41,6 +41,7 @@
+Index: gnome-desktop-2.32.0/libgnome-desktop/gnome-rr-config.c
+===================================================================
+--- gnome-desktop-2.32.0.orig/libgnome-desktop/gnome-rr-config.c	2010-08-04 14:21:50.000000000 +0200
++++ gnome-desktop-2.32.0/libgnome-desktop/gnome-rr-config.c	2010-10-15 16:38:42.500592196 +0200
+@@ -42,6 +42,7 @@
  
  #define CONFIG_INTENDED_BASENAME "monitors.xml"
  #define CONFIG_BACKUP_BASENAME "monitors.xml.backup"
@@ -13,7 +14,7 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.29.92/libgnome-desktop/gnome-rr-co
  
  /* In version 0 of the config file format, we had several <configuration>
   * toplevel elements and no explicit version number.  So, the filed looked
-@@ -85,6 +86,10 @@
+@@ -86,6 +87,10 @@
  static void             output_free           (GnomeOutputInfo  *output);
  static GnomeOutputInfo *output_copy           (GnomeOutputInfo  *output);
  
@@ -24,7 +25,7 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.29.92/libgnome-desktop/gnome-rr-co
  typedef struct Parser Parser;
  
  /* Parser for monitor configurations */
-@@ -410,6 +415,16 @@
+@@ -411,6 +416,16 @@
  	NULL, /* error */
      };
  
@@ -41,7 +42,7 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.29.92/libgnome-desktop/gnome-rr-co
      parser->config_file_version = 0;
      parser->configurations = g_ptr_array_new ();
      parser->outputs = g_ptr_array_new ();
-@@ -918,6 +933,65 @@
+@@ -919,6 +934,65 @@
      return g_build_filename (g_get_user_config_dir (), CONFIG_INTENDED_BASENAME, NULL);
  }
  
@@ -107,7 +108,7 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.29.92/libgnome-desktop/gnome-rr-co
  static const char *
  get_rotation_name (GnomeRRRotation r)
  {
-@@ -1059,13 +1133,13 @@
+@@ -1060,13 +1134,13 @@
  }
  
  
@@ -124,7 +125,7 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.29.92/libgnome-desktop/gnome-rr-co
      gchar *backup_filename;
      gboolean result;
  
-@@ -1075,7 +1149,7 @@
+@@ -1076,7 +1150,7 @@
      output = g_string_new ("");
  
      backup_filename = gnome_rr_config_get_backup_filename ();
@@ -133,7 +134,7 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.29.92/libgnome-desktop/gnome-rr-co
  
      configurations = configurations_read_from_file (intended_filename, NULL); /* NULL-GError */
      
-@@ -1110,6 +1184,37 @@
+@@ -1111,6 +1185,37 @@
      return result;
  }
  
@@ -171,7 +172,7 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.29.92/libgnome-desktop/gnome-rr-co
  static GnomeRRConfig *
  gnome_rr_config_copy (GnomeRRConfig *config)
  {
-@@ -1129,6 +1234,49 @@
+@@ -1130,6 +1235,49 @@
  }
  
  static GnomeRRConfig *
@@ -221,7 +222,7 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.29.92/libgnome-desktop/gnome-rr-co
  config_new_stored (GnomeRRScreen *screen, const char *filename, GError **error)
  {
      GnomeRRConfig *current;
-@@ -1193,6 +1341,65 @@
+@@ -1194,6 +1342,65 @@
  }
  #endif
  
@@ -287,7 +288,7 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.29.92/libgnome-desktop/gnome-rr-co
  gboolean
  gnome_rr_config_apply_with_time (GnomeRRConfig *config,
  				 GnomeRRScreen *screen,
-@@ -1326,6 +1533,7 @@
+@@ -1327,6 +1534,7 @@
  gnome_rr_config_apply_from_filename_with_time (GnomeRRScreen *screen, const char *filename, guint32 timestamp, GError **error)
  {
      GnomeRRConfig *stored;
@@ -295,7 +296,7 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.29.92/libgnome-desktop/gnome-rr-co
      GError *my_error;
  
      g_return_val_if_fail (screen != NULL, FALSE);
-@@ -1342,22 +1550,71 @@
+@@ -1343,22 +1551,71 @@
  	    /* This means the screen didn't change, so just proceed */
      }
  
@@ -380,9 +381,10 @@ diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.29.92/libgnome-desktop/gnome-rr-co
  }
  
  /*
-diff -Nur -x '*.orig' -x '*~' gnome-desktop-2.29.92/libgnome-desktop/libgnomeui/gnome-rr-config.h gnome-desktop-2.29.92.new/libgnome-desktop/libgnomeui/gnome-rr-config.h
---- gnome-desktop-2.29.92/libgnome-desktop/libgnomeui/gnome-rr-config.h	2009-08-19 19:13:53.000000000 +0100
-+++ gnome-desktop-2.29.92.new/libgnome-desktop/libgnomeui/gnome-rr-config.h	2010-03-27 23:40:40.500187203 +0000
+Index: gnome-desktop-2.32.0/libgnome-desktop/libgnomeui/gnome-rr-config.h
+===================================================================
+--- gnome-desktop-2.32.0.orig/libgnome-desktop/libgnomeui/gnome-rr-config.h	2010-02-09 13:25:23.000000000 +0100
++++ gnome-desktop-2.32.0/libgnome-desktop/libgnomeui/gnome-rr-config.h	2010-10-15 16:38:42.504592194 +0200
 @@ -123,6 +123,11 @@
  char *gnome_rr_config_get_backup_filename (void);
  char *gnome_rr_config_get_intended_filename (void);

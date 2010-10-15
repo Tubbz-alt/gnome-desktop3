@@ -5,8 +5,10 @@ Origin: Ubuntu
 Bug: https://bugzilla.gnome.org/show_bug.cgi?id=608419
 Author: Didier Roche <didrocks@ubuntu.com>
 
---- libgnome-desktop/gnome-bg.c	2010-02-22 23:21:10.000000000 +0100
-+++ libgnome-desktop/gnome-bg.c.ubuntu	2010-02-22 23:20:51.000000000 +0100
+Index: gnome-desktop-2.32.0/libgnome-desktop/gnome-bg.c
+===================================================================
+--- gnome-desktop-2.32.0.orig/libgnome-desktop/gnome-bg.c	2010-09-24 11:23:56.000000000 +0200
++++ gnome-desktop-2.32.0/libgnome-desktop/gnome-bg.c	2010-10-15 16:38:41.860592196 +0200
 @@ -33,6 +33,7 @@
  #include <stdlib.h>
  
@@ -15,7 +17,7 @@ Author: Didier Roche <didrocks@ubuntu.com>
  
  #include <gdk/gdkx.h>
  #include <X11/Xlib.h>
-@@ -577,6 +578,112 @@
+@@ -593,6 +594,112 @@
  	return bg->filename;
  }
  
@@ -128,7 +130,7 @@ Author: Didier Roche <didrocks@ubuntu.com>
  static void
  file_changed (GFileMonitor *file_monitor,
  	      GFile *child,
-@@ -766,7 +873,7 @@
+@@ -790,7 +897,7 @@
  }
  
  static void
@@ -137,7 +139,7 @@ Author: Didier Roche <didrocks@ubuntu.com>
  		 GdkPixbuf        *pixbuf,
  		 GdkPixbuf        *dest,
  		 GdkRectangle     *area)
-@@ -779,9 +886,9 @@
+@@ -803,9 +910,9 @@
  	if (!pixbuf)
  		return;
  
@@ -149,7 +151,7 @@ Author: Didier Roche <didrocks@ubuntu.com>
  	case GNOME_BG_PLACEMENT_TILED:
  		pixbuf_tile (scaled, dest);
  		break;
-@@ -798,12 +905,15 @@
+@@ -822,12 +929,15 @@
  		g_assert_not_reached ();
  		break;
  	}
@@ -166,7 +168,7 @@ Author: Didier Roche <didrocks@ubuntu.com>
  	    GdkPixbuf        *pixbuf,
  	    GdkPixbuf        *dest)
  {
-@@ -814,7 +924,7 @@
+@@ -838,7 +948,7 @@
  	rect.width = gdk_pixbuf_get_width (dest);
  	rect.height = gdk_pixbuf_get_height (dest);
  
@@ -175,7 +177,7 @@ Author: Didier Roche <didrocks@ubuntu.com>
  }
  
  static void
-@@ -832,7 +942,7 @@
+@@ -856,7 +966,7 @@
  
  	pixbuf = get_pixbuf_for_size (bg, gdk_pixbuf_get_width (dest), gdk_pixbuf_get_height (dest));
  	if (pixbuf) {
@@ -184,7 +186,7 @@ Author: Didier Roche <didrocks@ubuntu.com>
  				 pixbuf,
  				 dest,
  				 &rect);
-@@ -855,7 +965,7 @@
+@@ -879,7 +989,7 @@
  		gdk_screen_get_monitor_geometry (screen, monitor, &rect);
  		pixbuf = get_pixbuf_for_size (bg, rect.width, rect.height);
  		if (pixbuf) {
@@ -193,7 +195,7 @@ Author: Didier Roche <didrocks@ubuntu.com>
  					 pixbuf,
  					 dest, &rect);
  			g_object_unref (pixbuf);
-@@ -1198,7 +1308,7 @@
+@@ -1220,7 +1330,7 @@
  	thumb = create_img_thumbnail (bg, factory, screen, dest_width, dest_height, -1);
  	
  	if (thumb) {
@@ -202,7 +204,7 @@ Author: Didier Roche <didrocks@ubuntu.com>
  		g_object_unref (thumb);
  	}
  	
-@@ -1634,6 +1744,23 @@
+@@ -1656,6 +1766,23 @@
  }
  
  static GdkPixbuf *
@@ -226,7 +228,7 @@ Author: Didier Roche <didrocks@ubuntu.com>
  get_as_pixbuf_for_size (GnomeBG    *bg,
  			const char *filename,
  			int         best_width,
-@@ -1645,22 +1772,26 @@
+@@ -1667,22 +1794,26 @@
  	}
  	else {
  		GdkPixbufFormat *format;
@@ -268,7 +270,7 @@ Author: Didier Roche <didrocks@ubuntu.com>
  
  		if (pixbuf)
  			file_cache_add_pixbuf (bg, filename, pixbuf);
-@@ -2905,7 +3036,7 @@
+@@ -2927,7 +3058,7 @@
  	thumb = create_img_thumbnail (bg, factory, screen, dest_width, dest_height, frame_num + skipped);
  
  	if (thumb) {

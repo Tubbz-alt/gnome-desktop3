@@ -1,8 +1,23 @@
-gnome-desktop (1:2.32.0-0ubuntu2) UNRELEASED; urgency=low
+gnome-desktop (1:2.32.0-0ubuntu2) natty; urgency=low
 
+  * Rebase on debian
   * debian/control.in: don't depends on python-gnome2
 
  -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 14 Oct 2010 14:36:10 +0200
+
+gnome-desktop (2.30.2-1) unstable; urgency=low
+
+  * New upstream stable release.
+  * Switch to source format 3.0 (quilt)
+    - Add debian/source/format.
+    - Add debian/patches/series.
+    - Remove /usr/share/cdbs/1/rules/simple-patchsys.mk from debian/rules.
+    - Refresh debian/patches/99_ltmain_as-needed.patch.
+  * debian/control.in
+    - Remove ancient Conflicts/Replaces which are no longer relevant.
+    - Bump Standards-Version to 3.9.0. No further changes.
+
+ -- Michael Biebl <biebl@debian.org>  Sat, 17 Jul 2010 04:45:22 +0200
 
 gnome-desktop (1:2.32.0-0ubuntu1) maverick; urgency=low
 

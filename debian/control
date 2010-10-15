@@ -8,7 +8,7 @@ Section: gnome
 Priority: optional
 Maintainer: Ubuntu Desktop Team <ubuntu-desktop@lists.ubuntu.com>
 XSBC-Original-Maintainer: Josselin Mouette <joss@debian.org>
-Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Josselin Mouette <joss@debian.org>
+Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Josselin Mouette <joss@debian.org>, Michael Biebl <biebl@debian.org>
 Standards-Version: 3.9.1
 XS-Python-Version: >= 2.4
 Build-Depends: debhelper (>= 5),
@@ -40,9 +40,6 @@ Depends: ${misc:Depends},
          python-gobject,
          python-cairo,
          gnome-desktop-data (= ${source:Version})
-Conflicts: gnome-core (<< 1.5),
-           gnome-desktop-data (<< 2.12)
-Replaces: gnome-desktop-data (<< 2.12)
 Description: The GNOME about box
  Informative little about thing that lets us brag to our friends as our name
  scrolls by, and lets users click to load the GNOME home pages.
@@ -50,13 +47,6 @@ Description: The GNOME about box
 Package: gnome-desktop-data
 Architecture: all
 Depends: ${misc:Depends}
-Conflicts: gnome-panel (<= 2.0.0),
-           gnome-core (<< 1.5),
-           gnome-help (<< 1.5),
-           gnome-about (<< 2.20.0-2)
-Replaces: gnome-control-center (<= 1:2.0.3.2-2),
-          gnome-core (<= 1.5),
-          gnome-panel-data (<= 2.0)
 Description: Common files for GNOME desktop apps
  This package includes some files that are shared between several GNOME
  apps (Pixmaps, .desktop files and internationalization files).

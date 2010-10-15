@@ -1,9 +1,11 @@
 Description: Fix RGBA issues
 Bug: https://bugzilla.gnome.org/show_bug.cgi?id=606210
 
---- libgnome-desktop/gnome-bg.c	2010-01-05 16:46:31 +0000
-+++ libgnome-desktop/gnome-bg.c	2010-01-05 19:45:41 +0000
-@@ -1134,7 +1134,7 @@
+Index: gnome-desktop-2.32.0/libgnome-desktop/gnome-bg.c
+===================================================================
+--- gnome-desktop-2.32.0.orig/libgnome-desktop/gnome-bg.c	2010-10-15 16:38:41.860592196 +0200
++++ gnome-desktop-2.32.0/libgnome-desktop/gnome-bg.c	2010-10-15 16:38:43.096592192 +0200
+@@ -1391,7 +1391,7 @@
  
  		if (source_pixmap != NULL) {
  			gdk_drawable_set_colormap (source_pixmap,
