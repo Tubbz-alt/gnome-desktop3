@@ -1,16 +1,22 @@
-gnome-desktop3 (2.91.0-1) UNRELEASED; urgency=low
+gnome-desktop3 (2.91.1-1) UNRELEASED; urgency=low
 
   * New upstream version
   * Rename the source for the GNOME3 version since they are abi incompatible
   * debian/control.in:
+    - build-depends on gsettings-desktop-schemas-dev
     - clean some old conflicts and replaces
+    - depends on gsettings-desktop-schemas
     - don't build the gnome-about binary from this version
+    - updated description
     - updated for the source and binaries renaming
     - updated the build-depends and depends
   * Updated the .install for the new version
   * debian/patches/99_ltmain_as-needed.patch:
     - refreshed
+  * debian/libgnome-desktop-3-0.symbols:
+    - use a .symbols rather than shlibs
   * debian/rules:
+    - dropped shlibs update since .symbols are used
     - updated to the new library name
     - use quilt as a patch system
     - use --disable-gnome-about --disable-desktop-docs to avoid conflicting 
