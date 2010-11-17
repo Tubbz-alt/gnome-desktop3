@@ -1,3 +1,14 @@
+gnome-desktop (1:2.32.1-0ubuntu1) natty; urgency=low
+
+  * New upstream version:
+    libgnome-desktop
+    - GnomeRR: Don't read past the end of a string
+    - GnomeRR: Fix possible double-free when destroying private windows  
+    gnome-about
+    - Fix translations which do not respect python variable names 
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 17 Nov 2010 12:40:10 +0100
+
 gnome-desktop (1:2.32.0-0ubuntu2) natty; urgency=low
 
   * Rebase on debian
