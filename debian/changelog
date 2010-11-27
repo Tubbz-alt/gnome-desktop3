@@ -1,5 +1,6 @@
-gnome-desktop3 (2.91.1-1) UNRELEASED; urgency=low
+gnome-desktop3 (2.91.3-1) UNRELEASED; urgency=low
 
+  [ Sebastien Bacher ]
   * New upstream version
   * Rename the source for the GNOME3 version since they are abi incompatible
   * debian/control.in:
@@ -22,7 +23,10 @@ gnome-desktop3 (2.91.1-1) UNRELEASED; urgency=low
     - use --disable-gnome-about --disable-desktop-docs to avoid conflicting 
       with the gtk2 version
 
- -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 14 Oct 2010 10:44:10 +0200
+  [ Sjoerd Simons ]
+  * New upstream release
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Sat, 27 Nov 2010 22:07:22 +0000
 
 gnome-desktop (2.30.2-1) unstable; urgency=low
 

@@ -1,5 +1,7 @@
 #!/usr/bin/make -f
 
+GNOME_MODULE=gnome-desktop
+
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/gnome.mk
 include /usr/share/gnome-pkg-tools/1/rules/uploaders.mk
