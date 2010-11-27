@@ -1,4 +1,4 @@
-gnome-desktop3 (2.91.3-1) UNRELEASED; urgency=low
+gnome-desktop3 (2.91.3-1) experimental; urgency=low
 
   [ Sebastien Bacher ]
   * New upstream version
@@ -26,7 +26,7 @@ gnome-desktop3 (2.91.3-1) UNRELEASED; urgency=low
   [ Sjoerd Simons ]
   * New upstream release
 
- -- Sjoerd Simons <sjoerd@debian.org>  Sat, 27 Nov 2010 22:07:22 +0000
+ -- Sjoerd Simons <sjoerd@debian.org>  Sat, 27 Nov 2010 22:23:42 +0000
 
 gnome-desktop (2.30.2-1) unstable; urgency=low
 
