@@ -64,6 +64,7 @@ Architecture: any
 Depends: ${misc:Depends},
          libgnome-desktop-3-0 (= ${binary:Version}),
          libgtk3.0-dev (>= 2.90.2),
+         gsettings-desktop-schemas-dev,
          libstartup-notification0-dev (>= 0.5)
 Description: Utility library for loading .desktop files - development files
  This package provides the include files and static library for the GNOME

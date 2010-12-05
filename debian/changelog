@@ -1,3 +1,15 @@
+gnome-desktop3 (2.91.3-2) experimental; urgency=low
+
+  * debian/control.in:
+    - Let libgnome-desktop-3-dev depend on
+      gsettings-desktop-schemas-dev.
+  * debian/rules:
+    - Fail the build if the .symbols file is not updated.
+  * debian/libgnome-desktop-3-0.symbols:
+    - Updated.
+
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Sun, 05 Dec 2010 22:23:51 +0100
+
 gnome-desktop3 (2.91.3-1) experimental; urgency=low
 
   [ Sebastien Bacher ]
