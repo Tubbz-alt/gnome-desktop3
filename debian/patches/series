@@ -1,1 +1,4 @@
+00git_no_GDK_DRAWABLE.patch
+00git_no_GDK_WINDOW_TYPE.patch
+00git_no_gdk_x11_drawable_get_xid.patch
 99_ltmain_as-needed.patch
