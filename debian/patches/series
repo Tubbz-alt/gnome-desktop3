@@ -1,5 +1,6 @@
 01_desktopfile_gettext.patch
 02_add_wallpaper_cache.patch
+03_gnome_bg_create_pixmap_failure.patch
 100_load_desired_settings.patch
 80_correct_rgba_use.patch
 99_ltmain_as-needed.patch

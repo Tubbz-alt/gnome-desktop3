@@ -1,3 +1,10 @@
+gnome-desktop (1:2.32.1-0ubuntu2) natty; urgency=low
+
+  * debian/patches/03_gnome_bg_create_pixmap_failure.patch:
+    - Handle failure to create/obtain the background pixmap (LP: #661283)
+
+ -- Robert Ancell <robert.ancell@canonical.com>  Thu, 23 Dec 2010 17:22:15 +1100
+
 gnome-desktop (1:2.32.1-0ubuntu1) natty; urgency=low
 
   * New upstream version:
