@@ -12,14 +12,9 @@ LDFLAGS += -Wl,-z,defs -Wl,-O1 -Wl,--as-needed
 
 
 DEB_CONFIGURE_EXTRA_FLAGS += \
-			--with-gnome-distributor=$(shell dpkg-vendor --query vendor) \
 			--with-pnp-ids-path=/usr/share/hwdata/pnp.ids \
 			--disable-scrollkeeper \
 			--disable-gtk-doc \
-			--disable-gnome-about \
 			--disable-desktop-docs
 
 DEB_DH_MAKESHLIBS_ARGS_libgnome-desktop-3-0 += -- -c4
-
-#binary-install/gnome-about::
-#	dh_pysupport -pgnome-about
