@@ -19,11 +19,11 @@ Build-Depends: debhelper (>= 5),
                libx11-dev,
                libxrandr-dev (>= 1.2),
                libgdk-pixbuf2.0-dev (>= 2.21.3),
-               libgtk3.0-dev (>= 2.91.6),
+               libgtk3.0-dev (>= 2.99.1),
                libstartup-notification0-dev (>= 0.5),
                libxml2-dev (>= 2.4.20),
                libglib2.0-doc,
-               libgtk2.0-doc,
+               libgtk3.0-doc,
                gsettings-desktop-schemas-dev (>= 0.1.4)
 
 Package: gnome-desktop3-data
@@ -48,7 +48,7 @@ Section: libdevel
 Architecture: any
 Depends: ${misc:Depends},
          libgnome-desktop-3-0 (= ${binary:Version}),
-         libgtk3.0-dev (>= 2.90.2),
+         libgtk3.0-dev (>= 2.99.1),
          gsettings-desktop-schemas-dev,
          libstartup-notification0-dev (>= 0.5)
 Description: Utility library for loading .desktop files - development files
