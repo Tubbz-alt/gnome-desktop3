@@ -1,3 +1,9 @@
+gnome-desktop3 (2.91.6-2) UNRELEASED; urgency=low
+
+  * debian/rules: use dpkg-vendor to set the distributor
+
+ -- Sebastien Bacher <seb128@debian.org>  Wed, 26 Jan 2011 18:29:08 +0100
+
 gnome-desktop3 (2.91.6-1) experimental; urgency=low
 
   * New upstream release.

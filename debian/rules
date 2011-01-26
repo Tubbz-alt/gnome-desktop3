@@ -12,7 +12,7 @@ LDFLAGS += -Wl,-z,defs -Wl,-O1 -Wl,--as-needed
 
 
 DEB_CONFIGURE_EXTRA_FLAGS += \
-			--with-gnome-distributor=Debian \
+			--with-gnome-distributor=$(shell dpkg-vendor --query vendor) \
 			--with-pnp-ids-path=/usr/share/hwdata/pnp.ids \
 			--disable-scrollkeeper \
 			--disable-gtk-doc \
