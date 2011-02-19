@@ -1,12 +1,14 @@
-gnome-desktop3 (2.91.6.1-1) UNRELEASED; urgency=low
+gnome-desktop3 (2.91.6.1-1) experimental; urgency=low
 
   [ Sebastien Bacher ]
   * debian/rules: use dpkg-vendor to set the distributor
 
   [ Emilio Pozuelo Monfort ]
   * New upstream release.
+  * debian/control.in:
+    - Update for the new gtk+ package names.
 
- -- Sebastien Bacher <seb128@debian.org>  Wed, 26 Jan 2011 18:29:08 +0100
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Sat, 19 Feb 2011 14:32:54 +0000
 
 gnome-desktop3 (2.91.6-1) experimental; urgency=low
 
