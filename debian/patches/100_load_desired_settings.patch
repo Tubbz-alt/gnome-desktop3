@@ -364,7 +364,7 @@ Index: gnome-desktop-2.32.0/libgnome-desktop/gnome-rr-config.c
 +    	
 +    	} else {
 +		g_set_error (error, GNOME_RR_ERROR, GNOME_RR_ERROR_UNKNOWN,
-+				"X server does not support size requested");
++				_("X server does not support size requested"));
 +	}
 +    	
 +    	gnome_rr_config_free (stored);
