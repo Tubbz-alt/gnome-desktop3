@@ -1,0 +1,51 @@
+Description: Add ability to show and hide the screen labels (to make the display properties capplet able to hide them when it loses focus)
+Author: Robert Ancell <robert.ancell@canonical.com>
+Bug: https://bugzilla.gnome.org/show_bug.cgi?id=589562
+Bug-Ubuntu: https://bugs.launchpad.net/bugs/403840
+
+Index: gnome-desktop-2.32.1/libgnome-desktop/gnome-rr-labeler.c
+===================================================================
+--- gnome-desktop-2.32.1.orig/libgnome-desktop/gnome-rr-labeler.c	2011-03-17 14:45:35.096168538 +1100
++++ gnome-desktop-2.32.1/libgnome-desktop/gnome-rr-labeler.c	2011-03-17 14:45:50.426247949 +1100
+@@ -234,12 +234,17 @@
+ 	return window;
+ }
+ 
+-static void
+-create_label_windows (GnomeRRLabeler *labeler)
++void
++gnome_rr_labeler_show (GnomeRRLabeler *labeler)
+ {
+ 	int i;
+ 	gboolean created_window_for_clone;
+ 
++	g_return_if_fail (GNOME_IS_RR_LABELER (labeler));
++
++	if (labeler->windows != NULL)
++		return;
++
+ 	labeler->windows = g_new (GtkWidget *, labeler->num_outputs);
+ 
+ 	created_window_for_clone = FALSE;
+@@ -261,8 +266,6 @@
+ 	labeler->num_outputs = count_outputs (labeler->config);
+ 
+ 	make_palette (labeler);
+-
+-	create_label_windows (labeler);
+ }
+ 
+ GnomeRRLabeler *
+Index: gnome-desktop-2.32.1/libgnome-desktop/libgnomeui/gnome-rr-labeler.h
+===================================================================
+--- gnome-desktop-2.32.1.orig/libgnome-desktop/libgnomeui/gnome-rr-labeler.h	2011-03-17 14:45:35.086168475 +1100
++++ gnome-desktop-2.32.1/libgnome-desktop/libgnomeui/gnome-rr-labeler.h	2011-03-17 14:45:35.756171940 +1100
+@@ -46,6 +46,8 @@
+ 
+ GnomeRRLabeler *gnome_rr_labeler_new (GnomeRRConfig *config);
+ 
++void gnome_rr_labeler_show (GnomeRRLabeler *labeler);
++
+ void gnome_rr_labeler_hide (GnomeRRLabeler *labeler);
+ 
+ void gnome_rr_labeler_get_color_for_output (GnomeRRLabeler *labeler, GnomeOutputInfo *output, GdkColor *color_out);
