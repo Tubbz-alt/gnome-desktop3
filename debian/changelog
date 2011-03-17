@@ -1,3 +1,10 @@
+gnome-desktop (1:2.32.1-0ubuntu4) natty; urgency=low
+
+  * debian/patches/series:
+    - Forgot to add 04_gnome_rr_labeler_show.patch
+
+ -- Robert Ancell <robert.ancell@canonical.com>  Thu, 17 Mar 2011 15:29:53 +1100
+
 gnome-desktop (1:2.32.1-0ubuntu3) natty; urgency=low
 
   [ Gabor Kelemen ]
