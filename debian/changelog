@@ -1,3 +1,14 @@
+gnome-desktop (1:2.32.1-0ubuntu5) UNRELEASED; urgency=low
+
+  * Cleaning old patches that are not required
+  * debian/patches/80_correct_rgba_use.patch:
+    - dropped, that was required for gtk csd which didn't land in Ubuntu
+  * debian/patches/100_load_desired_settings.patch:
+    - dropped, the logic was required when g-s-d was tweaking the virtual
+      settings in xorg which it stopped doing in recent ubuntu versions
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 22 Mar 2011 15:17:40 +0100
+
 gnome-desktop (1:2.32.1-0ubuntu4) natty; urgency=low
 
   * debian/patches/series:
