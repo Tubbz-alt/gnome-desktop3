@@ -1,10 +1,10 @@
 Description: Gettext support for desktop files
 Author: ?
 
-Index: gnome-desktop-2.32.0/libgnome-desktop/gnome-desktop-item.c
+Index: gnome-desktop-2.32.1/libgnome-desktop/gnome-desktop-item.c
 ===================================================================
---- gnome-desktop-2.32.0.orig/libgnome-desktop/gnome-desktop-item.c	2010-09-24 11:24:03.000000000 +0200
-+++ gnome-desktop-2.32.0/libgnome-desktop/gnome-desktop-item.c	2010-10-15 16:38:41.156592194 +0200
+--- gnome-desktop-2.32.1.orig/libgnome-desktop/gnome-desktop-item.c	2010-10-04 23:32:19.000000000 +0200
++++ gnome-desktop-2.32.1/libgnome-desktop/gnome-desktop-item.c	2011-03-30 12:39:49.952933487 +0200
 @@ -83,6 +83,7 @@
  	GHashTable *main_hash;
  
@@ -34,23 +34,27 @@ Index: gnome-desktop-2.32.0/libgnome-desktop/gnome-desktop-item.c
  /**
   * gnome_desktop_item_new_from_uri:
   * @uri: URI to load the GnomeDesktopItem from
-@@ -682,6 +690,7 @@
+@@ -682,6 +690,9 @@
  
  	g_object_unref (subfn);
  
-+    retval->gettext_domain = lookup(retval, GNOME_DESKTOP_ITEM_GETTEXT_DOMAIN);
++    	retval->gettext_domain = lookup(retval, GNOME_DESKTOP_ITEM_GNOME_GETTEXT_DOMAIN);
++    	if (!retval->gettext_domain)
++    		retval->gettext_domain = lookup(retval, GNOME_DESKTOP_ITEM_GETTEXT_DOMAIN);
  	return retval;
  }
  
-@@ -725,6 +734,7 @@
+@@ -725,6 +736,9 @@
  	
  	/* FIXME: Sort order? */
  
-+    retval->gettext_domain = lookup(retval, GNOME_DESKTOP_ITEM_GETTEXT_DOMAIN);
++    	retval->gettext_domain = lookup(retval, GNOME_DESKTOP_ITEM_GNOME_GETTEXT_DOMAIN);
++    	if (!retval->gettext_domain)
++    		retval->gettext_domain = lookup(retval, GNOME_DESKTOP_ITEM_GETTEXT_DOMAIN);
  	return retval;
  }
  
-@@ -994,6 +1004,14 @@
+@@ -994,6 +1008,14 @@
  	    strcmp (locale, "C") == 0) {
  		return lookup (item, key);
  	} else {
@@ -65,15 +69,16 @@ Index: gnome-desktop-2.32.0/libgnome-desktop/gnome-desktop-item.c
  		const char *ret;
  		char *full = g_strdup_printf ("%s[%s]", key, locale);
  		ret = lookup (item, full);
-Index: gnome-desktop-2.32.0/libgnome-desktop/libgnome/gnome-desktop-item.h
+Index: gnome-desktop-2.32.1/libgnome-desktop/libgnome/gnome-desktop-item.h
 ===================================================================
---- gnome-desktop-2.32.0.orig/libgnome-desktop/libgnome/gnome-desktop-item.h	2010-09-24 11:24:03.000000000 +0200
-+++ gnome-desktop-2.32.0/libgnome-desktop/libgnome/gnome-desktop-item.h	2010-10-15 16:38:41.160592196 +0200
-@@ -95,6 +95,7 @@
+--- gnome-desktop-2.32.1.orig/libgnome-desktop/libgnome/gnome-desktop-item.h	2010-10-04 23:32:19.000000000 +0200
++++ gnome-desktop-2.32.1/libgnome-desktop/libgnome/gnome-desktop-item.h	2011-03-30 12:36:39.796933399 +0200
+@@ -95,6 +95,8 @@
  #define GNOME_DESKTOP_ITEM_SORT_ORDER	"SortOrder" /* strings */
  #define GNOME_DESKTOP_ITEM_URL		"URL" /* string */
  #define GNOME_DESKTOP_ITEM_DOC_PATH	"X-GNOME-DocPath" /* string */
 +#define GNOME_DESKTOP_ITEM_GETTEXT_DOMAIN	"X-Ubuntu-Gettext-Domain" /* string */
++#define GNOME_DESKTOP_ITEM_GNOME_GETTEXT_DOMAIN	"X-GNOME-Gettext-Domain" /* string */
  
  /* The vfolder proposal */
  #define GNOME_DESKTOP_ITEM_CATEGORIES	"Categories" /* string */
