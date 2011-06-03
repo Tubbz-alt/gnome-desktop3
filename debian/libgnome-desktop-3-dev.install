@@ -1,6 +1,6 @@
-debian/tmp/usr/include
-debian/tmp/usr/lib/pkgconfig
-debian/tmp/usr/lib/libgnome-desktop-3.a
-debian/tmp/usr/lib/libgnome-desktop-3.so
-debian/tmp/usr/share/gir-1.0
-debian/tmp/usr/share/gtk-doc
+usr/include
+usr/lib/pkgconfig
+usr/lib/libgnome-desktop-3.a
+usr/lib/libgnome-desktop-3.so
+usr/share/gir-1.0
+usr/share/gtk-doc
