@@ -9,6 +9,7 @@ gnome-desktop3 (3.2.0-1) UNRELEASED; urgency=low
     - Use Section: libs for gir1.2-gnomedesktop-3.0.
     - Drop (Build-)Depends on libstartup-notification0-dev.
     - Add Build-Depends on libxext-dev.
+    - Update Vcs-* URLs.
   * debian/rules:
     - List missing files.
     - Include utils.mk for list-missing.
