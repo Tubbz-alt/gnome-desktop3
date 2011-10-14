@@ -20,3 +20,5 @@ DEB_CONFIGURE_EXTRA_FLAGS += \
 			--enable-introspection=yes
 
 DEB_DH_MAKESHLIBS_ARGS_libgnome-desktop-3-0 += -- -c4
+
+common-binary-post-install-arch:: list-missing
