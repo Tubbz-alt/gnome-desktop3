@@ -5,6 +5,8 @@ gnome-desktop3 (3.2.0-1) UNRELEASED; urgency=low
   * debian/watch:
     - Update to version 3.
     - Track .xz tarballs.
+  * debian/control.in:
+    - Use Section: libs for gir1.2-gnomedesktop-3.0.
 
  -- Michael Biebl <biebl@debian.org>  Fri, 14 Oct 2011 17:57:55 +0200
 
