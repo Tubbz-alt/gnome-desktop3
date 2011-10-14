@@ -2,6 +2,9 @@ gnome-desktop3 (3.2.0-1) UNRELEASED; urgency=low
 
   * New upstream release.
     - Link against -lm for sqrt. Closes: #640437
+  * debian/watch:
+    - Update to version 3.
+    - Track .xz tarballs.
 
  -- Michael Biebl <biebl@debian.org>  Fri, 14 Oct 2011 17:57:55 +0200
 
