@@ -15,7 +15,7 @@ DEB_CONFIGURE_EXTRA_FLAGS += \
 			--with-gnome-distributor=$(shell dpkg-vendor --query vendor) \
 			--with-pnp-ids-path=/usr/share/hwdata/pnp.ids \
 			--disable-scrollkeeper \
-			--disable-gtk-doc \
+			--enable-gtk-doc \
 			--disable-desktop-docs \
 			--enable-introspection=yes
 
