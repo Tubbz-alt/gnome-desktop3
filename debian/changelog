@@ -15,7 +15,6 @@ gnome-desktop3 (3.2.0-1) UNRELEASED; urgency=low
     - List missing files.
     - Include utils.mk for list-missing.
     - Drop clean-la.mk since we don't install any .la files.
-    - Build gtk-doc API documentation.
   * debian/libgnome-desktop-3-dev.install:
     - Remove .a file, static libraries are no longer built by default.
   * Update libgnome-desktop-3 library package for the SONAME bump 0 → 2.
