@@ -1,3 +1,34 @@
+gnome-desktop3 (3.2.0-1) UNRELEASED; urgency=low
+
+  * New upstream release.
+    - Link against -lm for sqrt. Closes: #640437
+  * debian/watch:
+    - Update to version 3.
+    - Track .xz tarballs.
+  * debian/control.in:
+    - Use Section: libs for gir1.2-gnomedesktop-3.0.
+    - Drop (Build-)Depends on libstartup-notification0-dev.
+    - Add Build-Depends on libxext-dev.
+    - Update Vcs-* URLs.
+  * debian/rules:
+    - List missing files.
+    - Include utils.mk for list-missing.
+    - Drop clean-la.mk since we don't install any .la files.
+  * debian/libgnome-desktop-3-dev.install:
+    - Remove .a file, static libraries are no longer built by default.
+  * Update libgnome-desktop-3 library package for the SONAME bump 0 → 2.
+
+ -- Michael Biebl <biebl@debian.org>  Fri, 14 Oct 2011 17:57:55 +0200
+
+gnome-desktop3 (3.0.2-2) unstable; urgency=low
+
+  * Upload to unstable.
+  * Bump debhelper compatibility level to 8.
+  * Bump Standards-Version to 3.9.2. No further changes.
+  * debian/watch: Switch to .bz2 tarballs.
+
+ -- Michael Biebl <biebl@debian.org>  Fri, 03 Jun 2011 19:37:17 +0200
+
 gnome-desktop3 (3.0.2-1) experimental; urgency=low
 
   [ Rico Tzschichholz ]
