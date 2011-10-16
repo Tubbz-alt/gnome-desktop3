@@ -10,6 +10,7 @@ gnome-desktop3 (3.2.0-1) UNRELEASED; urgency=low
     - Drop (Build-)Depends on libstartup-notification0-dev.
     - Add Build-Depends on libxext-dev.
     - Update Vcs-* URLs.
+    - Bump Build-Depends on intltool to (>= 0.40.6).
   * debian/rules:
     - List missing files.
     - Include utils.mk for list-missing.
