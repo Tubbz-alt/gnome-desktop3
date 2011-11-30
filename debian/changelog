@@ -9,6 +9,8 @@ gnome-desktop (1:2.32.1-0ubuntu7) UNRELEASED; urgency=low
       autom4te.cache *~; needed for 10_link-with-libm.
     - Drop 99_ltmain_as-needed; doesn't apply anymore with 90_autoreconf which
       likely supersedes it.
+  * Update watch file to only consider GNOME 2.32; gnome-desktop3 source is
+    where latest releases are packaged.
 
  -- Loïc Minier <loic.minier@ubuntu.com>  Wed, 30 Nov 2011 18:40:44 +0100
 
