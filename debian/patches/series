@@ -2,4 +2,5 @@
 02_add_wallpaper_cache.patch
 03_gnome_bg_create_pixmap_failure.patch
 04_gnome_rr_labeler_show.patch
-99_ltmain_as-needed.patch
+10_link-with-libm.patch
+90_autoreconf.patch

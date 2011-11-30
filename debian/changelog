@@ -1,3 +1,17 @@
+gnome-desktop (1:2.32.1-0ubuntu7) UNRELEASED; urgency=low
+
+  * Fix FTBFS -- missing -lm in build.
+    - New patch, 10_link-with-libm, changes similar to upstream
+      06eecd20a0c6e27f91265c20fe0ad2f773a51494 "build: link against libm" to
+      call AC_CHECK_LIBM and AB_SUBST(LIBM) in configure.in and use $(LIBM) in
+      libgnome-desktop/Makefile.am.
+    - New patch, 90_autoreconf, result of autoreconf -fi && rm -rf
+      autom4te.cache *~; needed for 10_link-with-libm.
+    - Drop 99_ltmain_as-needed; doesn't apply anymore with 90_autoreconf which
+      likely supersedes it.
+
+ -- Loïc Minier <loic.minier@ubuntu.com>  Wed, 30 Nov 2011 18:40:44 +0100
+
 gnome-desktop (1:2.32.1-0ubuntu6) natty; urgency=low
 
   * debian/patches/01_desktopfile_gettext.patch:
