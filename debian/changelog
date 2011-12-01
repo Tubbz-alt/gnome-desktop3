@@ -1,4 +1,4 @@
-gnome-desktop (1:2.32.1-0ubuntu7) UNRELEASED; urgency=low
+gnome-desktop (1:2.32.1-0ubuntu7) precise; urgency=low
 
   * Fix FTBFS -- missing -lm in build.
     - New patch, 10_link-with-libm, changes similar to upstream
@@ -12,7 +12,7 @@ gnome-desktop (1:2.32.1-0ubuntu7) UNRELEASED; urgency=low
   * Update watch file to only consider GNOME 2.32; gnome-desktop3 source is
     where latest releases are packaged.
 
- -- Loïc Minier <loic.minier@ubuntu.com>  Wed, 30 Nov 2011 18:40:44 +0100
+ -- Loïc Minier <loic.minier@ubuntu.com>  Thu, 01 Dec 2011 15:46:03 +0100
 
 gnome-desktop (1:2.32.1-0ubuntu6) natty; urgency=low
 
