@@ -1,3 +1,9 @@
+gnome-desktop (1:2.32.1-0ubuntu8) precise; urgency=low
+
+  * Build using dh_python2
+
+ -- Matthias Klose <doko@ubuntu.com>  Sat, 17 Dec 2011 15:50:02 +0000
+
 gnome-desktop (1:2.32.1-0ubuntu7) precise; urgency=low
 
   * Fix FTBFS -- missing -lm in build.
