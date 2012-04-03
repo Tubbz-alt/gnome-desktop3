@@ -43,6 +43,9 @@ libgnome-desktop-3.so.2 libgnome-desktop-3-2 #MINVER#
  gnome_desktop_thumbnail_md5@Base 3.2.0
  gnome_desktop_thumbnail_path_for_uri@Base 3.2.0
  gnome_desktop_thumbnail_scale_down_pixbuf@Base 3.2.0
+ gnome_pnp_ids_get_pnp_id@Base 3.4.0
+ gnome_pnp_ids_get_type@Base 3.4.0
+ gnome_pnp_ids_new@Base 3.4.0
  gnome_rr_config_applicable@Base 3.2.0
  gnome_rr_config_apply_from_filename_with_time@Base 3.2.0
  gnome_rr_config_apply_with_time@Base 3.2.0
@@ -69,7 +72,6 @@ libgnome-desktop-3.so.2 libgnome-desktop-3-2 #MINVER#
  gnome_rr_crtc_get_position@Base 3.2.0
  gnome_rr_crtc_get_rotations@Base 3.2.0
  gnome_rr_crtc_get_type@Base 3.2.0
- gnome_rr_crtc_set_config@Base 3.2.0
  gnome_rr_crtc_set_config_with_time@Base 3.2.0
  gnome_rr_crtc_set_gamma@Base 3.2.0
  gnome_rr_crtc_supports_rotation@Base 3.2.0
