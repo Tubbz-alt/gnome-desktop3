@@ -1,0 +1,15 @@
+Description: Link libgnome-desktop against librt for clock_gettime().
+Index: gnome-desktop3-3.2.1/libgnome-desktop/Makefile.am
+===================================================================
+--- gnome-desktop3-3.2.1.orig/libgnome-desktop/Makefile.am	2011-09-26 10:25:36.000000000 +0200
++++ gnome-desktop3-3.2.1/libgnome-desktop/Makefile.am	2012-04-03 18:51:16.586252666 +0200
+@@ -38,7 +38,8 @@
+ libgnome_desktop_3_la_LIBADD =	\
+ 	$(XLIB_LIBS)		\
+ 	$(LIBM)			\
+-	$(GNOME_DESKTOP_LIBS)
++	$(GNOME_DESKTOP_LIBS) \
++	-lrt
+ 
+ libgnome_desktop_3_la_LDFLAGS = \
+ 	-version-info $(LT_VERSION) \
