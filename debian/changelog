@@ -1,3 +1,9 @@
+gnome-desktop3 (3.4.0-1) UNRELEASED; urgency=low
+
+  * New upstream release.
+
+ -- Michael Biebl <biebl@debian.org>  Tue, 03 Apr 2012 19:23:07 +0200
+
 gnome-desktop3 (3.2.1-4) unstable; urgency=low
 
   * Build system-wide help documents and install them in gnome-desktop3-data.
