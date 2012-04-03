@@ -31,6 +31,8 @@ Build-Depends: debhelper (>= 8),
 Package: gnome-desktop3-data
 Architecture: all
 Depends: ${misc:Depends}
+Breaks: gnome-desktop-data (<< 2.32.1-2)
+Replaces: gnome-desktop-data (<< 2.32.1-2)
 Description: Common files for GNOME desktop apps
  This package includes some files that are shared between several GNOME
  apps (internationalization files).
