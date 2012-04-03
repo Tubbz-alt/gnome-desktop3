@@ -1,4 +1,4 @@
-gnome-desktop3 (3.4.0-1) UNRELEASED; urgency=low
+gnome-desktop3 (3.4.0-1) experimental; urgency=low
 
   * New upstream release.
   * debian/patches/01-clock_gettime.patch: Removed, merged upstream.
@@ -8,7 +8,7 @@ gnome-desktop3 (3.4.0-1) UNRELEASED; urgency=low
     gnome_rr_crtc_set_config. None of the reverse dependencies uses that
     function so this should be safe without a soname bump.
 
- -- Michael Biebl <biebl@debian.org>  Tue, 03 Apr 2012 19:31:08 +0200
+ -- Michael Biebl <biebl@debian.org>  Tue, 03 Apr 2012 19:35:04 +0200
 
 gnome-desktop3 (3.2.1-4) unstable; urgency=low
 
