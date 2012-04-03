@@ -3,8 +3,9 @@ gnome-desktop3 (3.2.1-4) UNRELEASED; urgency=low
   * Build system-wide help documents and install them in gnome-desktop3-data.
   * Add the necessary Breaks/Replaces against gnome-desktop-data (<< 2.32.1-2)
     which previously shipped those files.
+  * Build gtk-doc API documentation.
 
- -- Michael Biebl <biebl@debian.org>  Tue, 03 Apr 2012 18:45:06 +0200
+ -- Michael Biebl <biebl@debian.org>  Tue, 03 Apr 2012 18:46:57 +0200
 
 gnome-desktop3 (3.2.1-3) unstable; urgency=low
 
