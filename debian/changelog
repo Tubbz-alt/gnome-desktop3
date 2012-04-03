@@ -6,8 +6,9 @@ gnome-desktop3 (3.2.1-4) UNRELEASED; urgency=low
   * Build gtk-doc API documentation.
   * debian/patches/01-clock_gettime.patch: Link libgnome-desktop against librt
     for clock_gettime().
+  * Use dh-autoreconf to update the build system.
 
- -- Michael Biebl <biebl@debian.org>  Tue, 03 Apr 2012 18:53:36 +0200
+ -- Michael Biebl <biebl@debian.org>  Tue, 03 Apr 2012 18:58:14 +0200
 
 gnome-desktop3 (3.2.1-3) unstable; urgency=low
 

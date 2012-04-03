@@ -13,6 +13,7 @@ Vcs-Browser: http://anonscm.debian.org/viewvc/pkg-gnome/desktop/unstable/gnome-d
 Standards-Version: 3.9.2
 Build-Depends: debhelper (>= 8),
                dpkg-dev (>= 1.15.1),
+               dh-autoreconf,
                libglib2.0-dev (>= 2.27.3),
                intltool (>= 0.40.6),
                scrollkeeper,
