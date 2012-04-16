@@ -1,8 +1,8 @@
-gnome-desktop3 (3.4.1-1) UNRELEASED; urgency=low
+gnome-desktop3 (3.4.1-1) experimental; urgency=low
 
   * New upstream translation release.
 
- -- Michael Biebl <biebl@debian.org>  Mon, 16 Apr 2012 18:06:29 +0200
+ -- Michael Biebl <biebl@debian.org>  Mon, 16 Apr 2012 18:07:14 +0200
 
 gnome-desktop3 (3.4.0-1) experimental; urgency=low
 
