@@ -1,86 +1,56 @@
-gnome-desktop (1:2.32.1-0ubuntu8) precise; urgency=low
+gnome-desktop (1:2.32.1-2ubuntu1) UNRELEASED; urgency=low
 
-  * Build using dh_python2
+  * Merge with Debian unstable (first time since Maverick). Dropping most of
+    our old Ubuntu changes as they are not relevant any more (most things use
+    gnome-desktop3 now).
+    Remaining Ubuntu changes:
+    - debian/changelog: Add an epoch, as some previous Ubuntu package
+      overzealously introduced one.
+    - debian/rules: Set "Ubuntu" GNOME distributor.
 
- -- Matthias Klose <doko@ubuntu.com>  Sat, 17 Dec 2011 15:50:02 +0000
+ -- Martin Pitt <martin.pitt@ubuntu.com>  Thu, 03 May 2012 15:11:48 +0200
 
-gnome-desktop (1:2.32.1-0ubuntu7) precise; urgency=low
+gnome-desktop (2.32.1-2) unstable; urgency=low
 
-  * Fix FTBFS -- missing -lm in build.
-    - New patch, 10_link-with-libm, changes similar to upstream
-      06eecd20a0c6e27f91265c20fe0ad2f773a51494 "build: link against libm" to
-      call AC_CHECK_LIBM and AB_SUBST(LIBM) in configure.in and use $(LIBM) in
-      libgnome-desktop/Makefile.am.
-    - New patch, 90_autoreconf, result of autoreconf -fi && rm -rf
-      autom4te.cache *~; needed for 10_link-with-libm.
-    - Drop 99_ltmain_as-needed; doesn't apply anymore with 90_autoreconf which
-      likely supersedes it.
-  * Update watch file to only consider GNOME 2.32; gnome-desktop3 source is
-    where latest releases are packaged.
+  * Stop building desktop-wide help documents and remove them from
+    gnome-desktop-data. Those files will be provided by gnome-desktop3-data.
 
- -- Loïc Minier <loic.minier@ubuntu.com>  Thu, 01 Dec 2011 15:46:03 +0100
+ -- Michael Biebl <biebl@debian.org>  Tue, 03 Apr 2012 18:35:32 +0200
 
-gnome-desktop (1:2.32.1-0ubuntu6) natty; urgency=low
+gnome-desktop (2.32.1-1) unstable; urgency=low
 
-  * debian/patches/01_desktopfile_gettext.patch:
-    - the Gettext-Domain key can be a X-GNOME one (lp: #587485).
+  [ Josselin Mouette ]
+  * Drop gnome-about package, now useless.
+  * Update repository URL.
 
- -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 13 Apr 2011 11:23:46 +0200
+  [ Michael Biebl ]
+  * New upstream release.
+  * Remove debian/patches/01_rr_double_free.patch, merged upstream.
+  * Remove debian/patches/02_pnp_buffer_overflow.patch, merged upstream.
 
-gnome-desktop (1:2.32.1-0ubuntu5) natty; urgency=low
+ -- Michael Biebl <biebl@debian.org>  Sun, 29 Jan 2012 07:35:24 +0100
 
-  * Cleaning old patches that are not required
-  * debian/patches/80_correct_rgba_use.patch:
-    - dropped, that was required for gtk csd which didn't land in Ubuntu
-  * debian/patches/100_load_desired_settings.patch:
-    - dropped, the logic was required when g-s-d was tweaking the virtual
-      settings in xorg which it stopped doing in recent ubuntu versions
+gnome-desktop (2.30.2-3) unstable; urgency=low
 
- -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 22 Mar 2011 15:21:52 +0100
+  * Bump debhelper compatibility level to 8.
+    - Update Build-Depends on debhelper.
+    - Strip debian/tmp/ from .install files.
+  * Switch to dh_python2.
+  * debian/patches/03_libm.patch:
+    - Link libgnome-desktop against -lm. Closes: #640438
+  * Use dh-autoreconf to update the build system.
+  * Bump Standards-Version to 3.9.2. No further changes.
 
-gnome-desktop (1:2.32.1-0ubuntu4) natty; urgency=low
+ -- Michael Biebl <biebl@debian.org>  Sat, 29 Oct 2011 13:18:01 +0200
 
-  * debian/patches/series:
-    - Forgot to add 04_gnome_rr_labeler_show.patch
+gnome-desktop (2.30.2-2) unstable; urgency=low
 
- -- Robert Ancell <robert.ancell@canonical.com>  Thu, 17 Mar 2011 15:29:53 +1100
+  * Include crasher fixes on upstream’s advice.
+    + 01_rr_double_free.patch: double free in the RandR code.
+    + 02_pnp_buffer_overflow.patch: buffer overrun in the PNP parsing 
+      code.
 
-gnome-desktop (1:2.32.1-0ubuntu3) natty; urgency=low
-
-  [ Gabor Kelemen ]
-  * debian/patches/100_load_desired_settings.patch: mark additional string as
-    translatable. (LP: #692150)
-
-  [ Robert Ancell ]
-  * debian/patches/04_gnome_rr_labeler_show.patch:
-    - Add ability to toggle screen labels
-
- -- Robert Ancell <robert.ancell@canonical.com>  Thu, 17 Mar 2011 15:23:26 +1100
-
-gnome-desktop (1:2.32.1-0ubuntu2) natty; urgency=low
-
-  * debian/patches/03_gnome_bg_create_pixmap_failure.patch:
-    - Handle failure to create/obtain the background pixmap (LP: #661283)
-
- -- Robert Ancell <robert.ancell@canonical.com>  Thu, 23 Dec 2010 17:22:15 +1100
-
-gnome-desktop (1:2.32.1-0ubuntu1) natty; urgency=low
-
-  * New upstream version:
-    libgnome-desktop
-    - GnomeRR: Don't read past the end of a string
-    - GnomeRR: Fix possible double-free when destroying private windows  
-    gnome-about
-    - Fix translations which do not respect python variable names 
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 17 Nov 2010 12:40:10 +0100
-
-gnome-desktop (1:2.32.0-0ubuntu2) natty; urgency=low
-
-  * Rebase on debian
-  * debian/control.in: don't depends on python-gnome2
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 14 Oct 2010 14:36:10 +0200
+ -- Josselin Mouette <joss@debian.org>  Fri, 12 Nov 2010 20:00:44 +0100
 
 gnome-desktop (2.30.2-1) unstable; urgency=low
 
@@ -95,69 +65,6 @@ gnome-desktop (2.30.2-1) unstable; urgency=low
     - Bump Standards-Version to 3.9.0. No further changes.
 
  -- Michael Biebl <biebl@debian.org>  Sat, 17 Jul 2010 04:45:22 +0200
-
-gnome-desktop (1:2.32.0-0ubuntu1) maverick; urgency=low
-
-  * New upstream version
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 27 Sep 2010 14:05:11 +0200
-
-gnome-desktop (1:2.31.92-0ubuntu1) maverick; urgency=low
-
-  * New upstream version
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 14 Sep 2010 16:19:56 +0200
-
-gnome-desktop (1:2.31.90-0ubuntu2) maverick; urgency=low
-
-  * debian/patches/01_check_xrandr_version.patch: drop duplicate change
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 09 Sep 2010 17:18:10 +0200
-
-gnome-desktop (1:2.31.90-0ubuntu1) maverick; urgency=low
-
-  * New upstream version
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 18 Aug 2010 17:57:06 +0200
-
-gnome-desktop (1:2.31.6-0ubuntu1) maverick; urgency=low
-
-  * New upstream version:
-    - Don't use deprecated Gdk drawing APIs
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 05 Aug 2010 12:20:45 +0200
-
-gnome-desktop (1:2.30.2-0ubuntu1.1) maverick; urgency=low
-
-  * New upstream version (lp: #597167)
-
- -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 22 Jun 2010 11:44:01 +0200
-
-gnome-desktop (1:2.30.0-2ubuntu1) maverick; urgency=low
-
-  * Merge with Debian unstable, remaining Ubuntu changes:
-  * debian/control.in:
-    - Add Vcs-Bzr link
-  * debian/rules:
-    - Set shlibs version
-    - Use "Ubuntu" as distributor
-  * debian/patches/01_check_xrandr_version.patch:
-    - XRandR support cannot be disabled
-  * debian/patches/01_desktopfile_gettext.patch:
-    - Gettext support for desktop files.
-  * debian/patches/02_add_wallpaper_cache.patch:
-    - cache wallpapers in local user directory to avoid compute resize and
-      transformation at each session start
-  * debian/patches/80_correct_rgba_use.patch:
-    - Fix RGBA issues
-  * debian/patches/100_load_desired_settings.patch:
-    - Enable gnome-settings-daemon to load the desired settings
-      saved by the xrandr capplet when the virtual resolution has
-      to be saved and the settings cannot be applied immediately.
-  * debian/watch:
-    - Watch unstable series
-
- -- Robert Ancell <robert.ancell@canonical.com>  Fri, 04 Jun 2010 11:18:44 +1000
 
 gnome-desktop (2.30.0-2) unstable; urgency=low
 

@@ -1,6 +1,1 @@
-01_desktopfile_gettext.patch
-02_add_wallpaper_cache.patch
-03_gnome_bg_create_pixmap_failure.patch
-04_gnome_rr_labeler_show.patch
-10_link-with-libm.patch
-90_autoreconf.patch
+03_libm.patch
