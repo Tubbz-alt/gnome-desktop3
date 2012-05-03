@@ -1,4 +1,4 @@
-gnome-desktop (1:2.32.1-2ubuntu1) UNRELEASED; urgency=low
+gnome-desktop (1:2.32.1-2ubuntu1) quantal; urgency=low
 
   * Merge with Debian unstable (first time since Maverick). Dropping most of
     our old Ubuntu changes as they are not relevant any more (most things use
@@ -8,7 +8,7 @@ gnome-desktop (1:2.32.1-2ubuntu1) UNRELEASED; urgency=low
       overzealously introduced one.
     - debian/rules: Set "Ubuntu" GNOME distributor.
 
- -- Martin Pitt <martin.pitt@ubuntu.com>  Thu, 03 May 2012 15:11:48 +0200
+ -- Martin Pitt <martin.pitt@ubuntu.com>  Thu, 03 May 2012 15:24:01 +0200
 
 gnome-desktop (2.32.1-2) unstable; urgency=low
 
