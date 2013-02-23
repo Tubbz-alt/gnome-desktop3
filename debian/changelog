@@ -1,3 +1,13 @@
+gnome-desktop3 (3.7.90-1) UNRELEASED; urgency=low
+
+  * New upstream release
+    - soname bump, update symbols
+  * debian/control.in:
+    - Build-depend on libgl1-mesa-dev and iso-codes
+    - Bump minimum glib
+
+ -- Jeremy Bicha <jbicha@ubuntu.com>  Sat, 23 Feb 2013 11:44:38 -0500
+
 gnome-desktop3 (3.6.1-1) experimental; urgency=low
 
   * debian/control.in: Temporarily loosen the depend on the data package so the
