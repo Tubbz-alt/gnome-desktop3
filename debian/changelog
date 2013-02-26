@@ -1,10 +1,15 @@
 gnome-desktop3 (3.7.90-1) UNRELEASED; urgency=low
 
+  [ Jeremy Bicha ]
   * New upstream release
     - soname bump, update symbols
   * debian/control.in:
     - Build-depend on libgl1-mesa-dev and iso-codes
     - Bump minimum glib
+
+  [ Emilio Pozuelo Monfort ]
+  * debian/control.in:
+    + Add missing replaces on libgnome-desktop-3-4.
 
  -- Jeremy Bicha <jbicha@ubuntu.com>  Sat, 23 Feb 2013 11:44:38 -0500
 
