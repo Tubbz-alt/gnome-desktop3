@@ -75,6 +75,7 @@ Architecture: any
 Depends: ${misc:Depends},
          ${shlibs:Depends},
          ${gir:Depends}
+Breaks: gnome-shell (<< 3.7.90)
 Description: Introspection data for GnomeDesktop
  This package provides the include files and static library for the GNOME
  desktop library functions.
