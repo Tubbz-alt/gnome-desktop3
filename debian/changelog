@@ -1,4 +1,4 @@
-gnome-desktop3 (3.7.90-1) UNRELEASED; urgency=low
+gnome-desktop3 (3.7.91.1-1) UNRELEASED; urgency=low
 
   [ Jeremy Bicha ]
   * New upstream release
@@ -11,6 +11,7 @@ gnome-desktop3 (3.7.90-1) UNRELEASED; urgency=low
   * debian/control.in:
     + Add missing replaces on libgnome-desktop-3-4.
     + gir1.2-gnomedesktop-3.0 breaks gnome-shell (<< 3.7.90).
+  * New upstream release.
 
  -- Jeremy Bicha <jbicha@ubuntu.com>  Sat, 23 Feb 2013 11:44:38 -0500
 
