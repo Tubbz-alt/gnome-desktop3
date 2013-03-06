@@ -10,7 +10,9 @@ gnome-desktop3 (3.7.91.1-1) UNRELEASED; urgency=low
   [ Emilio Pozuelo Monfort ]
   * debian/control.in:
     + Add missing replaces on libgnome-desktop-3-4.
-    + gir1.2-gnomedesktop-3.0 breaks gnome-shell (<< 3.7.90).
+    + gir1.2-gnomedesktop-3.0 breaks gnome-shell (<< 3.7.90),
+      as it loads libgnome-desktop-3.so.7 while old gnome-shell
+      loads the old SONAME, making shell explode.
   * New upstream release.
     + debian/libgnome-desktop-3-7.symbols:
       - Updated for removed symbols.
