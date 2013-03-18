@@ -1,4 +1,4 @@
-gnome-desktop3 (3.7.91.1-1) UNRELEASED; urgency=low
+gnome-desktop3 (3.7.91.1-1) experimental; urgency=low
 
   [ Jeremy Bicha ]
   * New upstream release
@@ -17,7 +17,7 @@ gnome-desktop3 (3.7.91.1-1) UNRELEASED; urgency=low
     + debian/libgnome-desktop-3-7.symbols:
       - Updated for removed symbols.
 
- -- Jeremy Bicha <jbicha@ubuntu.com>  Sat, 23 Feb 2013 11:44:38 -0500
+ -- Sjoerd Simons <sjoerd@debian.org>  Mon, 18 Mar 2013 20:44:24 +0100
 
 gnome-desktop3 (3.6.1-1) experimental; urgency=low
 
