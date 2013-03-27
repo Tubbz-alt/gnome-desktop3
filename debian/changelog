@@ -1,8 +1,8 @@
-gnome-desktop3 (3.8.0-1) UNRELEASED; urgency=low
+gnome-desktop3 (3.8.0-1) experimental; urgency=low
 
   * New upstream release.
 
- -- Emilio Pozuelo Monfort <pochu@debian.org>  Tue, 26 Mar 2013 15:54:13 +0100
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Wed, 27 Mar 2013 15:00:52 +0100
 
 gnome-desktop3 (3.7.92-1) experimental; urgency=low
 
