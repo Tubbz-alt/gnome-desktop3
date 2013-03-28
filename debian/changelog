@@ -1,9 +1,9 @@
-gnome-desktop3 (3.8.0.1-2) UNRELEASED; urgency=low
+gnome-desktop3 (3.8.0.1-2) experimental; urgency=low
 
   * debian/libgnome-desktop-3-7.symbols:
     + Add Build-Depends-Package.
 
- -- Emilio Pozuelo Monfort <pochu@debian.org>  Thu, 28 Mar 2013 12:25:10 +0100
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Thu, 28 Mar 2013 12:27:26 +0100
 
 gnome-desktop3 (3.8.0.1-1) experimental; urgency=low
 
