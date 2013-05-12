@@ -1,3 +1,9 @@
+gnome-desktop3 (3.8.0.1-3) UNRELEASED; urgency=low
+
+  * Remove obsolete build dependency on scrollkeeper.
+
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Sun, 12 May 2013 12:38:50 +0200
+
 gnome-desktop3 (3.8.0.1-2) experimental; urgency=low
 
   * debian/libgnome-desktop-3-7.symbols:
