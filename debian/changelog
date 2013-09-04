@@ -1,4 +1,4 @@
-gnome-desktop3 (3.8.4-1) UNRELEASED; urgency=low
+gnome-desktop3 (3.8.4-1) experimental; urgency=low
 
   [ Jeremy Bicha ]
   * Remove obsolete build dependency on gnome-doc-utils.
@@ -8,7 +8,7 @@ gnome-desktop3 (3.8.4-1) UNRELEASED; urgency=low
     - Prevent a crash with unknown language/country codes (Closes: #692453)
   * debian/control.in: Bump Standards-Version to 3.9.4 (no further changes)
 
- -- Laurent Bigonville <bigon@debian.org>  Wed, 04 Sep 2013 20:07:15 +0200
+ -- Laurent Bigonville <bigon@debian.org>  Wed, 04 Sep 2013 20:16:36 +0200
 
 gnome-desktop3 (3.8.3-1) experimental; urgency=low
 
