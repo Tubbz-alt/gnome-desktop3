@@ -1,3 +1,87 @@
+gnome-desktop3 (3.8.4-1) experimental; urgency=low
+
+  [ Jeremy Bicha ]
+  * Remove obsolete build dependency on gnome-doc-utils.
+
+  [ Laurent Bigonville ]
+  * New upstream release.
+    - Prevent a crash with unknown language/country codes (Closes: #692453)
+  * debian/control.in: Bump Standards-Version to 3.9.4 (no further changes)
+
+ -- Laurent Bigonville <bigon@debian.org>  Wed, 04 Sep 2013 20:16:36 +0200
+
+gnome-desktop3 (3.8.3-1) experimental; urgency=low
+
+  * Remove obsolete build dependency on scrollkeeper.
+  * New upstream release.
+
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Sat, 08 Jun 2013 18:21:56 +0200
+
+gnome-desktop3 (3.8.0.1-2) experimental; urgency=low
+
+  * debian/libgnome-desktop-3-7.symbols:
+    + Add Build-Depends-Package.
+
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Thu, 28 Mar 2013 12:27:26 +0100
+
+gnome-desktop3 (3.8.0.1-1) experimental; urgency=low
+
+  * New upstream release.
+
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Wed, 27 Mar 2013 19:12:14 +0100
+
+gnome-desktop3 (3.8.0-1) experimental; urgency=low
+
+  * New upstream release.
+
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Wed, 27 Mar 2013 15:00:52 +0100
+
+gnome-desktop3 (3.7.92-1) experimental; urgency=low
+
+  * New upstream release.
+
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Wed, 20 Mar 2013 19:48:45 +0100
+
+gnome-desktop3 (3.7.91.1-1) experimental; urgency=low
+
+  [ Jeremy Bicha ]
+  * New upstream release
+    - soname bump, update symbols
+  * debian/control.in:
+    - Build-depend on libgl1-mesa-dev and iso-codes
+    - Bump minimum glib
+
+  [ Emilio Pozuelo Monfort ]
+  * debian/control.in:
+    + Add missing replaces on libgnome-desktop-3-4.
+    + gir1.2-gnomedesktop-3.0 breaks gnome-shell (<< 3.7.90),
+      as it loads libgnome-desktop-3.so.7 while old gnome-shell
+      loads the old SONAME, making shell explode.
+  * New upstream release.
+    + debian/libgnome-desktop-3-7.symbols:
+      - Updated for removed symbols.
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Mon, 18 Mar 2013 20:44:24 +0100
+
+gnome-desktop3 (3.6.1-1) experimental; urgency=low
+
+  * debian/control.in: Temporarily loosen the depend on the data package so the
+    library can be parallel installed with the G3.4 version
+  * New upstream release
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Thu, 18 Oct 2012 22:40:37 +0200
+
+gnome-desktop3 (3.6.0.1-1) experimental; urgency=low
+
+  [ Josselin Mouette ]
+  * Add missing epoch on libxrandr build-dependency.
+
+  [ Sjoerd Simons ]
+  * New upstream release (3.6.0.1)
+  * Soname bumped to 4
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Sun, 14 Oct 2012 18:51:51 +0200
+
 gnome-desktop3 (3.4.2-2) unstable; urgency=low
 
   * Team upload.
