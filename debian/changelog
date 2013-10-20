@@ -1,3 +1,10 @@
+gnome-desktop3 (3.10.1-1) UNRELEASED; urgency=low
+
+  * New upstream release
+  * Sync with Ubuntu, bumped soname
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Sun, 20 Oct 2013 21:12:12 +0100
+
 gnome-desktop3 (3.8.4-2) unstable; urgency=low
 
   * Upload to unstable.
