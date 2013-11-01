@@ -1,4 +1,4 @@
-gnome-desktop3 (3.10.1-1) unstable; urgency=low
+gnome-desktop3 (3.10.1-1) experimental; urgency=low
 
   * New upstream release
   * Sync with Ubuntu, bumped soname
