@@ -1,3 +1,11 @@
+gnome-desktop3 (3.13.91-1) experimental; urgency=medium
+
+  * New upstream development release.
+  * debian/libgnome-desktop-3-10.symbols:
+    Add new symbol gnome_wall_clock_string_for_datetime@Base 3.13.91
+
+ -- Andreas Henriksson <andreas@fatal.se>  Sat, 06 Sep 2014 05:54:46 -0700
+
 gnome-desktop3 (3.12.2-2) unstable; urgency=medium
 
   * Add debian/patches/realpath-PATH_MAX.patch (from upstream libgsystem)
