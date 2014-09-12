@@ -1,3 +1,9 @@
+gnome-desktop3 (3.12.2-3) UNRELEASED; urgency=medium
+
+  * debian/rules: Drop obsolete scrollkeeper configure flag
+
+ -- Tim Lunn <tim@feathertop.org>  Fri, 12 Sep 2014 18:29:03 +1000
+
 gnome-desktop3 (3.12.2-2) unstable; urgency=medium
 
   * Add debian/patches/realpath-PATH_MAX.patch (from upstream libgsystem)
