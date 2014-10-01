@@ -1,3 +1,10 @@
+gnome-desktop3 (3.14.0-2) UNRELEASED; urgency=medium
+
+  [ Tim Lunn ]
+  * debian/rules: Drop obsolete scrollkeeper configure flag
+
+ -- Michael Biebl <biebl@debian.org>  Wed, 01 Oct 2014 02:37:05 +0200
+
 gnome-desktop3 (3.14.0-1) unstable; urgency=medium
 
   * debian/watch: only search for stable releases.
