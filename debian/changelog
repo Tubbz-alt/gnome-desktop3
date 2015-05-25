@@ -1,6 +1,8 @@
 gnome-desktop3 (3.16.2-1) UNRELEASED; urgency=medium
 
   * New upstream release.
+  * Remove debian/patches/realpath-PATH_MAX.patch, upstream dropped the
+    libgsystem dependency.
 
  -- Michael Biebl <biebl@debian.org>  Tue, 26 May 2015 01:39:37 +0200
 
