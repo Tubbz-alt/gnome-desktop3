@@ -9,6 +9,7 @@ gnome-desktop3 (3.16.2-1) UNRELEASED; urgency=medium
   * Convert to multiarch. This includes moving the gnome-rr-debug tool into an
     architecture qualified path.
   * Bump debhelper compatibility level to 9.
+  * Bump Standards-Version to 3.9.6.
 
  -- Michael Biebl <biebl@debian.org>  Tue, 26 May 2015 01:39:37 +0200
 
