@@ -1,4 +1,4 @@
-gnome-desktop3 (3.16.2-1) UNRELEASED; urgency=medium
+gnome-desktop3 (3.16.2-1) unstable; urgency=medium
 
   * New upstream release.
   * Remove debian/patches/realpath-PATH_MAX.patch, upstream dropped the
@@ -13,7 +13,7 @@ gnome-desktop3 (3.16.2-1) UNRELEASED; urgency=medium
   * Update debian/copyright. Change shortname from 'MIT/X11 (BSD like)' to
     Expat to comply with the spec.
 
- -- Michael Biebl <biebl@debian.org>  Tue, 26 May 2015 01:39:37 +0200
+ -- Michael Biebl <biebl@debian.org>  Tue, 26 May 2015 02:13:04 +0200
 
 gnome-desktop3 (3.14.1-1) unstable; urgency=medium
 
