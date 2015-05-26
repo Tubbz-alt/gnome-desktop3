@@ -10,6 +10,8 @@ gnome-desktop3 (3.16.2-1) UNRELEASED; urgency=medium
     architecture qualified path.
   * Bump debhelper compatibility level to 9.
   * Bump Standards-Version to 3.9.6.
+  * Update debian/copyright. Change shortname of MIT/X11 (BSD like) to Expat
+    to comply with the spec.
 
  -- Michael Biebl <biebl@debian.org>  Tue, 26 May 2015 01:39:37 +0200
 
