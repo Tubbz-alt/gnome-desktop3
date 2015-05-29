@@ -18,7 +18,7 @@ LIB_PKG := libgnome-desktop-3-10
 DEB_CONFIGURE_LIBEXECDIR := \$${prefix}/lib/$(DEB_HOST_MULTIARCH)/$(LIB_PKG)
 
 DEB_CONFIGURE_EXTRA_FLAGS += \
-			--libdir=\$${prefix}/lib/$(DEB_HOST_MULTIARCH)
+			--libdir=\$${prefix}/lib/$(DEB_HOST_MULTIARCH) \
 			--with-gnome-distributor=$(shell dpkg-vendor --query vendor) \
 			--with-pnp-ids-path=/usr/share/hwdata/pnp.ids \
 			--enable-gtk-doc \
