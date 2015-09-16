@@ -1,3 +1,11 @@
+gnome-desktop3 (3.17.92-1) experimental; urgency=medium
+
+  * New upstream release candidante.
+  * Rename libgnome-desktop-3-10 package to libgnome-desktop-3-12.
+  * Update libgnome-desktop-3-12.symbols
+
+ -- Andreas Henriksson <andreas@fatal.se>  Wed, 16 Sep 2015 16:20:07 +0200
+
 gnome-desktop3 (3.16.2-2) unstable; urgency=medium
 
   * Add missing trailing slash to DEB_CONFIGURE_EXTRA_FLAGS arguments.
