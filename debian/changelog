@@ -1,3 +1,11 @@
+gnome-desktop3 (3.17.92-2) UNRELEASED; urgency=medium
+
+  * debian/rules, debian/libgnome-desktop-3-12.install:
+    - fix soname-like numbers in pkg/path names to have gnome-rr-debug
+      installed in expected libexec path, as spotted by Matteo F. Vescovi.
+
+ -- Andreas Henriksson <andreas@fatal.se>  Mon, 05 Oct 2015 13:00:51 +0200
+
 gnome-desktop3 (3.17.92-1) experimental; urgency=medium
 
   * New upstream release candidante.
