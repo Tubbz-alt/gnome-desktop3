@@ -1,11 +1,15 @@
 gnome-desktop3 (3.18.0-2) UNRELEASED; urgency=medium
 
+  [ Andreas Henriksson ]
   * libgnome-desktop-3-12: Add Breaks: libgnome-desktop-3-10
     - Forces a full upgrade. This is to prevent applications linking to
       and using both at the same time (which leads to crashed). That
       happens in eg. gdm3 built against libgnome-desktop-3-10 when using
       gir1.2-gnomedesktop-3.0 3.18.0-1 (built against
       libgnome-desktop-3-12).  (Closes: #801603)
+
+  [ Michael Biebl ]
+  * Upload to unstable.
 
  -- Andreas Henriksson <andreas@fatal.se>  Mon, 12 Oct 2015 16:25:00 +0200
 
