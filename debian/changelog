@@ -13,6 +13,7 @@ gnome-desktop3 (3.18.1-1) UNRELEASED; urgency=medium
   * New upstream release.
   * Drop debian/patches/git_update-swedish-translation.patch and
     debian/patches/auto_regenerated_sv_indexdocbook.patch, merged upstream.
+  * Bump Build-Depends on libglib2.0-dev to (>= 2.44.0) as per configure.ac.
 
  -- Andreas Henriksson <andreas@fatal.se>  Mon, 12 Oct 2015 16:25:00 +0200
 
