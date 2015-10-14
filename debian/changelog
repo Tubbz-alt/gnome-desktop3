@@ -1,4 +1,4 @@
-gnome-desktop3 (3.18.1-1) UNRELEASED; urgency=medium
+gnome-desktop3 (3.18.1-1) unstable; urgency=medium
 
   [ Andreas Henriksson ]
   * libgnome-desktop-3-12: Add Breaks: libgnome-desktop-3-10
@@ -15,7 +15,7 @@ gnome-desktop3 (3.18.1-1) UNRELEASED; urgency=medium
     debian/patches/auto_regenerated_sv_indexdocbook.patch, merged upstream.
   * Bump Build-Depends on libglib2.0-dev to (>= 2.44.0) as per configure.ac.
 
- -- Andreas Henriksson <andreas@fatal.se>  Mon, 12 Oct 2015 16:25:00 +0200
+ -- Michael Biebl <biebl@debian.org>  Wed, 14 Oct 2015 18:52:19 +0200
 
 gnome-desktop3 (3.18.0-1) experimental; urgency=medium
 
