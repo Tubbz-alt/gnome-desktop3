@@ -11,6 +11,8 @@ gnome-desktop3 (3.18.1-1) UNRELEASED; urgency=medium
   [ Michael Biebl ]
   * Upload to unstable.
   * New upstream release.
+  * Drop debian/patches/git_update-swedish-translation.patch and
+    debian/patches/auto_regenerated_sv_indexdocbook.patch, merged upstream.
 
  -- Andreas Henriksson <andreas@fatal.se>  Mon, 12 Oct 2015 16:25:00 +0200
 
