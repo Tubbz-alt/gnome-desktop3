@@ -1,3 +1,10 @@
+gnome-desktop3 (3.18.1-2) UNRELEASED; urgency=medium
+
+  * debian/rules: Pass --disable-date-in-gnome-version to the configure to
+    make the build reproducible (Closes: #784318)
+
+ -- Laurent Bigonville <bigon@debian.org>  Mon, 19 Oct 2015 10:46:23 +0200
+
 gnome-desktop3 (3.18.1-1) unstable; urgency=medium
 
   [ Andreas Henriksson ]
