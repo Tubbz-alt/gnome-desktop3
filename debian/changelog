@@ -1,4 +1,4 @@
-gnome-desktop3 (3.18.2-1) UNRELEASED; urgency=medium
+gnome-desktop3 (3.18.2-1) unstable; urgency=medium
 
   [ Laurent Bigonville ]
   * debian/rules: Pass --disable-date-in-gnome-version to the configure to
@@ -7,7 +7,7 @@ gnome-desktop3 (3.18.2-1) UNRELEASED; urgency=medium
   [ Michael Biebl ]
   * New upstream release.
 
- -- Laurent Bigonville <bigon@debian.org>  Mon, 19 Oct 2015 10:46:23 +0200
+ -- Michael Biebl <biebl@debian.org>  Wed, 11 Nov 2015 02:03:56 +0100
 
 gnome-desktop3 (3.18.1-1) unstable; urgency=medium
 
