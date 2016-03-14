@@ -1,5 +1,17 @@
-gnome-desktop3 (3.18.0-2) UNRELEASED; urgency=medium
+gnome-desktop3 (3.18.2-1) unstable; urgency=medium
 
+  [ Laurent Bigonville ]
+  * debian/rules: Pass --disable-date-in-gnome-version to the configure to
+    make the build reproducible (Closes: #784318)
+
+  [ Michael Biebl ]
+  * New upstream release.
+
+ -- Michael Biebl <biebl@debian.org>  Wed, 11 Nov 2015 02:03:56 +0100
+
+gnome-desktop3 (3.18.1-1) unstable; urgency=medium
+
+  [ Andreas Henriksson ]
   * libgnome-desktop-3-12: Add Breaks: libgnome-desktop-3-10
     - Forces a full upgrade. This is to prevent applications linking to
       and using both at the same time (which leads to crashed). That
@@ -7,7 +19,14 @@ gnome-desktop3 (3.18.0-2) UNRELEASED; urgency=medium
       gir1.2-gnomedesktop-3.0 3.18.0-1 (built against
       libgnome-desktop-3-12).  (Closes: #801603)
 
- -- Andreas Henriksson <andreas@fatal.se>  Mon, 12 Oct 2015 16:25:00 +0200
+  [ Michael Biebl ]
+  * Upload to unstable.
+  * New upstream release.
+  * Drop debian/patches/git_update-swedish-translation.patch and
+    debian/patches/auto_regenerated_sv_indexdocbook.patch, merged upstream.
+  * Bump Build-Depends on libglib2.0-dev to (>= 2.44.0) as per configure.ac.
+
+ -- Michael Biebl <biebl@debian.org>  Wed, 14 Oct 2015 18:52:19 +0200
 
 gnome-desktop3 (3.18.0-1) experimental; urgency=medium
 

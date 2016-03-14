@@ -21,6 +21,7 @@ DEB_CONFIGURE_EXTRA_FLAGS += \
 			--libdir=\$${prefix}/lib/$(DEB_HOST_MULTIARCH) \
 			--with-gnome-distributor=$(shell dpkg-vendor --query vendor) \
 			--with-pnp-ids-path=/usr/share/hwdata/pnp.ids \
+			--disable-date-in-gnome-version \
 			--enable-gtk-doc \
 			--enable-desktop-docs \
 			--enable-introspection
