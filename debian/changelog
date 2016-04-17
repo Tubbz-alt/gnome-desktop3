@@ -1,3 +1,18 @@
+gnome-desktop3 (3.19.93-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Update debian/libgnome-desktop-3-12.symbols with one addition.
+
+ -- Andreas Henriksson <andreas@fatal.se>  Thu, 17 Mar 2016 23:25:52 +0100
+
+gnome-desktop3 (3.19.92-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Bump build-dependency on libgdk-pixbuf2.0-dev to (>= 2.33.0)
+  * Bump Standards-Version to 3.9.7
+
+ -- Andreas Henriksson <andreas@fatal.se>  Mon, 14 Mar 2016 23:02:31 +0100
+
 gnome-desktop3 (3.18.2-1) unstable; urgency=medium
 
   [ Laurent Bigonville ]
