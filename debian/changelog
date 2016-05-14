@@ -1,56 +1,735 @@
-gnome-desktop (1:2.32.1-2ubuntu1) quantal; urgency=low
+gnome-desktop3 (3.18.2-1ubuntu1) xenial; urgency=medium
 
-  * Merge with Debian unstable (first time since Maverick). Dropping most of
-    our old Ubuntu changes as they are not relevant any more (most things use
-    gnome-desktop3 now).
-    Remaining Ubuntu changes:
-    - debian/changelog: Add an epoch, as some previous Ubuntu package
-      overzealously introduced one.
-    - debian/rules: Set "Ubuntu" GNOME distributor.
+  * Resynchronize on Debian, remaining changes
+    - debian/patches:
+      + 04_compute_average_color.patch: Compute the avergage color in
+        gnome-desktop itself, not in unity to fix some races (LP #963140)
+      + tweak_color_computation.patch, Patch from Gord, no patch header,
+        no bug link.
+      + git_revert_draw_background.patch
+      + ubuntu_language.patch, Ported relevant bits from g-c-c 
+        52_region_language.patch, as required for gnome 3.8 region panel
+      + ubuntu_language_list_from_SUPPORTED.patch,
+        adds api to get list of available languages from SUPPORTED file.
+        To be used by gnome 3.8 region panel language installation.
+      + gnomebg_hidpi_image.patch,
+        gnome_bg_create_surface: always honor device scale, that fixes
+        the wallpaper rendering in hidpi config under ubiquity (lp: #1382291)
+    - debian/libgnome-desktop-3-12.symbols:
+      + Add symbols included in Ubuntu patches
+    - debian/control.in:
+      + Mark gnome-desktop3-data Multi-Arch: foreign
 
- -- Martin Pitt <martin.pitt@ubuntu.com>  Thu, 03 May 2012 15:24:01 +0200
+ -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 17 Nov 2015 11:27:22 +0100
 
-gnome-desktop (2.32.1-2) unstable; urgency=low
+gnome-desktop3 (3.18.2-1) unstable; urgency=medium
 
-  * Stop building desktop-wide help documents and remove them from
-    gnome-desktop-data. Those files will be provided by gnome-desktop3-data.
-
- -- Michael Biebl <biebl@debian.org>  Tue, 03 Apr 2012 18:35:32 +0200
-
-gnome-desktop (2.32.1-1) unstable; urgency=low
-
-  [ Josselin Mouette ]
-  * Drop gnome-about package, now useless.
-  * Update repository URL.
+  [ Laurent Bigonville ]
+  * debian/rules: Pass --disable-date-in-gnome-version to the configure to
+    make the build reproducible (Closes: #784318)
 
   [ Michael Biebl ]
   * New upstream release.
-  * Remove debian/patches/01_rr_double_free.patch, merged upstream.
-  * Remove debian/patches/02_pnp_buffer_overflow.patch, merged upstream.
 
- -- Michael Biebl <biebl@debian.org>  Sun, 29 Jan 2012 07:35:24 +0100
+ -- Michael Biebl <biebl@debian.org>  Wed, 11 Nov 2015 02:03:56 +0100
 
-gnome-desktop (2.30.2-3) unstable; urgency=low
+gnome-desktop3 (3.18.1-1ubuntu1) xenial; urgency=low
 
-  * Bump debhelper compatibility level to 8.
-    - Update Build-Depends on debhelper.
-    - Strip debian/tmp/ from .install files.
-  * Switch to dh_python2.
-  * debian/patches/03_libm.patch:
-    - Link libgnome-desktop against -lm. Closes: #640438
+  * Merge with Debian (LP: #1510813), Remaining changes:
+    - debian/patches:
+      + 04_compute_average_color.patch: Compute the avergage color in
+        gnome-desktop itself, not in unity to fix some races (LP #963140)
+      + tweak_color_computation.patch, Patch from Gord, no patch header,
+        no bug link.
+      + git_revert_draw_background.patch
+      + ubuntu_language.patch, Ported relevant bits from g-c-c 
+        52_region_language.patch, as required for gnome 3.8 region panel
+      + ubuntu_language_list_from_SUPPORTED.patch,
+        adds api to get list of available languages from SUPPORTED file.
+        To be used by gnome 3.8 region panel language installation.
+      + gnomebg_hidpi_image.patch,
+        gnome_bg_create_surface: always honor device scale, that fixes
+        the wallpaper rendering in hidpi config under ubiquity (lp: #1382291)
+    - debian/libgnome-desktop-3-12.symbols:
+      + Add symbols included in Ubuntu patches
+    - debian/control.in:
+      + Mark gnome-desktop3-data Multi-Arch: foreign
+
+ -- Jackson Doak <noskcaj@ubuntu.com>  Wed, 14 Oct 2015 22:11:22 +0000
+
+gnome-desktop3 (3.18.1-1) unstable; urgency=medium
+
+  [ Andreas Henriksson ]
+  * libgnome-desktop-3-12: Add Breaks: libgnome-desktop-3-10
+    - Forces a full upgrade. This is to prevent applications linking to
+      and using both at the same time (which leads to crashed). That
+      happens in eg. gdm3 built against libgnome-desktop-3-10 when using
+      gir1.2-gnomedesktop-3.0 3.18.0-1 (built against
+      libgnome-desktop-3-12).  (Closes: #801603)
+
+  [ Michael Biebl ]
+  * Upload to unstable.
+  * New upstream release.
+  * Drop debian/patches/git_update-swedish-translation.patch and
+    debian/patches/auto_regenerated_sv_indexdocbook.patch, merged upstream.
+  * Bump Build-Depends on libglib2.0-dev to (>= 2.44.0) as per configure.ac.
+
+ -- Michael Biebl <biebl@debian.org>  Wed, 14 Oct 2015 18:52:19 +0200
+
+gnome-desktop3 (3.18.0-1) experimental; urgency=medium
+
+  * debian/rules, debian/libgnome-desktop-3-12.install:
+    - fix soname-like numbers in pkg/path names to have gnome-rr-debug
+      installed in expected libexec path, as spotted by Matteo F. Vescovi.
+  * Add debian/patches/git_update-swedish-translation.patch
+    - from upstream git, fixes swedish GFDL translation.
+      Thanks to Anders Jonsson.
+  * Add debian/patches/auto_regenerated_sv_indexdocbook.patch
+    - this is the autogenerated result from the above patch,
+      only added to please lintian. Should be dropped as soon as
+      the above patch is part of the released tarball.
+  * The source is now clean, but lintian still complains about the
+    patches.... add overrides in debian/source/lintian-overrides
+    This file should also be dropped once the above patches are...
+  * New upstream release.
+
+ -- Andreas Henriksson <andreas@fatal.se>  Thu, 08 Oct 2015 16:34:45 +0200
+
+gnome-desktop3 (3.17.92-1) experimental; urgency=medium
+
+  * New upstream release candidante.
+  * Rename libgnome-desktop-3-10 package to libgnome-desktop-3-12.
+  * Update libgnome-desktop-3-12.symbols
+
+ -- Andreas Henriksson <andreas@fatal.se>  Wed, 16 Sep 2015 16:20:07 +0200
+
+gnome-desktop3 (3.16.2-2ubuntu2) wily; urgency=medium
+
+  * debian/patches/ubuntu_language_list_from_SUPPORTED.patch: don't
+    strip the territory code from languages returned by 
+    gnome_get_all_languages() (LP: #1479907) 
+
+ -- Tim Lunn <tim@feathertop.org>  Fri, 11 Sep 2015 15:10:16 +1000
+
+gnome-desktop3 (3.16.2-2ubuntu1) wily; urgency=medium
+
+  * Merge with Debian (LP: #1468941), Remaining changes:
+    - debian/patches:
+      + 04_compute_average_color.patch: Compute the avergage color in
+        gnome-desktop itself, not in unity to fix some races (LP #963140)
+      + tweak_color_computation.patch, Patch from Gord, no patch header,
+        no bug link.
+      + git_revert_draw_background.patch
+      + ubuntu_language.patch, Ported relevant bits from g-c-c 
+        52_region_language.patch, as required for gnome 3.8 region panel
+      + ubuntu_language_list_from_SUPPORTED.patch,
+        adds api to get list of available languages from SUPPORTED file.
+        To be used by gnome 3.8 region panel language installation.
+      + gnomebg_hidpi_image.patch,
+        gnome_bg_create_surface: always honor device scale, that fixes
+        the wallpaper rendering in hidpi config under ubiquity (lp: #1382291)
+    - debian/libgnome-desktop-3-10.symbols:
+      + Add symbols included in Ubuntu patches
+    - debian/control.in:
+      + Mark gnome-desktop3-data Multi-Arch: foreign
+
+  [ Gunnar Hjalmarsson ]
+  * debian/patches/ubuntu_language.patch:
+    - Show possible locale modifier in formats list (LP: #1440275).
+
+ -- Tim Lunn <tim@feathertop.org>  Tue, 30 Jun 2015 18:17:53 +1000
+
+gnome-desktop3 (3.16.2-2) unstable; urgency=medium
+
+  * Add missing trailing slash to DEB_CONFIGURE_EXTRA_FLAGS arguments.
+
+ -- Michael Biebl <biebl@debian.org>  Sat, 30 May 2015 01:46:21 +0200
+
+gnome-desktop3 (3.16.2-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Remove debian/patches/realpath-PATH_MAX.patch, upstream dropped the
+    libgsystem dependency.
+  * Drop obsolete Breaks/Replaces from pre-wheezy.
+  * Drop explicit Build-Depends on dpkg-dev, even the version from wheezy
+    provides dpkg-vendor.
+  * Convert to multiarch. This includes moving the gnome-rr-debug tool into an
+    architecture qualified path.
+  * Bump debhelper compatibility level to 9.
+  * Bump Standards-Version to 3.9.6.
+  * Update debian/copyright. Change shortname from 'MIT/X11 (BSD like)' to
+    Expat to comply with the spec.
+
+ -- Michael Biebl <biebl@debian.org>  Tue, 26 May 2015 02:13:04 +0200
+
+gnome-desktop3 (3.14.1-1ubuntu3) wily; urgency=medium
+
+  * debian/patches/ubuntu_language.patch:
+    - Drop modification of collect_locales() in gnome-languages.c
+      (LP: #1440275).
+
+ -- Gunnar Hjalmarsson <gunnarhj@ubuntu.com>  Tue, 23 Jun 2015 22:49:00 +0200
+
+gnome-desktop3 (3.14.1-1ubuntu2) vivid; urgency=medium
+
+  * debian/patches/gnomebg_hidpi_image.patch:
+    - gnome_bg_create_surface: always honor device scale, that fixes
+      the wallpaper rendering in hidpi config under ubiquity,
+      thanks Lars Uebernickel (lp: #1382291)
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 18 Mar 2015 18:16:55 +0100
+
+gnome-desktop3 (3.14.1-1ubuntu1) vivid; urgency=medium
+
+  * Merge with Debian, Remaining changes:
+    - debian/patches:
+      + 04_compute_average_color.patch: Compute the avergage color in
+        gnome-desktop itself, not in unity to fix some races (LP #963140)
+      + tweak_color_computation.patch, Patch from Gord, no patch header,
+        no bug link.
+      + git_revert_draw_background.patch
+      + ubuntu_language.patch, Ported relevant bits from g-c-c 
+        52_region_language.patch, as required for gnome 3.8 region panel
+      + ubuntu_language_list_from_SUPPORTED.patch,
+        adds api to get list of available languages from SUPPORTED file.
+        To be used by gnome 3.8 region panel language installation.
+    - debian/libgnome-desktop-3-10.symbols:
+      + Add symbols included in Ubuntu patches
+    - debian/control.in:
+      + Mark gnome-desktop3-data Multi-Arch: foreign
+
+ -- Jackson Doak <noskcaj@ubuntu.com>  Tue, 31 Oct 2014 07:46:09 +1100
+
+gnome-desktop3 (3.14.1-1) unstable; urgency=medium
+
+  [ Tim Lunn ]
+  * debian/rules: Drop obsolete scrollkeeper configure flag
+
+  [ Sjoerd Simons ]
+  * New upstream release
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Sun, 19 Oct 2014 17:10:20 +0200
+
+gnome-desktop3 (3.14.0-1) unstable; urgency=medium
+
+  * debian/watch: only search for stable releases.
+  * New upstream release.
+  * Upload to unstable.
+
+ -- Andreas Henriksson <andreas@fatal.se>  Tue, 23 Sep 2014 00:10:19 +0200
+
+gnome-desktop3 (3.13.91-1) experimental; urgency=medium
+
+  * New upstream development release.
+  * debian/libgnome-desktop-3-10.symbols:
+    Add new symbol gnome_wall_clock_string_for_datetime@Base 3.13.91
+
+ -- Andreas Henriksson <andreas@fatal.se>  Sat, 06 Sep 2014 05:54:46 -0700
+
+gnome-desktop3 (3.12.2-2ubuntu1) utopic; urgency=medium
+
+  * New upstream release (LP: #1372346)
+  * Merge with Debian, Remaining changes:
+    - debian/patches:
+      + 04_compute_average_color.patch: Compute the avergage color in
+        gnome-desktop itself, not in unity to fix some races (LP #963140)
+      + tweak_color_computation.patch, Patch from Gord, no patch header,
+        no bug link.
+      + git_revert_draw_background.patch
+      + ubuntu_language.patch, Ported relevant bits from g-c-c 
+        52_region_language.patch, as required for gnome 3.8 region panel
+      + ubuntu_language_list_from_SUPPORTED.patch,
+        adds api to get list of available languages from SUPPORTED file.
+        To be used by gnome 3.8 region panel language installation.
+    - debian/rules:
+      + drop obsolete --disable-scrollkeeper configure flag
+    - debian/libgnome-desktop-3-10.symbols:
+      + Add symbols included in Ubuntu patches
+    - debian/control.in:
+      + Mark gnome-desktop3-data Multi-Arch: foreign
+  * Dropped changes:
+    - 02_refuse_to_break_GL_compositors.patch:
+      + xrandr code has moved into libunity-settings-daemon now
+
+ -- Tim Lunn <tim@feathertop.org>  Fri, 12 Sep 2014 07:22:38 +1000
+
+gnome-desktop3 (3.12.2-2) unstable; urgency=medium
+
+  * Add debian/patches/realpath-PATH_MAX.patch (from upstream libgsystem)
+    - avoids PATH_MAX to hopefully fix FTBFS on Hurd.
+
+ -- Andreas Henriksson <andreas@fatal.se>  Tue, 15 Jul 2014 23:49:32 +0200
+
+gnome-desktop3 (3.12.2-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Bump Standards-Version to 3.9.5
+  * Upload to unstable.
+
+ -- Andreas Henriksson <andreas@fatal.se>  Mon, 14 Jul 2014 23:13:58 +0200
+
+gnome-desktop3 (3.12.1-1) experimental; urgency=medium
+
+  * Drop conflicts against libgnome-desktop-3-7 because it is not 
+    necessary: only leaf packages in G3.8 use gnome-desktop, including 
+    gnome-shell that does work with the new g-desktop library.
+  * New upstream bugfix release.
+
+ -- Josselin Mouette <joss@debian.org>  Sat, 26 Apr 2014 14:09:27 +0200
+
+gnome-desktop3 (3.12.0-1) experimental; urgency=medium
+
+  * New upstream release.
+
+ -- Andreas Henriksson <andreas@fatal.se>  Mon, 24 Mar 2014 20:02:56 +0100
+
+gnome-desktop3 (3.11.90-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Rename packages to match new soname.
+  * Drop build-dependency on libxkbfile-dev, not needed anymore.
+  * Update symbols file for new soname.
+  * Drop empty debian/patches/
+  * Break libgnome-desktop-3-8 for the same reason as libgnome-desktop-3-7.
+
+ -- Andreas Henriksson <andreas@fatal.se>  Tue, 18 Feb 2014 20:27:37 +0100
+
+gnome-desktop3 (3.10.1-2) experimental; urgency=low
+
+  * Make libgnome-desktop-3-8 break libgnome-desktop-3-7. Mixing both on one
+    system is a recipe for disaster when using gnome-desktop via
+    gobject-introspection.
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Sun, 03 Nov 2013 11:11:35 +0100
+
+gnome-desktop3 (3.10.1-1) experimental; urgency=low
+
+  * New upstream release
+  * Sync with Ubuntu, bumped soname
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Fri, 01 Nov 2013 22:45:28 +0100
+
+gnome-desktop3 (3.8.4-2) unstable; urgency=low
+
+  * Upload to unstable.
+
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Sun, 13 Oct 2013 17:26:27 +0200
+
+gnome-desktop3 (3.8.4-1) experimental; urgency=low
+
+  [ Jeremy Bicha ]
+  * Remove obsolete build dependency on gnome-doc-utils.
+
+  [ Laurent Bigonville ]
+  * New upstream release.
+    - Prevent a crash with unknown language/country codes (Closes: #692453)
+  * debian/control.in: Bump Standards-Version to 3.9.4 (no further changes)
+
+ -- Laurent Bigonville <bigon@debian.org>  Wed, 04 Sep 2013 20:16:36 +0200
+
+gnome-desktop3 (3.8.4-0ubuntu3) trusty; urgency=medium
+
+  * debian/patches/backlight-property-name.patch:
+    - Use the corrent backlight property name as specified in the XRANDR spec
+      (LP: #947919)
+
+ -- Robert Ancell <robert.ancell@canonical.com>  Mon, 17 Mar 2014 17:28:55 +1300
+
+gnome-desktop3 (3.8.4-0ubuntu2) trusty; urgency=low
+
+  * debian/patches/ignore_errors_with_primary_outputs.patch:
+    - Ignore failures when setting the primary output (LP: 1224254).
+
+ -- Alberto Milone <alberto.milone@canonical.com>  Tue, 03 Dec 2013 15:58:57 +0100
+
+gnome-desktop3 (3.8.4-0ubuntu1) saucy; urgency=low
+
+  * New upstream bugfix release
+    - Initialize gettext before constructing a wall clock
+    - Update pnp.ids from upstream hwdata
+    - Fix crash when XRRSetCrtcConfig() fails
+    - Prevent a crash with unknown language/country codes
+    - Ensure strings from xkeyboard-config are UTF-8
+    - Translation updates
+
+ -- Jeremy Bicha <jbicha@ubuntu.com>  Wed, 04 Sep 2013 15:08:54 -0400
+
+gnome-desktop3 (3.8.3-1) experimental; urgency=low
+
+  * Remove obsolete build dependency on scrollkeeper.
+  * New upstream release.
+
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Sat, 08 Jun 2013 18:21:56 +0200
+
+gnome-desktop3 (3.8.3-0ubuntu1) saucy; urgency=low
+
+  * New upstream release
+  * debian/control.in:
+    - Drop obsolete gnome-doc-utils and scrollkeeper build dependencies
+
+ -- Jeremy Bicha <jbicha@ubuntu.com>  Mon, 22 Jul 2013 01:39:16 -0400
+
+gnome-desktop3 (3.8.2-0ubuntu2) saucy; urgency=low
+
+  * debian/patches/git_no_filename_warning.patch:
+    - "gnome-bg: objects without a filename are not slideshows",
+      that should fix the warnings that are displayed by the appareance 
+      capplet on start (which are due to solid color backgrounds)
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 11 Jun 2013 17:28:13 +0200
+
+gnome-desktop3 (3.8.2-0ubuntu1) saucy; urgency=low
+
+  * New upstream release
+  * Sync with Debian (LP: #1184812) Remaining changes:
+    - debian/patches:
+      + 04_compute_average_color.patch: Compute the avergage color in
+        gnome-desktop itself, not in unity to fix some races (LP #963140)
+      + tweak_color_computation.patch, Patch from Gord, no patch header,
+        no bug link.
+      + git_revert_draw_background.patch
+      + ubuntu_language.patch, Ported relevant bits from g-c-c 
+        52_region_language.patch, as required for gnome 3.8 region panel
+      + ubuntu_language_list_from_SUPPORTED.patch,
+        adds api to get list of available languages from SUPPORTED file.
+        To be used by gnome 3.8 region panel language installation.
+    - debian/control.in:
+      + Don't break gnome-shell << 3.7.90
+      + Use source:Version for gnome-desktop3-data Depend
+      + Add epoch to gnome-desktop3-data's Breaks/Replaces, as our old
+        gnome-desktop source package introduced an epoch. This needs to be
+        kept until after 14.04 LTS.
+   - Install helper tools into a versioned directory (by overriding
+     libexecdir). They could alternatively be installed in a separate package
+  * Dropped changes:
+    - 02_refuse_to_break_GL_compositors.patch:
+      + Doesn't appear to be needed any more
+ 
+ -- Tim Lunn <tim@feathertop.org>  Tue, 28 May 2013 09:10:46 +1000
+
+gnome-desktop3 (3.8.0.1-2) experimental; urgency=low
+
+  * debian/libgnome-desktop-3-7.symbols:
+    + Add Build-Depends-Package.
+
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Thu, 28 Mar 2013 12:27:26 +0100
+
+gnome-desktop3 (3.8.0.1-1) experimental; urgency=low
+
+  * New upstream release.
+
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Wed, 27 Mar 2013 19:12:14 +0100
+
+gnome-desktop3 (3.8.0-1) experimental; urgency=low
+
+  * New upstream release.
+
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Wed, 27 Mar 2013 15:00:52 +0100
+
+gnome-desktop3 (3.7.92-1) experimental; urgency=low
+
+  * New upstream release.
+
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Wed, 20 Mar 2013 19:48:45 +0100
+
+gnome-desktop3 (3.7.91.1-1) experimental; urgency=low
+
+  [ Jeremy Bicha ]
+  * New upstream release
+    - soname bump, update symbols
+  * debian/control.in:
+    - Build-depend on libgl1-mesa-dev and iso-codes
+    - Bump minimum glib
+
+  [ Emilio Pozuelo Monfort ]
+  * debian/control.in:
+    + Add missing replaces on libgnome-desktop-3-4.
+    + gir1.2-gnomedesktop-3.0 breaks gnome-shell (<< 3.7.90),
+      as it loads libgnome-desktop-3.so.7 while old gnome-shell
+      loads the old SONAME, making shell explode.
+  * New upstream release.
+    + debian/libgnome-desktop-3-7.symbols:
+      - Updated for removed symbols.
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Mon, 18 Mar 2013 20:44:24 +0100
+
+gnome-desktop3 (3.6.1-1) experimental; urgency=low
+
+  * debian/control.in: Temporarily loosen the depend on the data package so the
+    library can be parallel installed with the G3.4 version
+  * New upstream release
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Thu, 18 Oct 2012 22:40:37 +0200
+
+gnome-desktop3 (3.6.0.1-1) experimental; urgency=low
+
+  [ Josselin Mouette ]
+  * Add missing epoch on libxrandr build-dependency.
+
+  [ Sjoerd Simons ]
+  * New upstream release (3.6.0.1)
+  * Soname bumped to 4
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Sun, 14 Oct 2012 18:51:51 +0200
+
+gnome-desktop3 (3.4.2-2) unstable; urgency=low
+
+  * Team upload.
+
+  [ Josselin Mouette ]
+  * Add missing epoch on libxrandr build-dependency.
+
+  [ Emilio Pozuelo Monfort ]
+  * debian/control.in:
+    + Loosen libgnome-desktop-3-2 dependency on gnome-desktop3-data
+      so that the former can be coinstalled with other sonames of
+      the library. Closes: #704177.
+
+  [ Simon McVittie ]
+  * Add patch from upstream 3.5.3 to sync thumbnail location with GLib
+    2.34+ (~/.cache/thumbnails instead of ~/.thumbnails), preventing
+    infinite loops in which Nautilus will generate thumbnails of thumbnails.
+    Closes: #708185.
+    + Explicitly (build-)depend on GLib 2.34+ to make sure the system is
+      consistent
+    + Thumbnails are now in a well-known cache directory (Closes: #637049)
+
+ -- Simon McVittie <smcv@debian.org>  Wed, 15 May 2013 09:01:28 +0100
+
+gnome-desktop3 (3.4.2-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Michael Biebl <biebl@debian.org>  Mon, 14 May 2012 19:26:59 +0200
+
+gnome-desktop3 (3.4.1-2) unstable; urgency=low
+
+  * Upload to unstable.
+
+ -- Michael Biebl <biebl@debian.org>  Thu, 19 Apr 2012 03:50:19 +0200
+
+gnome-desktop3 (3.4.1-1) experimental; urgency=low
+
+  * New upstream translation release.
+
+ -- Michael Biebl <biebl@debian.org>  Mon, 16 Apr 2012 18:07:14 +0200
+
+gnome-desktop3 (3.4.0-1) experimental; urgency=low
+
+  * New upstream release.
+  * debian/patches/01-clock_gettime.patch: Removed, merged upstream.
+  * Bump (Build-)Depends on libgtk-3-dev to (>= 3.3.6).
+  * Bump Build-Depends on libxrandr-dev to (>= 1.3).
+  * debian/libgnome-desktop-3-2.symbols: Add new symbols and remove
+    gnome_rr_crtc_set_config. None of the reverse dependencies uses that
+    function so this should be safe without a soname bump.
+
+ -- Michael Biebl <biebl@debian.org>  Tue, 03 Apr 2012 19:35:04 +0200
+
+gnome-desktop3 (3.2.1-4) unstable; urgency=low
+
+  * Build system-wide help documents and install them in gnome-desktop3-data.
+  * Add the necessary Breaks/Replaces against gnome-desktop-data (<< 2.32.1-2)
+    which previously shipped those files.
+  * Build gtk-doc API documentation.
+  * debian/patches/01-clock_gettime.patch: Link libgnome-desktop against librt
+    for clock_gettime().
   * Use dh-autoreconf to update the build system.
+  * Update debian/copyright using the machine-readable copyright format 1.0.
+  * Bump Standards-Version to 3.9.3.
+  * Set pkg-gnome-maintainers@lists.alioth.debian.org as Maintainer.
+
+ -- Michael Biebl <biebl@debian.org>  Tue, 03 Apr 2012 19:17:35 +0200
+
+gnome-desktop3 (3.2.1-3) unstable; urgency=low
+
+  * Upload to unstable.
+  * debian/control.in:
+    - Tighten dependency on gnome-desktop3-data again.
+    - Change section of gir1.2-gnomedesktop-3.0 to introspection.
+
+ -- Michael Biebl <biebl@debian.org>  Wed, 07 Dec 2011 05:58:38 +0100
+
+gnome-desktop3 (3.2.1-2) experimental; urgency=low
+
+  * debian/control.in:
+    - Loosen the dependency on gnome-desktop-data for now such that
+      libgnome-desktop-3-2 is installable in parallel with
+      libgnome-desktop-3-0
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Thu, 27 Oct 2011 11:30:24 +0200
+
+gnome-desktop3 (3.2.1-1) experimental; urgency=low
+
+  * New upstream release.
+    - Link against -lm for sqrt. Closes: #640437
+  * debian/watch:
+    - Update to version 3.
+    - Track .xz tarballs.
+  * debian/control.in:
+    - Use Section: libs for gir1.2-gnomedesktop-3.0.
+    - Drop (Build-)Depends on libstartup-notification0-dev.
+    - Add Build-Depends on libxext-dev.
+    - Update Vcs-* URLs.
+    - Bump Build-Depends on intltool to (>= 0.40.6).
+  * debian/rules:
+    - List missing files.
+    - Include utils.mk for list-missing.
+    - Drop clean-la.mk since we don't install any .la files.
+  * debian/libgnome-desktop-3-dev.install:
+    - Remove .a file, static libraries are no longer built by default.
+  * Update libgnome-desktop-3 library package for the SONAME bump 0 → 2.
+
+ -- Michael Biebl <biebl@debian.org>  Sun, 16 Oct 2011 20:33:13 +0200
+
+gnome-desktop3 (3.0.2-2) unstable; urgency=low
+
+  * Upload to unstable.
+  * Bump debhelper compatibility level to 8.
   * Bump Standards-Version to 3.9.2. No further changes.
+  * debian/watch: Switch to .bz2 tarballs.
 
- -- Michael Biebl <biebl@debian.org>  Sat, 29 Oct 2011 13:18:01 +0200
+ -- Michael Biebl <biebl@debian.org>  Fri, 03 Jun 2011 19:37:17 +0200
 
-gnome-desktop (2.30.2-2) unstable; urgency=low
+gnome-desktop3 (3.0.2-1) experimental; urgency=low
 
-  * Include crasher fixes on upstream’s advice.
-    + 01_rr_double_free.patch: double free in the RandR code.
-    + 02_pnp_buffer_overflow.patch: buffer overrun in the PNP parsing 
-      code.
+  [ Rico Tzschichholz ]
+  * debian/{rules,control.in,libgnome-desktop-3-dev,
+    gir1.2-gnomedesktop-3.0.install}:
+    - enable introspection build and add required files
 
- -- Josselin Mouette <joss@debian.org>  Fri, 12 Nov 2010 20:00:44 +0100
+  [ Sebastien Bacher ]
+  * New upstream version
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 24 May 2011 16:57:25 +0200
+
+gnome-desktop3 (3.0.1-1) experimental; urgency=low
+
+  [ Guido Günther ]
+  * libgnome-desktop-3-0.symbols: add Build-Depends-Package to generate
+    stricter build-deps
+
+  [ Sebastien Bacher ]
+  * New upstream version
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 18 May 2011 13:30:52 +0200
+
+gnome-desktop3 (3.0.0-1) experimental; urgency=low
+
+  * New upstream release.
+
+ -- Frederic Peters <fpeters@debian.org>  Wed, 13 Apr 2011 16:11:09 +0200
+
+gnome-desktop3 (2.91.93-1) experimental; urgency=low
+
+  * New upstream release.
+
+ -- Frederic Peters <fpeters@debian.org>  Thu, 24 Mar 2011 22:23:12 +0100
+
+gnome-desktop3 (2.91.92-1) experimental; urgency=low
+
+  * New upstream release.
+
+  [ Josselin Mouette ]
+  * Add missing dependency on gnome-desktop3-data.
+
+  [ Frederic Peters ]
+  * debian/control.in: update dependency on gsettings-desktop-schemas.
+  * debian/rules: disable introspection support at the moment.
+
+ -- Frederic Peters <fpeters@debian.org>  Tue, 22 Mar 2011 14:03:34 +0100
+
+gnome-desktop3 (2.91.6.1-1) experimental; urgency=low
+
+  [ Sebastien Bacher ]
+  * debian/rules: use dpkg-vendor to set the distributor
+
+  [ Emilio Pozuelo Monfort ]
+  * New upstream release.
+  * debian/control.in:
+    - Update for the new gtk+ package names.
+
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Sat, 19 Feb 2011 14:32:54 +0000
+
+gnome-desktop3 (2.91.6-1) experimental; urgency=low
+
+  * New upstream release.
+    + debian/control.in,
+      debian/rules,
+      debian/gnome-about.install:
+      - gnome-about is gone, drop every reference to it.
+    + debian/patches/00git_no_GDK_DRAWABLE.patch,
+      debian/patches/00git_no_GDK_WINDOW_TYPE.patch,
+      debian/patches/00git_no_gdk_x11_drawable_get_xid.patch:
+      - Dropped, fixed upstream.
+    + debian/libgnome-desktop-3-0.symbols:
+      - Updated.
+    + debian/control.in:
+      - Depend / Build-Depend on gsettings-desktop-schemas(-dev) >= 0.1.4
+        for org.gnome.desktop.thumbnailers.
+      - Bump libgtk3.0-dev build dependency.
+    + debian/rules,
+      debian/gnome-desktop3-data.install:
+      - gnome-version.xml is back. Install it and build with
+        --with-gnome-distributor=Debian again.
+
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Wed, 12 Jan 2011 22:12:39 +0000
+
+gnome-desktop3 (2.91.3-3) experimental; urgency=low
+
+  [ Sebastien Bacher ]
+  * debian/control.in: updated the dpkg-dev build-depends
+  * debian/rules:
+    - use dpkg-vendor to set the distributor
+
+  [ Sjoerd Simons ]
+  * Merge patches to build against new GTK+ from the ubuntu packaging
+    (originally from git)
+  * Update debian build-depend to >= 2.91.6
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Sat, 18 Dec 2010 18:34:09 +0000
+
+gnome-desktop3 (2.91.3-2) experimental; urgency=low
+
+  * debian/control.in:
+    - Let libgnome-desktop-3-dev depend on
+      gsettings-desktop-schemas-dev.
+  * debian/rules:
+    - Fail the build if the .symbols file is not updated.
+  * debian/libgnome-desktop-3-0.symbols:
+    - Updated.
+
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Sun, 05 Dec 2010 22:23:51 +0100
+
+gnome-desktop3 (2.91.3-1) experimental; urgency=low
+
+  [ Sebastien Bacher ]
+  * New upstream version
+  * Rename the source for the GNOME3 version since they are abi incompatible
+  * debian/control.in:
+    - build-depends on gsettings-desktop-schemas-dev
+    - clean some old conflicts and replaces
+    - depends on gsettings-desktop-schemas
+    - don't build the gnome-about binary from this version
+    - updated description
+    - updated for the source and binaries renaming
+    - updated the build-depends and depends
+  * Updated the .install for the new version
+  * debian/patches/99_ltmain_as-needed.patch:
+    - refreshed
+  * debian/libgnome-desktop-3-0.symbols:
+    - use a .symbols rather than shlibs
+  * debian/rules:
+    - dropped shlibs update since .symbols are used
+    - updated to the new library name
+    - use quilt as a patch system
+    - use --disable-gnome-about --disable-desktop-docs to avoid conflicting 
+      with the gtk2 version
+
+  [ Sjoerd Simons ]
+  * New upstream release
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Sat, 27 Nov 2010 22:23:42 +0000
 
 gnome-desktop (2.30.2-1) unstable; urgency=low
 
@@ -1756,3 +2435,4 @@ gnome-core (0.13-1) unstable; urgency=low
   * Initial Release.
 
  -- Jim Pick <jim@jimpick.com>  Mon, 16 Mar 1998 15:27:43 -0800
+
