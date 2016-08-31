@@ -1,6 +1,7 @@
 gnome-desktop3 (3.21.90-2) UNRELEASED; urgency=medium
 
   * Drop Recommends: hwdata as we use udev's hwdb now to query PNP IDs.
+  * Install AUTHORS NEWS README in libgnome-desktop-3-12.
 
  -- Michael Biebl <biebl@debian.org>  Wed, 31 Aug 2016 23:09:37 +0200
 
