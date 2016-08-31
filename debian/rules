@@ -1,10 +1,9 @@
 #!/usr/bin/make -f
 
-GNOME_MODULE=gnome-desktop
-
 -include /usr/share/gnome-pkg-tools/1/rules/gnome-get-source.mk
 
-# Library package list for override_dh_makeshlibs (assumes only one match)
+GNOME_MODULE := gnome-desktop
+
 LIB_PKG := $(filter-out %-dev %-dbg %-bin,$(filter lib%,$(shell dh_listpackages)))
 
 export DEB_LDFLAGS_MAINT_APPEND = -Wl,-z,defs -Wl,-O1 -Wl,--as-needed
@@ -17,17 +16,15 @@ override_dh_autoreconf:
 
 override_dh_auto_configure:
 	dh_auto_configure -- \
-			--libexecdir=\$${prefix}/lib/$(DEB_HOST_MULTIARCH)/$(LIB_PKG) \
-
-			--with-gnome-distributor=$(shell dpkg-vendor --query vendor) \
-			--disable-date-in-gnome-version \
-			--enable-gtk-doc \
-			--enable-desktop-docs \
-			--enable-introspection
+		--libexecdir=\$${libdir}/$(LIB_PKG) \
+		--with-gnome-distributor=$(shell dpkg-vendor --query vendor) \
+		--disable-date-in-gnome-version \
+		--enable-gtk-doc \
+		--enable-desktop-docs \
+		--enable-introspection
 
 override_dh_makeshlibs:
-	dh_makeshlibs -N $(LIB_PKG)
-	dh_makeshlibs -p $(LIB_PKG) -- -c4
+	dh_makeshlibs -- -c4
 
 override_dh_install:
 	dh_install --list-missing
