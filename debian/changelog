@@ -1,3 +1,12 @@
+gnome-desktop3 (3.21.90-3) UNRELEASED; urgency=medium
+
+  * Add Build-Depends-Package to libgnome-desktop-3-12.symbols.
+    This ensures proper dependencies when a package has a Build-Depends on a
+    higher version of libgnome-desktop-3-dev then what it gets from the used
+    symbols.
+
+ -- Michael Biebl <biebl@debian.org>  Thu, 01 Sep 2016 11:53:19 +0200
+
 gnome-desktop3 (3.21.90-2) unstable; urgency=medium
 
   * Drop Recommends: hwdata as we use udev's hwdb now to query PNP IDs.
