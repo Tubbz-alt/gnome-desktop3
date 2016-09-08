@@ -1,7 +1,7 @@
 gnome-desktop3 (3.21.90-4) UNRELEASED; urgency=medium
 
-  * Add Breaks: mutter (<< 3.21) to avoid dbus api changes mismatch
-    on partial upgrades. (Closes: #836939)
+  * Add Breaks: mutter (<< 3.21.2) to avoid dbus api changes mismatch
+    on partial upgrades. (Closes: #836972)
 
  -- Andreas Henriksson <andreas@fatal.se>  Thu, 08 Sep 2016 13:23:46 +0200
 
