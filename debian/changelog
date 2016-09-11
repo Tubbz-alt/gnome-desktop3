@@ -1,3 +1,58 @@
+gnome-desktop3 (3.20.2-1ubuntu1) yakkety; urgency=low
+
+  * Resynchronize on Debian, remaining changes
+    - debian/patches:
+      + 04_compute_average_color.patch: Compute the avergage color in
+        gnome-desktop itself, not in unity to fix some races (LP #963140)
+      + tweak_color_computation.patch, Patch from Gord, no patch header,
+        no bug link.
+      + git_revert_draw_background.patch
+      + ubuntu_language.patch, Ported relevant bits from g-c-c 
+        52_region_language.patch, as required for gnome 3.8 region panel
+      + ubuntu_language_list_from_SUPPORTED.patch,
+        adds api to get list of available languages from SUPPORTED file.
+        To be used by gnome 3.8 region panel language installation.
+      + gnomebg_hidpi_image.patch,
+        gnome_bg_create_surface: always honor device scale, that fixes
+        the wallpaper rendering in hidpi config under ubiquity (lp: #1382291)
+    - debian/libgnome-desktop-3-12.symbols:
+      + Add symbols included in Ubuntu patches
+    - debian/control.in:
+      + Mark gnome-desktop3-data Multi-Arch: foreign
+
+ -- Iain Lane <iain@orangesquash.org.uk>  Tue, 14 Jun 2016 15:52:56 +0100
+
+gnome-desktop3 (3.20.2-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Bump Standards-Version to 3.9.8.
+
+ -- Michael Biebl <biebl@debian.org>  Wed, 11 May 2016 17:17:07 +0200
+
+gnome-desktop3 (3.20.1-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Drop Depends on libxkbfile-dev from libgnome-desktop-3-dev, not needed
+    anymore.
+  * Upload to unstable.
+
+ -- Michael Biebl <biebl@debian.org>  Sun, 17 Apr 2016 18:46:20 +0200
+
+gnome-desktop3 (3.19.93-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Update debian/libgnome-desktop-3-12.symbols with one addition.
+
+ -- Andreas Henriksson <andreas@fatal.se>  Thu, 17 Mar 2016 23:25:52 +0100
+
+gnome-desktop3 (3.19.92-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Bump build-dependency on libgdk-pixbuf2.0-dev to (>= 2.33.0)
+  * Bump Standards-Version to 3.9.7
+
+ -- Andreas Henriksson <andreas@fatal.se>  Mon, 14 Mar 2016 23:02:31 +0100
+
 gnome-desktop3 (3.18.2-1ubuntu1) xenial; urgency=medium
 
   * Resynchronize on Debian, remaining changes

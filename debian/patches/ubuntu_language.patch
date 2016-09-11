@@ -13,9 +13,11 @@ Last-Update: 2013-04-10
  * The 'common_name' field taken into account when parsing the iso-codes XML files
    for language names.
 
---- gnome-desktop-3.16.2.orig/libgnome-desktop/gnome-languages.c
-+++ gnome-desktop-3.16.2/libgnome-desktop/gnome-languages.c
-@@ -787,6 +787,7 @@
+Index: b/libgnome-desktop/gnome-languages.c
+===================================================================
+--- a/libgnome-desktop/gnome-languages.c
++++ b/libgnome-desktop/gnome-languages.c
+@@ -788,6 +788,7 @@
          const char *ccode_longT;
          const char *ccode;
          const char *ccode_id;
@@ -23,7 +25,7 @@ Last-Update: 2013-04-10
          const char *lang_name;
  
          if (! (g_str_equal (element_name, "iso_639_entry") || g_str_equal (element_name, "iso_639_3_entry"))
-@@ -798,6 +799,7 @@
+@@ -799,6 +800,7 @@
          ccode_longB = NULL;
          ccode_longT = NULL;
          ccode_id = NULL;
@@ -31,7 +33,7 @@ Last-Update: 2013-04-10
          lang_name = NULL;
  
          while (*attr_names && *attr_values) {
-@@ -834,6 +836,11 @@
+@@ -835,6 +837,11 @@
                                  }
                                  ccode_id = *attr_values;
                          }
@@ -43,7 +45,7 @@ Last-Update: 2013-04-10
                  } else if (g_str_equal (*attr_names, "name")) {
                          lang_name = *attr_values;
                  }
-@@ -842,6 +849,10 @@
+@@ -843,6 +850,10 @@
                  ++attr_values;
          }
  
@@ -54,21 +56,15 @@ Last-Update: 2013-04-10
          if (lang_name == NULL) {
                  return;
          }
-@@ -1084,6 +1095,7 @@
-         char *langinfo_codeset;
-         char *translated_language;
-         char *translated_territory;
-+        char *modifier;
+@@ -1073,6 +1084,7 @@
+         g_autofree char *langinfo_codeset = NULL;
+         g_autofree char *translated_language = NULL;
+         g_autofree char *translated_territory = NULL;
++        g_autofree char *modifier = NULL;
          gboolean is_utf8 = TRUE;
  
          g_return_val_if_fail (locale != NULL, NULL);
-@@ -1101,12 +1113,13 @@
-         language_code = NULL;
-         territory_code = NULL;
-         codeset_code = NULL;
-+        modifier = NULL;
- 
-         gnome_parse_locale (locale,
+@@ -1087,7 +1099,7 @@
                              &language_code,
                              &territory_code,
                              &codeset_code,
@@ -77,7 +73,7 @@ Last-Update: 2013-04-10
  
          if (language_code == NULL) {
                  goto out;
-@@ -1132,7 +1145,7 @@
+@@ -1113,7 +1125,7 @@
                                          translated_territory);
          }
  
@@ -86,7 +82,7 @@ Last-Update: 2013-04-10
  
          if (codeset_code == NULL && langinfo_codeset != NULL) {
                  codeset_code = g_strdup (langinfo_codeset);
-@@ -1144,6 +1157,10 @@
+@@ -1125,6 +1137,10 @@
                                          codeset_code);
          }
  
@@ -95,31 +91,17 @@ Last-Update: 2013-04-10
 +        }
 +
   out:
-         g_free (language_code);
-         g_free (territory_code);
-@@ -1151,6 +1168,7 @@
-         g_free (langinfo_codeset);
-         g_free (translated_language);
-         g_free (translated_territory);
-+        g_free (modifier);
- 
          if (full_language->len == 0) {
                  g_string_free (full_language, TRUE);
-@@ -1184,6 +1202,7 @@
-         char *langinfo_codeset;
-         char *translated_language;
-         char *translated_territory;
-+        char *modifier;
+@@ -1158,6 +1174,7 @@
+         g_autofree char *langinfo_codeset = NULL;
+         g_autofree char *translated_language = NULL;
+         g_autofree char *translated_territory = NULL;
++        g_autofree char *modifier = NULL;
          gboolean is_utf8 = TRUE;
  
          g_return_val_if_fail (locale != NULL, NULL);
-@@ -1201,12 +1220,13 @@
-         language_code = NULL;
-         territory_code = NULL;
-         codeset_code = NULL;
-+        modifier = NULL;
- 
-         gnome_parse_locale (locale,
+@@ -1172,7 +1189,7 @@
                              &language_code,
                              &territory_code,
                              &codeset_code,
@@ -128,7 +110,7 @@ Last-Update: 2013-04-10
  
          if (territory_code == NULL) {
                  goto out;
-@@ -1219,6 +1239,10 @@
+@@ -1185,6 +1202,10 @@
  		goto out;
  	}
  
@@ -139,11 +121,3 @@ Last-Update: 2013-04-10
          if (language_code != NULL) {
                  translated_language = get_translated_language (language_code, translation);
          }
-@@ -1247,6 +1271,7 @@
-         g_free (langinfo_codeset);
-         g_free (translated_language);
-         g_free (translated_territory);
-+        g_free (modifier);
- 
-         if (full_name->len == 0) {
-                 g_string_free (full_name, TRUE);
