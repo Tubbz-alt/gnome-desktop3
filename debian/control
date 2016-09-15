@@ -12,6 +12,7 @@ Vcs-Browser: https://anonscm.debian.org/viewvc/pkg-gnome/desktop/unstable/gnome-
 Standards-Version: 3.9.8
 Build-Depends: debhelper (>= 10),
                libglib2.0-dev (>= 2.44.0),
+               gnome-common,
                intltool (>= 0.40.6),
                iso-codes,
                gnome-pkg-tools (>= 0.10),
