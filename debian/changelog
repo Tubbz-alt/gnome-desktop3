@@ -1,3 +1,9 @@
+gnome-desktop3 (3.22.2-2) UNRELEASED; urgency=medium
+
+  * debian/patches/01_fix-ftbfs-x32.patch: Fix FTBFS on x32 arch
+
+ -- Laurent Bigonville <bigon@debian.org>  Wed, 16 Aug 2017 12:57:43 +0200
+
 gnome-desktop3 (3.22.2-1) unstable; urgency=medium
 
   * New upstream release.
