@@ -7,9 +7,9 @@ gnome-desktop3 (3.25.90-1) UNRELEASED; urgency=medium
       needed to sandbox the thumbnailers.
   * debian/patches/01_fix-ftbfs-x32.patch: Fix FTBFS on x32 arch
   * debian/libgnome-desktop-3-12.symbols: Add newly exported symbol
-  * debian/control.in: Bump Standards-Version to 4.0.0 (no further changes)
+  * debian/control.in: Bump Standards-Version to 4.0.1 (no further changes)
 
- -- Laurent Bigonville <bigon@debian.org>  Wed, 16 Aug 2017 13:36:28 +0200
+ -- Laurent Bigonville <bigon@debian.org>  Wed, 16 Aug 2017 13:38:28 +0200
 
 gnome-desktop3 (3.22.2-1) unstable; urgency=medium
 
