@@ -1,5 +1,6 @@
 gnome-desktop3 (3.25.90-1) UNRELEASED; urgency=medium
 
+  [ Laurent Bigonville ]
   * New upstream release (3.26 beta).
     - Bump build-dependencies
     - Add a build-dependency against libseccomp-dev on linux architectrues
@@ -10,6 +11,12 @@ gnome-desktop3 (3.25.90-1) UNRELEASED; urgency=medium
   * debian/control.in:
     - Bump Standards-Version to 4.0.1 (no further changes)
     - Remove ancient (pre stretch) Breaks/Replaces
+
+  [ Jeremy Bicha ]
+  * Add disable-bubblewrap.patch:
+    - Don't use new bubblewrap sandbox since it currently breaks the
+      thumbnailer on Debian-based systems.
+      See https://bugzilla.gnome.org/785963
 
  -- Laurent Bigonville <bigon@debian.org>  Wed, 16 Aug 2017 13:47:25 +0200
 
