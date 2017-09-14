@@ -1,7 +1,6 @@
-Description: Disable bubblewrap since it breaks the thumbnailer on
- Debian-based systems
+Description: Disable bubblewrap since it's not in main yet
 Author: Jeremy Bicha <jbicha@ubuntu.com>
-Bug: https://bugzilla.gnome.org/785963
+Bug: https://launchpad.net/bugs/1709164
 ---
  configure.ac |    2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
