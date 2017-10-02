@@ -1,3 +1,9 @@
+gnome-desktop3 (3.26.1-1) UNRELEASED; urgency=medium
+
+  * New upstream release
+
+ -- Jeremy Bicha <jbicha@debian.org>  Mon, 02 Oct 2017 16:32:46 -0400
+
 gnome-desktop3 (3.26.0-2) unstable; urgency=medium
 
   * Drop disable-bubblewrap.patch
