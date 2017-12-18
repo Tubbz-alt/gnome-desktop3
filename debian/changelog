@@ -1,10 +1,3 @@
-gnome-desktop3 (3.26.2-4) UNRELEASED; urgency=medium
-
-  * Exclude gnome-rr-debug from dh_missing --fail-missing to fix arch:all
-    build
-
- -- Jeremy Bicha <jbicha@debian.org>  Mon, 18 Dec 2017 08:34:23 -0500
-
 gnome-desktop3 (3.26.2-3) unstable; urgency=medium
 
   * Update Vcs fields for conversion to git

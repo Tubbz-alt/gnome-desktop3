@@ -31,4 +31,4 @@ override_dh_install:
 	dh_install
 
 override_dh_missing:
-	dh_missing -Xgnome-rr-debug --fail-missing
+	dh_missing --fail-missing
