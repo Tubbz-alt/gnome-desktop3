@@ -4,7 +4,7 @@
 
 GNOME_MODULE := gnome-desktop
 
-LIB_PKG := $(filter-out %-dev %-dbg %-bin,$(filter lib%,$(shell dh_listpackages)))
+LIB_PKG := $(filter-out %-dev %-dbg %-bin,$(filter lib%,$(shell awk '/^Package: / { print $$2 }' debian/control)))
 
 export DEB_LDFLAGS_MAINT_APPEND = -Wl,-z,defs -Wl,-O1 -Wl,--as-needed
 
