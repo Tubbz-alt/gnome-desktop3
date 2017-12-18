@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<book xmlns="http://www.devhelp.net/book" title="GNOME Desktop Library Reference Manual" link="index.html" author="" name="gnome-desktop3" version="2" language="c">
+  <chapters>
+    <sub name="GNOME Desktop Library Overview" link="intro.html"/>
+    <sub name="Desktop Background" link="background.html">
+      <sub name="gnome-bg" link="gnome-desktop3-gnome-bg.html"/>
+    </sub>
+    <sub name="Monitor Configuration" link="randr.html">
+      <sub name="gnome-rr" link="gnome-desktop3-gnome-rr.html"/>
+      <sub name="gnome-rr-config" link="gnome-desktop3-gnome-rr-config.html"/>
+      <sub name="gnome-pnp-ids" link="gnome-desktop3-gnome-pnp-ids.html"/>
+    </sub>
+    <sub name="Thumbnails" link="thumbnail.html">
+      <sub name="GnomeDesktopThumbnailFactory" link="GnomeDesktopThumbnailFactory.html"/>
+    </sub>
+    <sub name="Idle Monitor" link="idle-monitor.html">
+      <sub name="GnomeIdleMonitor" link="GnomeIdleMonitor.html"/>
+    </sub>
+    <sub name="Wall Clock" link="wall-clock.html">
+      <sub name="GnomeWallClock" link="GnomeWallClock.html"/>
+    </sub>
+    <sub name="X Keyboard Information" link="xkb-info.html">
+      <sub name="GnomeXkbInfo" link="GnomeXkbInfo.html"/>
+    </sub>
+    <sub name="Language Utilities" link="languages.html">
+      <sub name="Language Utilities" link="gnome-desktop3-Language-Utilities.html"/>
+    </sub>
+  </chapters>
+  <functions/>
+</book>
