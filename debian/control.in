@@ -6,7 +6,7 @@ Uploaders: @GNOME_TEAM@
 Vcs-Git: https://anonscm.debian.org/git/pkg-gnome/gnome-desktop.git
 Vcs-Browser: https://anonscm.debian.org/git/pkg-gnome/gnome-desktop.git
 Standards-Version: 4.1.2
-Build-Depends: debhelper (>= 10),
+Build-Depends: debhelper (>= 11),
                docbook-xml,
                gnome-common,
                gnome-pkg-tools (>= 0.10),
