@@ -6,8 +6,9 @@ gnome-desktop3 (3.26.2-5) UNRELEASED; urgency=medium
   [ Laurent Bigonville ]
   * d/p/0001-build-Disable-seccomp-on-linux-architectures-where-i.patch,
     debian/control.in: Disable seccomp on arch where it's not supported
+  * debian/control.in: Bump Standards-Version 4.1.3 (no further changes)
 
- -- Laurent Bigonville <bigon@debian.org>  Mon, 05 Feb 2018 16:52:34 +0100
+ -- Laurent Bigonville <bigon@debian.org>  Mon, 05 Feb 2018 17:00:14 +0100
 
 gnome-desktop3 (3.26.2-4) unstable; urgency=medium
 

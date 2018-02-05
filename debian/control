@@ -31,7 +31,7 @@ Build-Depends: debhelper (>= 11),
                yelp-tools
 Vcs-Browser: https://salsa.debian.org/gnome-team/gnome-desktop
 Vcs-Git: https://salsa.debian.org/gnome-team/gnome-desktop.git
-Standards-Version: 4.1.2
+Standards-Version: 4.1.3
 
 Package: gnome-desktop3-data
 Architecture: all
