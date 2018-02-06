@@ -1,4 +1,4 @@
-From 42b180600937c0396ca81a3606e1c87a455e39ca Mon Sep 17 00:00:00 2001
+From f1b0fc74280eed157c95e20aea82435a5d63bd4d Mon Sep 17 00:00:00 2001
 From: Laurent Bigonville <bigon@bigon.be>
 Date: Mon, 5 Feb 2018 14:57:28 +0100
 Subject: [PATCH] build: Disable seccomp on linux architectures where it's not
@@ -16,7 +16,7 @@ https://bugzilla.gnome.org/show_bug.cgi?id=786358
  1 file changed, 14 insertions(+), 3 deletions(-)
 
 diff --git a/configure.ac b/configure.ac
-index 136f97fb..42e99542 100644
+index 136f97fb..8a6d61db 100644
 --- a/configure.ac
 +++ b/configure.ac
 @@ -160,14 +160,24 @@ else
@@ -30,15 +30,15 @@ index 136f97fb..42e99542 100644
 -    PKG_CHECK_MODULES(LIBSECCOMP, [libseccomp])
 -    SECCOMP_PKG="libseccomp"
 +    case $host_cpu in
++      alpha|ia64|m68k|sh4|sparc64)
++        enable_seccomp="no (not available on this architecture)"
++        AC_MSG_WARN("seccomp not available on this architecture")
++        ;;
 +      *)
 +        PKG_CHECK_MODULES(LIBSECCOMP, [libseccomp])
 +        SECCOMP_PKG="libseccomp"
 +        AC_DEFINE([ENABLE_SECCOMP], [1], [Define if using seccomp])
 +        enable_seccomp="yes"
-+        ;;
-+      alpha|ia64|m68k|sh4|sparc64)
-+        enable_seccomp="no (not avaiable on this architecture)"
-+        AC_MSG_WARN("seccomp not available on this architecture")
 +        ;;
 +    esac
      AC_DEFINE_UNQUOTED(_GNU_SOURCE, 1, [Define to include GNU extensions])
