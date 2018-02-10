@@ -131,6 +131,16 @@ add_args (GPtrArray *argv_array, ...)
   va_end (args);
 }
 
+static void
+add_env (GPtrArray  *array,
+         const char *envvar)
+{
+  if (g_getenv (envvar) != NULL)
+    add_args (array,
+              "--setenv", envvar, g_getenv (envvar),
+              NULL);
+}
+
 static char *
 get_extension (const char *path)
 {
@@ -363,7 +373,8 @@ setup_seccomp (GPtrArray  *argv_array,
     AF_KEY,
     AF_NETLINK + 1, /* Last gets CMP_GE, so order is important */
   };
-  int i, r;
+  guint i;
+  int r;
   int fd = -1;
   g_autofree char *fd_str = NULL;
   g_autofree char *path = NULL;
@@ -413,7 +424,6 @@ setup_seccomp (GPtrArray  *argv_array,
 
           if (multiarch && extra_arches != NULL)
             {
-              unsigned i;
               for (i = 0; extra_arches[i] != 0; i++)
                 {
                   r = seccomp_arch_add (seccomp, extra_arches[i]);
@@ -518,11 +528,8 @@ add_bwrap (GPtrArray   *array,
 	    "--die-with-parent",
 	    NULL);
 
-#if 0
-  add_args (array,
-            "--setenv", "G_MESSAGES_DEBUG", "all",
-            NULL);
-#endif
+  add_env (array, "G_MESSAGES_DEBUG");
+  add_env (array, "G_MESSAGES_PREFIXED");
 
   /* Add gnome-desktop's install prefix if needed */
   if (g_strcmp0 (INSTALL_PREFIX, "") != 0 &&
@@ -640,7 +647,7 @@ static void
 child_setup (gpointer user_data)
 {
   GArray *fd_array = user_data;
-  int i;
+  guint i;
 
   /* If no fd_array was specified, don't care. */
   if (fd_array == NULL)
@@ -765,6 +772,22 @@ bail:
   return NULL;
 }
 
+static void
+print_script_debug (GStrv expanded_script)
+{
+  GString *out;
+  guint i;
+
+  out = g_string_new (NULL);
+
+  for (i = 0; expanded_script[i]; i++)
+    g_string_append_printf (out, "%s ", expanded_script[i]);
+  g_string_append_printf (out, "\n");
+
+  g_debug ("About to launch script: %s", out->str);
+  g_string_free (out, TRUE);
+}
+
 GBytes *
 gnome_desktop_thumbnail_script_exec (const char  *cmd,
 				     int          size,
@@ -785,14 +808,7 @@ gnome_desktop_thumbnail_script_exec (const char  *cmd,
   if (expanded_script == NULL)
     goto out;
 
-#if 0
-  guint i;
-
-  g_print ("About to launch script: ");
-  for (i = 0; expanded_script[i]; i++)
-    g_print ("%s ", expanded_script[i]);
-  g_print ("\n");
-#endif
+  print_script_debug (expanded_script);
 
   ret = g_spawn_sync (NULL, expanded_script, NULL, G_SPAWN_SEARCH_PATH,
 		      child_setup, exec->fd_array, NULL, &error_out,
