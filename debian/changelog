@@ -1,6 +1,7 @@
 gnome-desktop3 (3.27.90-1) UNRELEASED; urgency=medium
 
   * New upstream development release
+  * Bump minimum gsettings-desktop-schemas to 3.27.0
   * Drop 0001-build-Disable-seccomp-on-linux-architectures-where-i.patch:
     Applied in new release
 
