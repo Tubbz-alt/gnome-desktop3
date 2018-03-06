@@ -1,3 +1,11 @@
+gnome-desktop3 (3.27.90-2) UNRELEASED; urgency=medium
+
+  * Add Breaks on gnome-shell, libmutter versions that were built against
+    libgnome-desktop-3-12, to avoid gnome-shell crashing on startup during
+    libgnome-desktop-3-17 transition
+
+ -- Simon McVittie <smcv@debian.org>  Tue, 06 Mar 2018 10:44:12 +0000
+
 gnome-desktop3 (3.27.90-1) experimental; urgency=medium
 
   * New upstream development release
