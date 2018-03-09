@@ -7,6 +7,7 @@ gnome-desktop3 (3.27.92-1) UNRELEASED; urgency=medium
   * gir1.2-gnomedesktop-3.0: Add Breaks on gnome-shell, libmutter versions
     that were built against libgnome-desktop-3-12, to avoid gnome-shell
     crashing on startup during libgnome-desktop-3-17 transition
+    (Closes: #890809)
 
  -- Simon McVittie <smcv@debian.org>  Tue, 06 Mar 2018 10:44:12 +0000
 
