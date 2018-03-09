@@ -285,7 +285,6 @@ CYGPATH_W = @CYGPATH_W@
 DATADIRNAME = @DATADIRNAME@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
-DISABLE_DEPRECATED_CFLAGS = @DISABLE_DEPRECATED_CFLAGS@
 DLLTOOL = @DLLTOOL@
 DSYMUTIL = @DSYMUTIL@
 DUMPBIN = @DUMPBIN@
@@ -463,7 +462,6 @@ pdfdir = @pdfdir@
 prefix = @prefix@
 program_transform_name = @program_transform_name@
 psdir = @psdir@
-runstatedir = @runstatedir@
 sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
@@ -483,12 +481,13 @@ AM_CPPFLAGS = \
 	$(GNOME_DESKTOP_CFLAGS)					\
 	$(XLIB_CFLAGS)						\
 	-DG_LOG_DOMAIN=\"GnomeDesktop\"				\
+	-DGDK_DISABLE_DEPRECATION_WARNINGS			\
 	-DGNOMELOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale\""	\
+	-DGTK_DISABLE_DEPRECATION_WARNINGS			\
 	-DISO_CODES_PREFIX=\""$(ISO_CODES_PREFIX)"\"		\
 	-DLIBLOCALEDIR=\""$(prefix)/lib/locale"\"		\
 	-DPNP_IDS=\""$(PNP_IDS)"\"				\
-	-DXKB_BASE=\""$(XKB_BASE)"\"				\
-	$(DISABLE_DEPRECATED_CFLAGS)
+	-DXKB_BASE=\""$(XKB_BASE)"\"
 
 AM_CFLAGS = $(WARN_CFLAGS)
 introspection_sources = \
