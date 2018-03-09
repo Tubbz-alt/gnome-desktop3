@@ -1,6 +1,6 @@
 m4_define(gnome_platform, 3)
 m4_define(gnome_minor, 27)
-m4_define(gnome_micro, 90)
+m4_define(gnome_micro, 92)
 m4_define(gnome_sub,)
 dnl gnome_sub is an optional sub-version which will not be advertised to the user
 dnl It allows to release a 2.30.1.1 which is just a better 2.30.1
@@ -73,16 +73,6 @@ AC_SUBST(GNOME_DATE_COMMENT_START)
 AC_SUBST(GNOME_DATE_COMMENT_END)
 
 AX_COMPILER_FLAGS([WARN_CFLAGS],[WARN_LDFLAGS])
-
-AC_ARG_ENABLE(deprecation_flags,
-              [AS_HELP_STRING([--enable-deprecation-flags],
-                              [use *_DISABLE_DEPRECATED flags @<:@default=no@:>@])],,
-              [enable_deprecation_flags=no])
-
-if test "x$enable_deprecation_flags" = "xyes"; then
-   DISABLE_DEPRECATED_CFLAGS=$DISABLE_DEPRECATED
-   AC_SUBST(DISABLE_DEPRECATED_CFLAGS)
-fi
 
 # Should we build shared desktop docs? Useful for people who
 # need to build two gnome-desktop using two different versions of GTK+
@@ -272,7 +262,6 @@ echo "
         compiler:                     ${CC}
         cflags:                       ${CFLAGS}
         Maintainer mode:              ${USE_MAINTAINER_MODE}
-        Use *_DISABLE_DEPRECATED:     ${enable_deprecation_flags}
 
         GNOME Distributor:            ${GNOME_DISTRIBUTOR}
         Build desktop-wide docs:      ${enable_desktop_docs}
