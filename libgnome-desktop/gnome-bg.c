@@ -822,6 +822,11 @@ get_scaled_pixbuf (GDesktopBackgroundStyle placement,
 		new = pixbuf_scale_to_fit (pixbuf, width, height);
 		break;
 		
+	case G_DESKTOP_BACKGROUND_STYLE_NONE:
+		/* This shouldn’t be true, but if it is, assert and
+		 * fall through, in case assertions are disabled.
+		 */
+		g_assert_not_reached ();
 	case G_DESKTOP_BACKGROUND_STYLE_CENTERED:
 	case G_DESKTOP_BACKGROUND_STYLE_WALLPAPER:
 	default:
@@ -867,6 +872,7 @@ draw_image_area (GnomeBG         *bg,
 	case G_DESKTOP_BACKGROUND_STYLE_SPANNED:
 		pixbuf_blend (scaled, dest, 0, 0, w, h, x, y, 1.0);
 		break;
+	case G_DESKTOP_BACKGROUND_STYLE_NONE:
 	default:
 		g_assert_not_reached ();
 		break;
@@ -1018,6 +1024,7 @@ gnome_bg_get_pixmap_size (GnomeBG   *bg,
 			
 		case G_DESKTOP_BACKGROUND_SHADING_HORIZONTAL:
 		case G_DESKTOP_BACKGROUND_SHADING_VERTICAL:
+		default:
 			break;
 		}
 		
@@ -1326,7 +1333,7 @@ gnome_bg_get_surface_from_root (GdkScreen *screen)
 	gint format;
 	gulong nitems;
 	gulong bytes_after;
-	guchar *data;
+	gpointer data;
 	Atom type;
 	Display *display;
 	int screen_num;
@@ -1343,7 +1350,7 @@ gnome_bg_get_surface_from_root (GdkScreen *screen)
 				     gdk_x11_get_xatom_by_name ("_XROOTPMAP_ID"),
 				     0L, 1L, False, XA_PIXMAP,
 				     &type, &format, &nitems, &bytes_after,
-				     &data);
+				     (guchar **) &data);
 	surface = NULL;
 	source_pixmap = NULL;
 
@@ -1416,7 +1423,7 @@ gnome_bg_set_root_pixmap_id (GdkScreen       *screen,
 	gint     format;
 	gulong   nitems;
 	gulong   bytes_after;
-	guchar  *data_esetroot;
+	gpointer data_esetroot;
 	Pixmap   pixmap_id;
 	Atom     type;
 	Display *display;
@@ -1434,7 +1441,7 @@ gnome_bg_set_root_pixmap_id (GdkScreen       *screen,
 				     0L, 1L, False, XA_PIXMAP,
 				     &type, &format, &nitems,
 				     &bytes_after,
-				     &data_esetroot);
+				     (guchar **) &data_esetroot);
 
 	if (data_esetroot != NULL) {
 		if (result == Success && type == XA_PIXMAP &&
@@ -1646,6 +1653,8 @@ file_cache_entry_delete (FileCacheEntry *ent)
 		break;
 	case THUMBNAIL:
 		g_object_unref (ent->u.thumbnail);
+		break;
+	default:
 		break;
 	}
 
