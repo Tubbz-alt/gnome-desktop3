@@ -1,3 +1,9 @@
+gnome-desktop3 (3.27.92-0ubuntu1) UNRELEASED; urgency=medium
+
+  * New upstream release candidate
+
+ -- Jeremy Bicha <jbicha@debian.org>  Fri, 09 Mar 2018 16:14:21 -0500
+
 gnome-desktop3 (3.27.90-1ubuntu1) bionic; urgency=medium
 
   * Resynchronize with Debian. Remaining changes:
