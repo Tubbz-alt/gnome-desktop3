@@ -1,9 +1,9 @@
-gnome-desktop3 (3.27.92-0ubuntu1) UNRELEASED; urgency=medium
+gnome-desktop3 (3.27.92-0ubuntu1) bionic; urgency=medium
 
   * New upstream release candidate
   * Update Vcs fields and debian/gbp.conf for Ubuntu
 
- -- Jeremy Bicha <jbicha@debian.org>  Fri, 09 Mar 2018 16:14:21 -0500
+ -- Jeremy Bicha <jbicha@ubuntu.com>  Fri, 09 Mar 2018 16:24:16 -0500
 
 gnome-desktop3 (3.27.90-1ubuntu1) bionic; urgency=medium
 
