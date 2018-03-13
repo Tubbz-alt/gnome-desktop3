@@ -1,8 +1,8 @@
-gnome-desktop3 (3.28.0-0ubuntu1) UNRELEASED; urgency=medium
+gnome-desktop3 (3.28.0-0ubuntu1) bionic; urgency=medium
 
   * New upstream release
 
- -- Jeremy Bicha <jbicha@ubuntu.com>  Tue, 13 Mar 2018 15:22:15 -0400
+ -- Jeremy Bicha <jbicha@ubuntu.com>  Tue, 13 Mar 2018 15:22:36 -0400
 
 gnome-desktop3 (3.27.92-0ubuntu1) bionic; urgency=medium
 
