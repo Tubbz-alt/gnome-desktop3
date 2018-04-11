@@ -1,4 +1,4 @@
-gnome-desktop3 (3.28.1-1ubuntu1) UNRELEASED; urgency=medium
+gnome-desktop3 (3.28.1-1ubuntu1) bionic; urgency=medium
 
   * Resynchronize with Debian. Remaining changes:
     - Add 04_compute_average_color.patch: Compute the avergage color in
@@ -21,7 +21,7 @@ gnome-desktop3 (3.28.1-1ubuntu1) UNRELEASED; urgency=medium
       + Add symbols included in Ubuntu patches
     - Update Vcs fields and debian/gbp.conf for Ubuntu
 
- -- Jeremy Bicha <jbicha@ubuntu.com>  Wed, 11 Apr 2018 10:37:10 -0400
+ -- Jeremy Bicha <jbicha@ubuntu.com>  Wed, 11 Apr 2018 10:41:08 -0400
 
 gnome-desktop3 (3.28.1-1) unstable; urgency=medium
 
