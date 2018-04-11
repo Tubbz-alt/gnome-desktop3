@@ -1,7 +1,4 @@
 #!/usr/bin/make -f
--include /usr/share/gnome-pkg-tools/1/rules/gnome-get-source.mk
-
-GNOME_MODULE := gnome-desktop
 
 LIB_PKG := $(filter-out %-dev %-bin,$(filter lib%,$(shell awk '/^Package: / { print $$2 }' debian/control)))
 

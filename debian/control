@@ -32,7 +32,9 @@ Build-Depends: debhelper (>= 11),
                yelp-tools
 Vcs-Browser: https://code.launchpad.net/~ubuntu-desktop/ubuntu/+source/gnome-desktop/+git/gnome-desktop
 Vcs-Git: https://git.launchpad.net/~ubuntu-desktop/ubuntu/+source/gnome-desktop
-Standards-Version: 4.1.3
+XS-Debian-Vcs-Browser: https://salsa.debian.org/gnome-team/gnome-desktop
+XS-Debian-Vcs-Git: https://salsa.debian.org/gnome-team/gnome-desktop.git
+Standards-Version: 4.1.4
 
 Package: gnome-desktop3-data
 Architecture: all
@@ -72,6 +74,8 @@ Section: introspection
 Architecture: any
 Multi-Arch: same
 Depends: ${gir:Depends}, ${misc:Depends}, ${shlibs:Depends}
+Breaks: gnome-shell (<< 3.27.92-2~),
+        libmutter-2-0 (<< 3.27.92-2~)
 Description: Introspection data for GnomeDesktop
  This package provides the include files and static library for the GNOME
  desktop library functions.
