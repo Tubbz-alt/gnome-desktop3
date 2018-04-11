@@ -1,6 +1,7 @@
 gnome-desktop3 (3.28.1-1) UNRELEASED; urgency=medium
 
   * New upstream release
+  * Bump Standards-Version to 4.1.4
 
  -- Jeremy Bicha <jbicha@debian.org>  Wed, 11 Apr 2018 10:30:56 -0400
 
