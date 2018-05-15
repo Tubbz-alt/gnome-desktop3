@@ -1,4 +1,3 @@
-From 9197a7e6c090a5451763c61b1f3665ed16e9241d Mon Sep 17 00:00:00 2001
 From: Tim Lunn <tim@feathertop.org>
 Date: Thu, 23 May 2013 12:19:53 +1000
 Subject: [PATCH 2/2] Add api to collect a list of available languages from
@@ -11,11 +10,15 @@ all available language codes as parsed from /usr/share/i18n/SUPPORTED.
  libgnome-desktop/gnome-languages.c | 103 +++++++++++++++++++++++++++++++++++++
  libgnome-desktop/gnome-languages.h |   1 +
  2 files changed, 104 insertions(+)
+---
+ libgnome-desktop/gnome-languages.c | 103 +++++++++++++++++++++++++++++++++++++
+ libgnome-desktop/gnome-languages.h |   1 +
+ 2 files changed, 104 insertions(+)
 
-Index: gnome-desktop3-3.16.2/libgnome-desktop/gnome-languages.c
-===================================================================
---- gnome-desktop3-3.16.2.orig/libgnome-desktop/gnome-languages.c
-+++ gnome-desktop3-3.16.2/libgnome-desktop/gnome-languages.c
+diff --git a/libgnome-desktop/gnome-languages.c b/libgnome-desktop/gnome-languages.c
+index 44d4356..8c71f86 100644
+--- a/libgnome-desktop/gnome-languages.c
++++ b/libgnome-desktop/gnome-languages.c
 @@ -59,6 +59,7 @@ typedef struct _GnomeLocale {
  } GnomeLocale;
  
@@ -24,7 +27,7 @@ Index: gnome-desktop3-3.16.2/libgnome-desktop/gnome-languages.c
  static GHashTable *gnome_territories_map;
  static GHashTable *gnome_available_locales_map;
  static GHashTable *gnome_language_count_map;
-@@ -548,6 +549,55 @@ collect_locales_from_localebin (void)
+@@ -534,6 +535,55 @@ collect_locales_from_localebin (void)
          return found_locales;
  }
  
@@ -80,7 +83,7 @@ Index: gnome-desktop3-3.16.2/libgnome-desktop/gnome-languages.c
  static void
  count_languages_and_territories (void)
  {
-@@ -580,6 +630,27 @@ count_languages_and_territories (void)
+@@ -566,6 +616,27 @@ count_languages_and_territories (void)
  		}
          }
  }
@@ -108,13 +111,10 @@ Index: gnome-desktop3-3.16.2/libgnome-desktop/gnome-languages.c
  
  static void
  collect_locales (void)
-@@ -1314,6 +1385,38 @@ gnome_get_all_locales (void)
-         }
-         g_ptr_array_add (array, NULL);
+@@ -1272,6 +1343,38 @@ gnome_get_all_locales (void)
+         return (char **) g_ptr_array_free (array, FALSE);
+ }
  
-+        return (char **) g_ptr_array_free (array, FALSE);
-+}
-+
 +/**
 + * gnome_get_all_languages:
 + *
@@ -144,14 +144,17 @@ Index: gnome-desktop3-3.16.2/libgnome-desktop/gnome-languages.c
 +        }
 +        g_ptr_array_add (array, NULL);
 +
-         return (char **) g_ptr_array_free (array, FALSE);
- }
- 
-Index: gnome-desktop3-3.16.2/libgnome-desktop/gnome-languages.h
-===================================================================
---- gnome-desktop3-3.16.2.orig/libgnome-desktop/gnome-languages.h
-+++ gnome-desktop3-3.16.2/libgnome-desktop/gnome-languages.h
-@@ -34,6 +34,7 @@ char *        gnome_get_language_from_lo
++        return (char **) g_ptr_array_free (array, FALSE);
++}
++
+ /**
+  * gnome_get_language_from_code:
+  * @code: an ISO 639 code string
+diff --git a/libgnome-desktop/gnome-languages.h b/libgnome-desktop/gnome-languages.h
+index 3d7525d..b85b5f5 100644
+--- a/libgnome-desktop/gnome-languages.h
++++ b/libgnome-desktop/gnome-languages.h
+@@ -34,6 +34,7 @@ char *        gnome_get_language_from_locale    (const char *locale,
  char *        gnome_get_country_from_locale     (const char *locale,
                                                   const char *translation);
  char **       gnome_get_all_locales             (void);

@@ -1,10 +1,12 @@
+From: Gunnar Hjalmarsson <gunnarhj@ubuntu.com>
+Date: Tue, 26 Mar 2013 17:04:18 +0100
+Subject: Adapt for Ubuntu language handling
+
 This patch was taken from gnome-control-center 52_region_language.patch,
 where relevent language code used to live in 3.6
 
 Description: Adapts the region capplet and the language chooser in the user accounts capplet
 Forwarded: https://bugzilla.gnome.org/695939, https://bugzilla.gnome.org/695940
-Author: Gunnar Hjalmarsson <gunnarhj@ubuntu.com>
-Last-Update: 2013-04-10
 
  * Ubuntu isn't shipped with all languages installed and all locales generated.
    Instead the users install the needed language pack(s), and the corresponding
@@ -12,12 +14,15 @@ Last-Update: 2013-04-10
 
  * The 'common_name' field taken into account when parsing the iso-codes XML files
    for language names.
+---
+ libgnome-desktop/gnome-languages.c | 27 ++++++++++++++++++++++++---
+ 1 file changed, 24 insertions(+), 3 deletions(-)
 
-Index: b/libgnome-desktop/gnome-languages.c
-===================================================================
+diff --git a/libgnome-desktop/gnome-languages.c b/libgnome-desktop/gnome-languages.c
+index cbf82d3..44d4356 100644
 --- a/libgnome-desktop/gnome-languages.c
 +++ b/libgnome-desktop/gnome-languages.c
-@@ -788,6 +788,7 @@
+@@ -788,6 +788,7 @@ languages_parse_start_tag (GMarkupParseContext      *ctx,
          const char *ccode_longT;
          const char *ccode;
          const char *ccode_id;
@@ -25,7 +30,7 @@ Index: b/libgnome-desktop/gnome-languages.c
          const char *lang_name;
  
          if (! (g_str_equal (element_name, "iso_639_entry") || g_str_equal (element_name, "iso_639_3_entry"))
-@@ -799,6 +800,7 @@
+@@ -799,6 +800,7 @@ languages_parse_start_tag (GMarkupParseContext      *ctx,
          ccode_longB = NULL;
          ccode_longT = NULL;
          ccode_id = NULL;
@@ -33,7 +38,7 @@ Index: b/libgnome-desktop/gnome-languages.c
          lang_name = NULL;
  
          while (*attr_names && *attr_values) {
-@@ -835,6 +837,11 @@
+@@ -835,6 +837,11 @@ languages_parse_start_tag (GMarkupParseContext      *ctx,
                                  }
                                  ccode_id = *attr_values;
                          }
@@ -45,7 +50,7 @@ Index: b/libgnome-desktop/gnome-languages.c
                  } else if (g_str_equal (*attr_names, "name")) {
                          lang_name = *attr_values;
                  }
-@@ -843,6 +850,10 @@
+@@ -843,6 +850,10 @@ languages_parse_start_tag (GMarkupParseContext      *ctx,
                  ++attr_values;
          }
  
@@ -56,7 +61,7 @@ Index: b/libgnome-desktop/gnome-languages.c
          if (lang_name == NULL) {
                  return;
          }
-@@ -1073,6 +1084,7 @@
+@@ -1073,6 +1084,7 @@ gnome_get_language_from_locale (const char *locale,
          g_autofree char *langinfo_codeset = NULL;
          g_autofree char *translated_language = NULL;
          g_autofree char *translated_territory = NULL;
@@ -64,7 +69,7 @@ Index: b/libgnome-desktop/gnome-languages.c
          gboolean is_utf8 = TRUE;
  
          g_return_val_if_fail (locale != NULL, NULL);
-@@ -1087,7 +1099,7 @@
+@@ -1087,7 +1099,7 @@ gnome_get_language_from_locale (const char *locale,
                              &language_code,
                              &territory_code,
                              &codeset_code,
@@ -73,7 +78,7 @@ Index: b/libgnome-desktop/gnome-languages.c
  
          if (language_code == NULL) {
                  goto out;
-@@ -1113,7 +1125,7 @@
+@@ -1113,7 +1125,7 @@ gnome_get_language_from_locale (const char *locale,
                                          translated_territory);
          }
  
@@ -82,7 +87,7 @@ Index: b/libgnome-desktop/gnome-languages.c
  
          if (codeset_code == NULL && langinfo_codeset != NULL) {
                  codeset_code = g_strdup (langinfo_codeset);
-@@ -1125,6 +1137,10 @@
+@@ -1125,6 +1137,10 @@ gnome_get_language_from_locale (const char *locale,
                                          codeset_code);
          }
  
@@ -93,7 +98,7 @@ Index: b/libgnome-desktop/gnome-languages.c
   out:
          if (full_language->len == 0) {
                  g_string_free (full_language, TRUE);
-@@ -1158,6 +1174,7 @@
+@@ -1158,6 +1174,7 @@ gnome_get_country_from_locale (const char *locale,
          g_autofree char *langinfo_codeset = NULL;
          g_autofree char *translated_language = NULL;
          g_autofree char *translated_territory = NULL;
@@ -101,7 +106,7 @@ Index: b/libgnome-desktop/gnome-languages.c
          gboolean is_utf8 = TRUE;
  
          g_return_val_if_fail (locale != NULL, NULL);
-@@ -1172,7 +1189,7 @@
+@@ -1172,7 +1189,7 @@ gnome_get_country_from_locale (const char *locale,
                              &language_code,
                              &territory_code,
                              &codeset_code,
@@ -110,7 +115,7 @@ Index: b/libgnome-desktop/gnome-languages.c
  
          if (territory_code == NULL) {
                  goto out;
-@@ -1185,6 +1202,10 @@
+@@ -1185,6 +1202,10 @@ gnome_get_country_from_locale (const char *locale,
  		goto out;
  	}
  

@@ -1,9 +1,17 @@
-=== modified file 'libgnome-desktop/gnome-bg.c'
-Index: gnome-desktop3-3.7.90/libgnome-desktop/gnome-bg.c
-===================================================================
---- gnome-desktop3-3.7.90.orig/libgnome-desktop/gnome-bg.c	2013-02-23 10:33:04.632959212 -0500
-+++ gnome-desktop3-3.7.90/libgnome-desktop/gnome-bg.c	2013-02-23 10:33:25.224958351 -0500
-@@ -59,6 +59,19 @@
+From: Didier Roche <didrocks@ubuntu.com>
+Date: Fri, 6 Apr 2012 16:38:09 +0200
+Subject: compute the average color in gnome-desktop
+
+instead of in Unity to fix some races (LP: #963140)
+---
+ libgnome-desktop/gnome-bg.c | 141 ++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 141 insertions(+)
+
+diff --git a/libgnome-desktop/gnome-bg.c b/libgnome-desktop/gnome-bg.c
+index 2b6ecd3..fc368af 100644
+--- a/libgnome-desktop/gnome-bg.c
++++ b/libgnome-desktop/gnome-bg.c
+@@ -58,6 +58,19 @@ Author: Soren Sandmann <sandmann@redhat.com>
     in the slideshow is less than 60 seconds away */
  #define KEEP_EXPENSIVE_CACHE_SECS 60
  
@@ -23,7 +31,7 @@ Index: gnome-desktop3-3.7.90/libgnome-desktop/gnome-bg.c
  /* This is the size of the GdkRGB dither matrix, in order to avoid
   * bad dithering when tiling the gradient
   */
-@@ -2283,10 +2296,137 @@
+@@ -2258,10 +2271,137 @@ clear_cache (GnomeBG *bg)
  }
  
  /* Pixbuf utilities */
@@ -161,7 +169,7 @@ Index: gnome-desktop3-3.7.90/libgnome-desktop/gnome-bg.c
  	guint64 a_total, r_total, g_total, b_total;
  	guint row, column;
  	int row_stride;
-@@ -2346,6 +2486,7 @@
+@@ -2321,6 +2461,7 @@ pixbuf_average_value (GdkPixbuf *pixbuf,
  	result->red = r_total / dd;
  	result->green = g_total / dd;
  	result->blue = b_total / dd;

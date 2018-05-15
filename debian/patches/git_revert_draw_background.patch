@@ -1,4 +1,3 @@
-From a256e037a85447b58f9aab8fd3cc7a8056a3f375 Mon Sep 17 00:00:00 2001
 From: Tim Lunn <tim@feathertop.org>
 Date: Thu, 21 Mar 2013 11:23:33 +1100
 Subject: [PATCH] Revert "GnomeBG: remove the ability not to draw the
@@ -9,15 +8,15 @@ This reverts commit ac536ef65ee399c3267b29049c62c70074b0a97d.
 
 https://bugzilla.gnome.org/show_bug.cgi?id=690378
 ---
- libgnome-desktop/gnome-bg.c | 27 +++++++++++++++++++++++++++
- libgnome-desktop/gnome-bg.h |  4 +++-
- 2 files changed, 30 insertions(+), 1 deletion(-)
+ libgnome-desktop/gnome-bg.c | 29 +++++++++++++++++++++++++++++
+ libgnome-desktop/gnome-bg.h |  3 +++
+ 2 files changed, 32 insertions(+)
 
-Index: b/libgnome-desktop/gnome-bg.c
-===================================================================
+diff --git a/libgnome-desktop/gnome-bg.c b/libgnome-desktop/gnome-bg.c
+index 3d25d4b..f9fa7a2 100644
 --- a/libgnome-desktop/gnome-bg.c
 +++ b/libgnome-desktop/gnome-bg.c
-@@ -47,6 +47,7 @@
+@@ -47,6 +47,7 @@ Author: Soren Sandmann <sandmann@redhat.com>
  #include "gnome-bg-slide-show.h"
  #include "gnome-bg-crossfade.h"
  
@@ -25,17 +24,17 @@ Index: b/libgnome-desktop/gnome-bg.c
  #define BG_KEY_PRIMARY_COLOR      "primary-color"
  #define BG_KEY_SECONDARY_COLOR    "secondary-color"
  #define BG_KEY_COLOR_TYPE         "color-shading-type"
-@@ -91,6 +92,7 @@
+@@ -91,6 +92,7 @@ struct _GnomeBG
  	GDesktopBackgroundShading	color_type;
- 	GdkColor		primary;
- 	GdkColor		secondary;
+ 	GdkRGBA			primary;
+ 	GdkRGBA			secondary;
 +	gboolean		is_enabled;
  
  	GFileMonitor *		file_monitor;
  
-@@ -313,10 +315,15 @@
+@@ -313,10 +315,15 @@ gnome_bg_load_from_preferences (GnomeBG   *bg,
  	GDesktopBackgroundShading ctype;
- 	GdkColor c1, c2;
+ 	GdkRGBA c1, c2;
  	GDesktopBackgroundStyle placement;
 +	GSettings *background_settings;
  
@@ -49,7 +48,7 @@ Index: b/libgnome-desktop/gnome-bg.c
  	/* Filename */
  	filename = g_settings_get_mapped (settings, BG_KEY_PICTURE_URI, bg_gsettings_mapping, NULL);
  
-@@ -363,6 +370,7 @@
+@@ -363,6 +370,7 @@ gnome_bg_save_to_preferences (GnomeBG   *bg,
  		uri = g_filename_to_uri (bg->filename, NULL, NULL);
  	if (uri == NULL)
  		uri = g_strdup ("");
@@ -57,7 +56,7 @@ Index: b/libgnome-desktop/gnome-bg.c
  	g_settings_set_string (settings, BG_KEY_PICTURE_URI, uri);
  	g_settings_set_string (settings, BG_KEY_PRIMARY_COLOR, primary);
  	g_settings_set_string (settings, BG_KEY_SECONDARY_COLOR, secondary);
-@@ -517,6 +525,28 @@
+@@ -517,6 +525,27 @@ gnome_bg_get_rgba (GnomeBG                   *bg,
  		*secondary = bg->secondary;
  }
  
@@ -66,10 +65,10 @@ Index: b/libgnome-desktop/gnome-bg.c
 +			      gboolean  draw_background)
 +{
 +	g_return_if_fail (bg != NULL);
-+	
++
 +	if (bg->is_enabled != draw_background) {
 +		bg->is_enabled = draw_background;
-+		
++
 +		queue_changed (bg);
 +	}
 +}
@@ -82,24 +81,23 @@ Index: b/libgnome-desktop/gnome-bg.c
 +	return bg->is_enabled;
 +}
 +
-+
  const gchar *
  gnome_bg_get_filename (GnomeBG *bg)
  {
-Index: b/libgnome-desktop/gnome-bg.h
-===================================================================
+diff --git a/libgnome-desktop/gnome-bg.h b/libgnome-desktop/gnome-bg.h
+index f19173d..7dc9185 100644
 --- a/libgnome-desktop/gnome-bg.h
 +++ b/libgnome-desktop/gnome-bg.h
-@@ -65,9 +65,11 @@
+@@ -65,9 +65,12 @@ void             gnome_bg_set_rgba              (GnomeBG               *bg,
  						 GDesktopBackgroundShading type,
- 						 GdkColor              *primary,
- 						 GdkColor              *secondary);
--
+ 						 GdkRGBA               *primary,
+ 						 GdkRGBA               *secondary);
 +void             gnome_bg_set_draw_background   (GnomeBG               *bg,
 +						 gboolean               draw_background);
+ 
  /* Getters */
  GDesktopBackgroundStyle gnome_bg_get_placement  (GnomeBG               *bg);
 +gboolean         gnome_bg_get_draw_background   (GnomeBG               *bg);
- void		 gnome_bg_get_color             (GnomeBG               *bg,
+ void		 gnome_bg_get_rgba              (GnomeBG               *bg,
  						 GDesktopBackgroundShading *type,
- 						 GdkColor              *primary,
+ 						 GdkRGBA               *primary,
