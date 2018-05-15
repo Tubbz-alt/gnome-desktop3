@@ -1,6 +1,7 @@
 gnome-desktop3 (3.28.2-1) UNRELEASED; urgency=medium
 
   * New upstream release (LP: #1771242)
+  * debian/source/lintian-overrides: Drop, obsolete
 
  -- Jeremy Bicha <jbicha@debian.org>  Mon, 14 May 2018 21:27:51 -0400
 
