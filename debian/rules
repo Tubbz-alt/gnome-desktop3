@@ -1,9 +1,12 @@
 #!/usr/bin/make -f
 
-LIB_PKG := $(filter-out %-dev %-bin,$(filter lib%,$(shell awk '/^Package: / { print $$2 }' debian/control)))
+-include /usr/share/gnome-pkg-tools/1/rules/gnome-get-source.mk
 
-export DEB_BUILD_MAINT_OPTIONS = hardening=+all
-export DEB_LDFLAGS_MAINT_APPEND = -Wl,-z,defs -Wl,--as-needed
+GNOME_MODULE := gnome-desktop
+
+LIB_PKG := $(filter-out %-dev %-dbg %-bin,$(filter lib%,$(shell dh_listpackages)))
+
+export DEB_LDFLAGS_MAINT_APPEND = -Wl,-z,defs -Wl,-O1 -Wl,--as-needed
 
 %:
 	dh $@ --with gnome,gir
@@ -24,8 +27,4 @@ override_dh_makeshlibs:
 	dh_makeshlibs -- -c4
 
 override_dh_install:
-	find debian/tmp -name '*.la' -print -delete
-	dh_install
-
-override_dh_missing:
-	dh_missing --fail-missing
+	dh_install --list-missing
