@@ -1,0 +1,26 @@
+From: Sam Morris <sam@robots.org.uk>
+Date: Fri, 13 Jul 2018 17:07:44 +0100
+Subject: Don't leak all_transforms in crtc_initialize
+
+Thanks /u/LvS
+
+Bug: https://gitlab.gnome.org/GNOME/gnome-desktop/issues/6
+Bug-Debian: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=903901
+Forwarded: https://gitlab.gnome.org/GNOME/gnome-desktop/merge_requests/1
+(cherry picked from commit b5e6c8eb7f8da1998f39afc7517bbfef19a9d924)
+---
+ libgnome-desktop/gnome-rr.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/libgnome-desktop/gnome-rr.c b/libgnome-desktop/gnome-rr.c
+index f9cdc4b..974d79e 100644
+--- a/libgnome-desktop/gnome-rr.c
++++ b/libgnome-desktop/gnome-rr.c
+@@ -1996,6 +1996,7 @@ crtc_initialize (GnomeRRCrtc *crtc, GVariant *info)
+     
+     while (g_variant_iter_loop (all_transforms, "u", &transform))
+ 	crtc->all_transforms |= 1 << transform;
++    g_variant_iter_free (all_transforms);
+ }
+ 
+ static void
