@@ -1,5 +1,0 @@
-Don-t-leak-crts-outputs-modes-in-fill_out_screen_info.patch
-Don-t-leak-all_transforms-in-crtc_initialize.patch
-Don-t-leak-info-in-output-crtc-mode-_initialize.patch
-Free-GVariants-in-the-same-scope-that-they-are-allocated.patch
-Don-t-leak-properties-in-output_initialize.patch
