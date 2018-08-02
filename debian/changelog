@@ -1,9 +1,11 @@
-gnome-desktop3 (3.29.90.1-1) UNRELEASED; urgency=medium
+gnome-desktop3 (3.29.90.1-1) experimental; urgency=medium
 
   * New upstream development release
   * Update debian/gbp.conf
+  * Drop obsolete Build-Depends on intltool
+  * Drop all patches: applied in new release
 
- -- Jeremy Bicha <jbicha@debian.org>  Wed, 01 Aug 2018 22:28:09 -0400
+ -- Jeremy Bicha <jbicha@debian.org>  Wed, 01 Aug 2018 22:32:33 -0400
 
 gnome-desktop3 (3.28.2-2) unstable; urgency=medium
 
