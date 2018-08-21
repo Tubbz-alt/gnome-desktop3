@@ -28,6 +28,7 @@ Build-Depends: debhelper (>= 11),
                libxml2-dev (>= 2.4.20),
                xkb-data,
                yelp-tools
+Rules-Requires-Root: no
 Vcs-Browser: https://salsa.debian.org/gnome-team/gnome-desktop
 Vcs-Git: https://salsa.debian.org/gnome-team/gnome-desktop.git
 Standards-Version: 4.2.0

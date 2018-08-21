@@ -4,6 +4,7 @@ gnome-desktop3 (3.29.91-1) UNRELEASED; urgency=medium
   * Don't install commit-level ChangeLog in packages (Policy §12.7)
   * Wrap all dependencies (wrap-and-sort -a)
   * Standards-Version: 4.2.0 (no further changes)
+  * Set Rules-Requires-Root to no
 
  -- Simon McVittie <smcv@debian.org>  Tue, 21 Aug 2018 11:13:43 +0100
 
