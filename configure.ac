@@ -1,6 +1,6 @@
 m4_define(gnome_platform, 3)
-m4_define(gnome_minor, 28)
-m4_define(gnome_micro, 2)
+m4_define(gnome_minor, 29)
+m4_define(gnome_micro, 91)
 m4_define(gnome_sub,)
 dnl gnome_sub is an optional sub-version which will not be advertised to the user
 dnl It allows to release a 2.30.1.1 which is just a better 2.30.1
@@ -10,7 +10,7 @@ m4_define(gnome_version, [gnome_platform.gnome_minor.gnome_micro]m4_ifval(gnome_
 
 AC_INIT([gnome-desktop], gnome_version,
         [http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-desktop])
-AX_IS_RELEASE([git-directory])
+AX_IS_RELEASE([always])
 AC_CONFIG_SRCDIR([libgnome-desktop])
 
 AM_INIT_AUTOMAKE([1.11.2 foreign no-dist-gzip dist-xz tar-ustar])
@@ -29,13 +29,11 @@ AC_CONFIG_MACRO_DIR([m4])
 #   change to C+1:0:0
 # - If the interface is the same as the previous version, change to C:R+1:A
 
-LT_VERSION=17:0:0
+LT_VERSION=17:3:0
 AC_SUBST(LT_VERSION)
 
 LT_PREREQ([2.2.6])
 LT_INIT([dlopen win32-dll disable-static])
-
-IT_PROG_INTLTOOL([0.40.6])
 
 AC_PROG_CC
 PKG_PROG_PKG_CONFIG
@@ -178,6 +176,7 @@ PKG_CHECK_MODULES(GNOME_DESKTOP, gdk-pixbuf-2.0 >= $GDK_PIXBUF_REQUIRED
                                  gtk+-3.0 >= $GTK_REQUIRED
                                  glib-2.0 >= $GLIB_REQUIRED
                                  gio-2.0 >= $GLIB_REQUIRED
+                                 gio-unix-2.0 >= $GLIB_REQUIRED
                                  gsettings-desktop-schemas >= $GSETTINGS_DESKTOP_SCHEMAS_REQUIRED
                                  xkeyboard-config
                                  iso-codes
@@ -210,13 +209,13 @@ dnl Documentation support
 YELP_HELP_INIT
 
 dnl Language Support
+AM_GNU_GETTEXT([external])
+AM_GNU_GETTEXT_VERSION([0.19.8])
 
 GETTEXT_PACKAGE=gnome-desktop-3.0
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE",
 		   [The gettext translation domain])
 AC_SUBST(GETTEXT_PACKAGE)
-
-AM_GLIB_GNU_GETTEXT
 
 GOBJECT_INTROSPECTION_CHECK([0.9.7])
 
@@ -231,7 +230,7 @@ libgnome-desktop/gnome-desktop-3.0-uninstalled.pc
 docs/Makefile
 docs/reference/Makefile
 docs/reference/gnome-desktop3/Makefile
-gnome-version.xml.in
+gnome-version.xml
 po/Makefile.in
 desktop-docs/Makefile
 desktop-docs/fdl/Makefile
