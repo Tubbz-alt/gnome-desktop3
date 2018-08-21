@@ -2,6 +2,7 @@ gnome-desktop3 (3.29.91-1) UNRELEASED; urgency=medium
 
   * New upstream release
   * Don't install commit-level ChangeLog in packages (Policy §12.7)
+  * Wrap all dependencies (wrap-and-sort -a)
 
  -- Simon McVittie <smcv@debian.org>  Tue, 21 Aug 2018 11:13:43 +0100
 

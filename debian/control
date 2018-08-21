@@ -69,7 +69,9 @@ Package: gir1.2-gnomedesktop-3.0
 Section: introspection
 Architecture: any
 Multi-Arch: same
-Depends: ${gir:Depends}, ${misc:Depends}, ${shlibs:Depends}
+Depends: ${gir:Depends},
+         ${misc:Depends},
+         ${shlibs:Depends}
 Breaks: gnome-shell (<< 3.27.92-2~),
         libmutter-2-0 (<< 3.27.92-2~)
 Description: Introspection data for GnomeDesktop
