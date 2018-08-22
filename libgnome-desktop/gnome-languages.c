@@ -130,8 +130,6 @@ gnome_parse_locale (const char *locale,
         static GRegex *re = NULL;
         GMatchInfo *match_info;
         gboolean    res;
-        gchar      *normalized_codeset = NULL;
-        gchar      *normalized_name = NULL;
         gboolean    retval;
 
         match_info = NULL;
@@ -200,6 +198,9 @@ gnome_parse_locale (const char *locale,
         }
 
         if (codesetp != NULL && *codesetp != NULL) {
+                g_autofree gchar *normalized_codeset = NULL;
+                g_autofree gchar *normalized_name = NULL;
+
                 normalized_codeset = normalize_codeset (*codesetp);
                 normalized_name = construct_language_name (language_codep ? *language_codep : NULL,
                                                            country_codep ? *country_codep : NULL,
@@ -208,11 +209,8 @@ gnome_parse_locale (const char *locale,
 
                 if (language_name_is_valid (normalized_name)) {
                         g_free (*codesetp);
-                        *codesetp = normalized_codeset;
-                } else {
-                        g_free (normalized_codeset);
+                        *codesetp = g_steal_pointer (&normalized_codeset);
                 }
-                g_free (normalized_name);
         }
 
  out:
@@ -305,7 +303,7 @@ language_name_get_codeset_details (const char  *language_name,
                                    gboolean    *is_utf8)
 {
         g_autofree char *old_locale = NULL;
-        g_autofree char *codeset = NULL;
+        const char *codeset = NULL;
 
         old_locale = g_strdup (setlocale (LC_CTYPE, NULL));
 
@@ -319,9 +317,9 @@ language_name_get_codeset_details (const char  *language_name,
         }
 
         if (is_utf8 != NULL) {
-                codeset = normalize_codeset (codeset);
+                g_autofree char *normalized_codeset = normalize_codeset (codeset);
 
-                *is_utf8 = strcmp (codeset, "UTF-8") == 0;
+                *is_utf8 = strcmp (normalized_codeset, "UTF-8") == 0;
         }
 
         setlocale (LC_CTYPE, old_locale);

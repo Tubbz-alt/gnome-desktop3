@@ -29,11 +29,12 @@ Build-Depends: debhelper (>= 11),
                libxml2-dev (>= 2.4.20),
                xkb-data,
                yelp-tools
+Rules-Requires-Root: no
 Vcs-Browser: https://code.launchpad.net/~ubuntu-desktop/ubuntu/+source/gnome-desktop3/+git/gnome-desktop3
 Vcs-Git: https://git.launchpad.net/~ubuntu-desktop/ubuntu/+source/gnome-desktop3
 XS-Debian-Vcs-Browser: https://salsa.debian.org/gnome-team/gnome-desktop
 XS-Debian-Vcs-Git: https://salsa.debian.org/gnome-team/gnome-desktop.git
-Standards-Version: 4.1.4
+Standards-Version: 4.2.0
 
 Package: gnome-desktop3-data
 Architecture: all
@@ -72,7 +73,9 @@ Package: gir1.2-gnomedesktop-3.0
 Section: introspection
 Architecture: any
 Multi-Arch: same
-Depends: ${gir:Depends}, ${misc:Depends}, ${shlibs:Depends}
+Depends: ${gir:Depends},
+         ${misc:Depends},
+         ${shlibs:Depends}
 Breaks: gnome-shell (<< 3.27.92-2~),
         libmutter-2-0 (<< 3.27.92-2~)
 Description: Introspection data for GnomeDesktop

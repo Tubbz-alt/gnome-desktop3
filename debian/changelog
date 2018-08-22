@@ -1,6 +1,5 @@
-gnome-desktop3 (3.29.90.1-1ubuntu1) cosmic; urgency=medium
+gnome-desktop3 (3.29.91.1-1ubuntu1) UNRELEASED; urgency=medium
 
-  [ Jeremy Bicha ]
   * Resynchronize with Debian. Remaining changes:
     - Add 04_compute_average_color.patch: Compute the avergage color in
       gnome-desktop itself, not in unity to fix some races (LP #963140)
@@ -22,10 +21,18 @@ gnome-desktop3 (3.29.90.1-1ubuntu1) cosmic; urgency=medium
       + Add symbols included in Ubuntu patches
     - Update Vcs fields and debian/gbp.conf for Ubuntu
 
-  [ Iain Lane ]
-  * debian/control{,.in}: Fix to use +source/gnome-desktop3
+ -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 22 Aug 2018 10:34:17 +0200
 
- -- Jeremy Bicha <jbicha@ubuntu.com>  Wed, 01 Aug 2018 23:07:00 -0400
+gnome-desktop3 (3.29.91-1) experimental; urgency=medium
+
+  * Team upload
+  * New upstream release
+  * Don't install commit-level ChangeLog in packages (Policy §12.7)
+  * Wrap all dependencies (wrap-and-sort -a)
+  * Standards-Version: 4.2.0 (no further changes)
+  * Set Rules-Requires-Root to no
+
+ -- Simon McVittie <smcv@debian.org>  Tue, 21 Aug 2018 11:44:32 +0100
 
 gnome-desktop3 (3.29.90.1-1) experimental; urgency=medium
 

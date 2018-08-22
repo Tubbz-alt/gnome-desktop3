@@ -76,7 +76,7 @@ mentioned in the release notes for the affected release.
 </tr>
 <tr>
 <td class="function_type">
-<span class="returnvalue">gboolean</span>
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
 </td>
 <td class="function_name">
 <a class="link" href="GnomeDesktopThumbnailFactory.html#gnome-desktop-thumbnail-factory-has-valid-failed-thumbnail" title="gnome_desktop_thumbnail_factory_has_valid_failed_thumbnail ()">gnome_desktop_thumbnail_factory_has_valid_failed_thumbnail</a> <span class="c_punctuation">()</span>
@@ -84,7 +84,7 @@ mentioned in the release notes for the affected release.
 </tr>
 <tr>
 <td class="function_type">
-<span class="returnvalue">gboolean</span>
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
 </td>
 <td class="function_name">
 <a class="link" href="GnomeDesktopThumbnailFactory.html#gnome-desktop-thumbnail-factory-can-thumbnail" title="gnome_desktop_thumbnail_factory_can_thumbnail ()">gnome_desktop_thumbnail_factory_can_thumbnail</a> <span class="c_punctuation">()</span>
@@ -92,7 +92,7 @@ mentioned in the release notes for the affected release.
 </tr>
 <tr>
 <td class="function_type">
-<span class="returnvalue">GdkPixbuf</span> *
+<a href="/usr/share/gtk-doc/html/gdk-pixbuf/gdk-pixbuf-The-GdkPixbuf-Structure.html#GdkPixbuf-struct"><span class="returnvalue">GdkPixbuf</span></a> *
 </td>
 <td class="function_name">
 <a class="link" href="GnomeDesktopThumbnailFactory.html#gnome-desktop-thumbnail-factory-generate-thumbnail" title="gnome_desktop_thumbnail_factory_generate_thumbnail ()">gnome_desktop_thumbnail_factory_generate_thumbnail</a> <span class="c_punctuation">()</span>
@@ -116,7 +116,7 @@ mentioned in the release notes for the affected release.
 </tr>
 <tr>
 <td class="function_type">
-<span class="returnvalue">gboolean</span>
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
 </td>
 <td class="function_name">
 <a class="link" href="GnomeDesktopThumbnailFactory.html#gnome-desktop-thumbnail-is-valid" title="gnome_desktop_thumbnail_is_valid ()">gnome_desktop_thumbnail_is_valid</a> <span class="c_punctuation">()</span>
@@ -162,7 +162,7 @@ mentioned in the release notes for the affected release.
 </div>
 <div class="refsect1">
 <a name="GnomeDesktopThumbnailFactory.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    GObject
+<pre class="screen">    <a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
     <span class="lineart">╰──</span> GnomeDesktopThumbnailFactory
 </pre>
 </div>
@@ -244,7 +244,7 @@ path for the output image file to</p>
 <p>The code to examine and call a thumbnailer is contained in
 <a class="link" href="GnomeDesktopThumbnailFactory.html" title="GnomeDesktopThumbnailFactory"><span class="type">GnomeDesktopThumbnailFactory</span></a>, which handles looking up the right thumbnailer
 script, building and executing the command for it, and loading the resulting
-thumbnail image into a <span class="type">GdkPixbuf</span>.</p>
+thumbnail image into a <a href="/usr/share/gtk-doc/html/gdk-pixbuf/gdk-pixbuf-The-GdkPixbuf-Structure.html#GdkPixbuf-struct"><span class="type">GdkPixbuf</span></a>.</p>
 <p>Thumbnail caching is also supported by <a class="link" href="GnomeDesktopThumbnailFactory.html" title="GnomeDesktopThumbnailFactory"><span class="type">GnomeDesktopThumbnailFactory</span></a>. When
 calling a thumbnailer, the path passed for the output image file is in
 <code class="filename"><code class="envar">$XDG_CACHE_HOME</code>/thumbnails/
@@ -341,14 +341,14 @@ gnome_desktop_thumbnail_factory_lookup
 </div>
 <div class="refsect3">
 <a name="gnome-desktop-thumbnail-factory-lookup.returns"></a><h4>Returns</h4>
-<p> The absolute path of the thumbnail, or <code class="literal">NULL</code> if none exist.</p>
+<p> The absolute path of the thumbnail, or <a href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if none exist.</p>
 </div>
 <p class="since">Since: 2.2</p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="gnome-desktop-thumbnail-factory-has-valid-failed-thumbnail"></a><h3>gnome_desktop_thumbnail_factory_has_valid_failed_thumbnail ()</h3>
-<pre class="programlisting"><span class="returnvalue">gboolean</span>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
 gnome_desktop_thumbnail_factory_has_valid_failed_thumbnail
                                (<em class="parameter"><code><a class="link" href="GnomeDesktopThumbnailFactory.html" title="GnomeDesktopThumbnailFactory"><span class="type">GnomeDesktopThumbnailFactory</span></a> *factory</code></em>,
                                 <em class="parameter"><code>const <span class="type">char</span> *uri</code></em>,
@@ -393,7 +393,7 @@ thumbnail e.g. broken images several times.</p>
 <hr>
 <div class="refsect2">
 <a name="gnome-desktop-thumbnail-factory-can-thumbnail"></a><h3>gnome_desktop_thumbnail_factory_can_thumbnail ()</h3>
-<pre class="programlisting"><span class="returnvalue">gboolean</span>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
 gnome_desktop_thumbnail_factory_can_thumbnail
                                (<em class="parameter"><code><a class="link" href="GnomeDesktopThumbnailFactory.html" title="GnomeDesktopThumbnailFactory"><span class="type">GnomeDesktopThumbnailFactory</span></a> *factory</code></em>,
                                 <em class="parameter"><code>const <span class="type">char</span> *uri</code></em>,
@@ -443,7 +443,7 @@ this file. Thumbnails or files with failed thumbnails won't be thumbnailed.</p>
 <hr>
 <div class="refsect2">
 <a name="gnome-desktop-thumbnail-factory-generate-thumbnail"></a><h3>gnome_desktop_thumbnail_factory_generate_thumbnail ()</h3>
-<pre class="programlisting"><span class="returnvalue">GdkPixbuf</span> *
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/gdk-pixbuf/gdk-pixbuf-The-GdkPixbuf-Structure.html#GdkPixbuf-struct"><span class="returnvalue">GdkPixbuf</span></a> *
 gnome_desktop_thumbnail_factory_generate_thumbnail
                                (<em class="parameter"><code><a class="link" href="GnomeDesktopThumbnailFactory.html" title="GnomeDesktopThumbnailFactory"><span class="type">GnomeDesktopThumbnailFactory</span></a> *factory</code></em>,
                                 <em class="parameter"><code>const <span class="type">char</span> *uri</code></em>,
@@ -480,7 +480,7 @@ it returns a pixbuf that can be used as a thumbnail.</p>
 </div>
 <div class="refsect3">
 <a name="gnome-desktop-thumbnail-factory-generate-thumbnail.returns"></a><h4>Returns</h4>
-<p>thumbnail pixbuf if thumbnailing succeeded, <code class="literal">NULL</code> otherwise. </p>
+<p>thumbnail pixbuf if thumbnailing succeeded, <a href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> otherwise. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 <p class="since">Since: 2.2</p>
@@ -491,7 +491,7 @@ it returns a pixbuf that can be used as a thumbnail.</p>
 <pre class="programlisting"><span class="returnvalue">void</span>
 gnome_desktop_thumbnail_factory_save_thumbnail
                                (<em class="parameter"><code><a class="link" href="GnomeDesktopThumbnailFactory.html" title="GnomeDesktopThumbnailFactory"><span class="type">GnomeDesktopThumbnailFactory</span></a> *factory</code></em>,
-                                <em class="parameter"><code><span class="type">GdkPixbuf</span> *thumbnail</code></em>,
+                                <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gdk-pixbuf/gdk-pixbuf-The-GdkPixbuf-Structure.html#GdkPixbuf-struct"><span class="type">GdkPixbuf</span></a> *thumbnail</code></em>,
                                 <em class="parameter"><code>const <span class="type">char</span> *uri</code></em>,
                                 <em class="parameter"><code><span class="type">time_t</span> original_mtime</code></em>);</pre>
 <p>Saves <em class="parameter"><code>thumbnail</code></em>
@@ -575,8 +575,8 @@ to re-thumbnail the file later.</p>
 <hr>
 <div class="refsect2">
 <a name="gnome-desktop-thumbnail-is-valid"></a><h3>gnome_desktop_thumbnail_is_valid ()</h3>
-<pre class="programlisting"><span class="returnvalue">gboolean</span>
-gnome_desktop_thumbnail_is_valid (<em class="parameter"><code><span class="type">GdkPixbuf</span> *pixbuf</code></em>,
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+gnome_desktop_thumbnail_is_valid (<em class="parameter"><code><a href="/usr/share/gtk-doc/html/gdk-pixbuf/gdk-pixbuf-The-GdkPixbuf-Structure.html#GdkPixbuf-struct"><span class="type">GdkPixbuf</span></a> *pixbuf</code></em>,
                                   <em class="parameter"><code>const <span class="type">char</span> *uri</code></em>,
                                   <em class="parameter"><code><span class="type">time_t</span> mtime</code></em>);</pre>
 <p>Returns whether the thumbnail has the correct uri and mtime embedded in the
@@ -592,7 +592,7 @@ png options. This function is threadsafe and does no blocking I/O.</p>
 <tbody>
 <tr>
 <td class="parameter_name"><p>pixbuf</p></td>
-<td class="parameter_description"><p>an loaded thumbnail <span class="type">GdkPixbuf</span></p></td>
+<td class="parameter_description"><p>an loaded thumbnail <a href="/usr/share/gtk-doc/html/gdk-pixbuf/gdk-pixbuf-The-GdkPixbuf-Structure.html#GdkPixbuf-struct"><span class="type">GdkPixbuf</span></a></p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>

@@ -6,10 +6,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-desktop 3.29.90.1\n"
+"Project-Id-Version: gnome-desktop 3.29.91\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "desktop\n"
-"POT-Creation-Date: 2018-08-01 20:28+0000\n"
+"POT-Creation-Date: 2018-08-13 21:03-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: libgnome-desktop/gnome-languages.c:713
+#: libgnome-desktop/gnome-languages.c:711
 msgid "Unspecified"
 msgstr ""
 
@@ -83,19 +83,19 @@ msgid ""
 msgstr ""
 
 #: libgnome-desktop/gnome-wall-clock.c:290
-msgid "%a %b %e_%R:%S"
+msgid "%a %b %-e_%R:%S"
 msgstr ""
 
 #: libgnome-desktop/gnome-wall-clock.c:291
-msgid "%a %b %e_%R"
+msgid "%a %b %-e_%R"
 msgstr ""
 
 #: libgnome-desktop/gnome-wall-clock.c:296
-msgid "%b %e, %R:%S"
+msgid "%b %-e_%R:%S"
 msgstr ""
 
 #: libgnome-desktop/gnome-wall-clock.c:297
-msgid "%b %e_%R"
+msgid "%b %-e_%R"
 msgstr ""
 
 #: libgnome-desktop/gnome-wall-clock.c:301
@@ -115,19 +115,19 @@ msgid "%R"
 msgstr ""
 
 #: libgnome-desktop/gnome-wall-clock.c:314
-msgid "%a %b %e_%l:%M:%S %p"
+msgid "%a %b %-e_%l:%M:%S %p"
 msgstr ""
 
 #: libgnome-desktop/gnome-wall-clock.c:315
-msgid "%a %b %e_%l:%M %p"
+msgid "%a %b %-e_%l:%M %p"
 msgstr ""
 
 #: libgnome-desktop/gnome-wall-clock.c:320
-msgid "%b %e_%l:%M:%S %p"
+msgid "%b %-e_%l:%M:%S %p"
 msgstr ""
 
 #: libgnome-desktop/gnome-wall-clock.c:321
-msgid "%b %e_%l:%M %p"
+msgid "%b %-e_%l:%M %p"
 msgstr ""
 
 #: libgnome-desktop/gnome-wall-clock.c:325

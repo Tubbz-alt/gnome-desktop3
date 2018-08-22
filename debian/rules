@@ -20,6 +20,9 @@ override_dh_auto_configure:
 		--enable-desktop-docs \
 		--enable-introspection
 
+override_dh_installchangelogs:
+	dh_installchangelogs -XChangeLog
+
 override_dh_makeshlibs:
 	dh_makeshlibs -- -c4
 
