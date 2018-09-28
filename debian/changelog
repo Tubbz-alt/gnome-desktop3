@@ -1,16 +1,36 @@
+gnome-desktop3 (3.30.1-1ubuntu1) UNRELEASED; urgency=medium
+
+  * Resynchronise with Debian. Remaining changes:
+    - Add 04_compute_average_color.patch: Compute the avergage color in
+      gnome-desktop itself, not in unity to fix some races (LP #963140)
+    - Add tweak_color_computation.patch, Patch from Gord, no patch header,
+      no bug link.
+    - Add git_revert_draw_background.patch
+    - Add ubuntu_language.patch, Port relevant bits from gnome-control-center's
+      52_region_language.patch, as required for gnome 3.8+ region panel
+    - Add ubuntu_language_list_from_SUPPORTED.patch,
+      Add API to get list of available languages from SUPPORTED file.
+      To be used by gnome 3.8 region panel language installation.
+    - Add gnomebg_hidpi_image.patch,
+      gnome_bg_create_surface: always honor device scale, that fixes the
+      wallpaper rendering in HiDPI config under ubiquity (LP: #1382291)
+    - Add disable-bubblewrap.patch:
+      + Don't use bubblewrap since it's not in main yet. See bug 1709164.
+    - debian/control.in: Don't depend on bubblewrap
+    - debian/libgnome-desktop-3-17.symbols:
+      + Add symbols included in Ubuntu patches
+    - Update Vcs fields and debian/gbp.conf for Ubuntu
+  * debian/patches/disable-bubblewrap.patch, debian/control*: Drop changes to
+    disable bubblewrap, now that it is approved to go into main.
+
+ -- Iain Lane <laney@debian.org>  Fri, 28 Sep 2018 13:17:21 +0100
+
 gnome-desktop3 (3.30.1-1) unstable; urgency=medium
 
   * New upstream release
   * debian/copyright: Remove obsolete lines
 
  -- Jeremy Bicha <jbicha@debian.org>  Thu, 27 Sep 2018 20:48:14 -0400
-
-gnome-desktop3 (3.30.0-1ubuntu2) UNRELEASED; urgency=medium
-
-  * debian/patches/disable-bubblewrap.patch, debian/control*: Drop changes to
-    disable bubblewrap, now that it is approved to go into main.
-
- -- Iain Lane <laney@debian.org>  Fri, 28 Sep 2018 13:17:21 +0100
 
 gnome-desktop3 (3.30.0-1ubuntu1) cosmic; urgency=medium
 
