@@ -7,7 +7,7 @@ Section: gnome
 Priority: optional
 Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
 XSBC-Original-Maintainer: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>
-Uploaders: Jeremy Bicha <jbicha@debian.org>, Laurent Bigonville <bigon@debian.org>, Michael Biebl <biebl@debian.org>
+Uploaders: Jeremy Bicha <jbicha@debian.org>, Laurent Bigonville <bigon@debian.org>
 Build-Depends: debhelper (>= 11),
                docbook-xml,
                gnome-common,
@@ -34,7 +34,7 @@ Vcs-Browser: https://code.launchpad.net/~ubuntu-desktop/ubuntu/+source/gnome-des
 Vcs-Git: https://git.launchpad.net/~ubuntu-desktop/ubuntu/+source/gnome-desktop3
 XS-Debian-Vcs-Browser: https://salsa.debian.org/gnome-team/gnome-desktop
 XS-Debian-Vcs-Git: https://salsa.debian.org/gnome-team/gnome-desktop.git
-Standards-Version: 4.2.0
+Standards-Version: 4.2.1
 
 Package: gnome-desktop3-data
 Architecture: all
