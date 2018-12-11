@@ -1,1 +1,2 @@
 thumbnail-Handle-non-usrmerged-systems.patch
+thumbnail-Fix-use-after-free-when-getting-a-preview-icon.patch
