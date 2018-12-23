@@ -1,3 +1,10 @@
+gnome-desktop3 (3.30.2-4) unstable; urgency=medium
+
+  * Restore -Wl,-O1 to our LDFLAGS
+  * Bump Standards-Version to 4.3.0
+
+ -- Jeremy Bicha <jbicha@debian.org>  Sun, 23 Dec 2018 11:18:52 -0500
+
 gnome-desktop3 (3.30.2-3) unstable; urgency=medium
 
   * Cherry-pick thumbnail-Fix-use-after-free-when-getting-a-preview-icon.patch:
