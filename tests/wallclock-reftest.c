@@ -27,6 +27,8 @@
 #define GNOME_DESKTOP_USE_UNSTABLE_API 1
 #include <libgnome-desktop/gnome-wall-clock.h>
 
+static const char *output_dir = NULL;
+
 typedef enum {
   SNAPSHOT_WINDOW,
   SNAPSHOT_DRAW
@@ -39,14 +41,16 @@ static char *
 get_output_file (const char *test_file,
                  const char *extension)
 {
-  const char *output_dir = g_get_tmp_dir ();
   char *result, *base;
 
   base = g_path_get_basename (test_file);
   if (g_str_has_suffix (base, ".ui"))
     base[strlen (base) - strlen (".ui")] = '\0';
 
-  result = g_strconcat (output_dir, G_DIR_SEPARATOR_S, base, extension, NULL);
+  if (output_dir)
+    result = g_strconcat (output_dir, G_DIR_SEPARATOR_S, "..", G_DIR_SEPARATOR_S, "meson-logs", G_DIR_SEPARATOR_S, base, extension, NULL);
+  else
+    result = g_strconcat (g_get_tmp_dir (), G_DIR_SEPARATOR_S, base, extension, NULL);
   g_free (base);
 
   return result;
@@ -434,13 +438,14 @@ test_ui_file (GFile         *file,
   GtkStyleProvider *provider;
   GnomeWallClock *clock;
   GDateTime *datetime;
-  char *str;
+  char *str, *set_locale;
 
   ui_file = g_file_get_path (file);
 
   locale = get_locale_for_file (ui_file);
   g_assert (locale);
-  setlocale (LC_ALL, locale);
+  set_locale = setlocale (LC_ALL, locale);
+  g_assert_cmpstr (set_locale, ==, locale);
 
   clock = gnome_wall_clock_new();
   datetime = g_date_time_new_local (2014, 5, 28, 23, 59, 59);
@@ -575,7 +580,11 @@ main (int argc, char **argv)
   g_test_init (&argc, &argv, NULL);
   gtk_init (&argc, &argv);
 
-  basedir = INSTALLED_TEST_DIR;
+  basedir = g_getenv ("G_TEST_SRCDIR");
+  if (basedir == NULL)
+    basedir = INSTALLED_TEST_DIR;
+  output_dir = g_getenv ("G_TEST_BUILDDIR");
+
   file = g_file_new_for_commandline_arg (basedir);
   add_test_for_file (file, NULL);
   g_object_unref (file);
