@@ -1,8 +1,9 @@
-gnome-desktop3 (3.30.2.1-1) UNRELEASED; urgency=medium
+gnome-desktop3 (3.30.2.1-1) unstable; urgency=medium
 
   * New upstream release
+  * Drop all patches: applied in new release
 
- -- Jeremy Bicha <jbicha@debian.org>  Tue, 05 Feb 2019 17:59:16 -0500
+ -- Jeremy Bicha <jbicha@debian.org>  Tue, 05 Feb 2019 18:03:26 -0500
 
 gnome-desktop3 (3.30.2-4) unstable; urgency=medium
 
