@@ -1,3 +1,50 @@
+gnome-desktop3 (3.31.90-1ubuntu1) UNRELEASED; urgency=medium
+
+  * Merge with Debian. Remaining changes:
+    - Add 04_compute_average_color.patch: Compute the avergage color in
+      gnome-desktop itself, not in unity to fix some races (LP #963140)
+    - Add tweak_color_computation.patch, Patch from Gord, no patch header,
+      no bug link.
+    - Add git_revert_draw_background.patch
+    - Add ubuntu_language.patch, Port relevant bits from gnome-control-center's
+      52_region_language.patch, as required for gnome 3.8+ region panel
+    - Add ubuntu_language_list_from_SUPPORTED.patch,
+      Add API to get list of available languages from SUPPORTED file.
+      To be used by gnome 3.8 region panel language installation.
+    - Add gnomebg_hidpi_image.patch,
+      gnome_bg_create_surface: always honor device scale, that fixes the
+      wallpaper rendering in HiDPI config under ubiquity (LP: #1382291)
+    - debian/control.in: Don't depend on bubblewrap
+    - debian/libgnome-desktop-3-17.symbols:
+      + Add symbols included in Ubuntu patches
+    - Update Vcs fields and debian/gbp.conf for Ubuntu
+
+ -- Jeremy Bicha <jbicha@ubuntu.com>  Tue, 11 Dec 2018 10:45:20 -0500
+
+gnome-desktop3 (3.31.90-1) experimental; urgency=medium
+
+  * New upstream development release
+  * Build with meson
+  * Build-Depend on dh-sequence-gir and dh-sequence-gnome
+  * debian/libgnome-desktop-3-17.symbols: Add new symbols
+  * Use xvfb to run build tests
+
+ -- Jeremy Bicha <jbicha@debian.org>  Tue, 05 Feb 2019 20:06:59 -0500
+
+gnome-desktop3 (3.30.2.1-1) unstable; urgency=medium
+
+  * New upstream release
+  * Drop all patches: applied in new release
+
+ -- Jeremy Bicha <jbicha@debian.org>  Tue, 05 Feb 2019 18:03:26 -0500
+
+gnome-desktop3 (3.30.2-4) unstable; urgency=medium
+
+  * Restore -Wl,-O1 to our LDFLAGS
+  * Bump Standards-Version to 4.3.0
+
+ -- Jeremy Bicha <jbicha@debian.org>  Sun, 23 Dec 2018 11:18:52 -0500
+
 gnome-desktop3 (3.30.2-3ubuntu1) disco; urgency=medium
 
   * Merge with Debian. Remaining changes:
