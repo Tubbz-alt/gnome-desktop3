@@ -1,3 +1,10 @@
+gnome-desktop3 (3.31.90-1ubuntu3) disco; urgency=medium
+
+  * Have libgnome-desktop-3-dev depend on iso-codes and libudev-dev:
+    - required by its pkgconfig file after switch to meson
+
+ -- Jeremy Bicha <jbicha@debian.org>  Wed, 13 Feb 2019 08:14:36 -0500
+
 gnome-desktop3 (3.31.90-1ubuntu2) disco; urgency=medium
 
   * Build-Depend on language-pack-gnome-he for build tests
