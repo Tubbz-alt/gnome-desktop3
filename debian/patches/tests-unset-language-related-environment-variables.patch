@@ -1,0 +1,36 @@
+From: Jeremy Bicha <jbicha@ubuntu.com>
+Date: Tue, 12 Feb 2019 17:11:48 -0500
+Subject: tests: unset language-related environment variables
+
+This fixes the tests in environments where these variables have
+been set, such as on developer's personal systems.
+
+https://gitlab.gnome.org/GNOME/gnome-desktop/merge_requests/32
+---
+ tests/wallclock-reftest.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/tests/wallclock-reftest.c b/tests/wallclock-reftest.c
+index 3db9cf1..7cb4819 100644
+--- a/tests/wallclock-reftest.c
++++ b/tests/wallclock-reftest.c
+@@ -570,13 +570,18 @@ main (int argc, char **argv)
+   const char *basedir;
+   GFile *file;
+ 
++  /* unset environment variables that can interfere with our tests */
++  unsetenv("LANG");
++  unsetenv("LANGUAGE");
++  unsetenv("LC_ALL");
++  unsetenv("LC_TIME");
++
+   /* I don't want to fight fuzzy scaling algorithms in GPUs,
+    * so unless you explicitly set it to something else, we
+    * will use Cairo's image surface.
+    */
+   g_setenv ("GDK_RENDERING", "image", FALSE);
+ 
+-  setlocale (LC_ALL, "");
+   g_test_init (&argc, &argv, NULL);
+   gtk_init (&argc, &argv);
+ 

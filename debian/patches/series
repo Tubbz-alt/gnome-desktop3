@@ -1,3 +1,4 @@
+tests-unset-language-related-environment-variables.patch
 04_compute_average_color.patch
 tweak_color_computation.patch
 git_revert_draw_background.patch
