@@ -1,3 +1,9 @@
+gnome-desktop3 (3.32.0-1) UNRELEASED; urgency=medium
+
+  * New upstream release
+
+ -- Jeremy Bicha <jbicha@debian.org>  Tue, 12 Mar 2019 06:01:51 -0400
+
 gnome-desktop3 (3.31.91-1) experimental; urgency=medium
 
   * New upstream development release
