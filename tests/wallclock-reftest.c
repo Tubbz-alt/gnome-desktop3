@@ -438,16 +438,18 @@ test_ui_file (GFile         *file,
   GtkStyleProvider *provider;
   GnomeWallClock *clock;
   GDateTime *datetime;
-  char *str, *set_locale;
+  char *str;
+  locale_t loc, previous_locale;
 
   ui_file = g_file_get_path (file);
 
   locale = get_locale_for_file (ui_file);
   g_assert (locale);
-  set_locale = setlocale (LC_ALL, locale);
-  g_assert_cmpstr (set_locale, ==, locale);
+  loc = newlocale (LC_ALL_MASK, locale, (locale_t) 0);
+  previous_locale = uselocale (loc);
+  g_assert_true (previous_locale != (locale_t) 0);
 
-  clock = gnome_wall_clock_new();
+  clock = gnome_wall_clock_new ();
   datetime = g_date_time_new_local (2014, 5, 28, 23, 59, 59);
   str = gnome_wall_clock_string_for_datetime (clock,
 					      datetime,
@@ -456,6 +458,9 @@ test_ui_file (GFile         *file,
   g_test_message ("Date string is: '%s'", str);
   g_date_time_unref (datetime);
   g_object_unref (clock);
+
+  uselocale (previous_locale);
+  freelocale (loc);
 
   provider = add_extra_css (ui_file, ".css");
 
@@ -570,13 +575,18 @@ main (int argc, char **argv)
   const char *basedir;
   GFile *file;
 
+  /* unset environment variables that can interfere with our tests */
+  unsetenv("LANG");
+  unsetenv("LANGUAGE");
+  unsetenv("LC_ALL");
+  unsetenv("LC_TIME");
+
   /* I don't want to fight fuzzy scaling algorithms in GPUs,
    * so unless you explicitly set it to something else, we
    * will use Cairo's image surface.
    */
   g_setenv ("GDK_RENDERING", "image", FALSE);
 
-  setlocale (LC_ALL, "");
   g_test_init (&argc, &argv, NULL);
   gtk_init (&argc, &argv);
 
