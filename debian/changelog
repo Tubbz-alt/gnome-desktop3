@@ -1,3 +1,23 @@
+gnome-desktop3 (3.32.1-1ubuntu1) UNRELEASED; urgency=medium
+
+  * Update to the current stable version, based on Debian
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 10 Apr 2019 17:39:24 +0200
+
+gnome-desktop3 (3.32.1-1) experimental; urgency=medium
+
+  * New upstream release
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 10 Apr 2019 17:26:03 +0200
+
+gnome-desktop3 (3.32.0-2) experimental; urgency=medium
+
+  * rules: Actually set $XDG_RUNTIME_DIR.
+    9b145adef attempted to set a runtime directory up for the testsuite, but
+    it actually set $HOME instead. Fix this, to fix the build.
+
+ -- Iain Lane <laney@debian.org>  Mon, 01 Apr 2019 17:49:13 +0100
+
 gnome-desktop3 (3.32.0-1ubuntu1) disco; urgency=medium
 
   * Merge with Debian. Remaining changes:
